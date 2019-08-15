@@ -1,29 +1,54 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-container>
+      <!-- 主模板头部 -->
+      <el-header>
+        <g-header/>
+      </el-header>
+      <!-- 主体 -->
+      <el-main>
+        <!-- 一级路由 -->
+        <router-view/>
+      </el-main>
+      <!-- 主模板底部 -->
+      <el-footer>
+        <g-footer/>
+      </el-footer>
+    </el-container>
   </div>
 </template>
 
+<script>
+import GHeader from '@/components/header'
+import GFooter from '@/components/footer'
+
+export default {
+  name: 'App',
+  components: {
+    GHeader,
+    GFooter
+  }
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .el-container{
+    .el-header,
+    .el-main,
+    .el-footer{
+      padding: 0;
+      margin: 0;
+    }
+    .el-header{
+      z-index: 100;
+    }
+    .el-main{
+      background-color: #DAE5F3;
     }
   }
-}
+  
 </style>

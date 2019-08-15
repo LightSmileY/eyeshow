@@ -1,0 +1,70 @@
+@import "../public/variables.scss";
+@import "../public/mixins.scss";
+
+#g-header{
+  position: fixed;
+  width: 100%;
+  height: 60px;
+
+  .el-row{
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 3px 0 6px #9F9F9F;
+
+    .el-col{
+      @include flex-center(column);
+      height: 100%;
+
+      .logo{
+        @include flex-center(column);
+
+        img{
+          width: 55px;
+          height: 55px;
+          border-radius: 50%;
+        }
+      }
+
+      .search{
+        width: 100%;
+        @include flex-center(column);
+
+        .el-input{
+          width: 90%;
+        }
+      }
+      
+
+      .nav{
+        width: 100%;
+        height: 100%;
+
+        ul{
+          list-style: none;
+          width: 100%;
+          height: 100%;
+          @include flex-center();
+
+          a{
+            flex: 1;
+            @include flex-center(column);
+            height: 100%;
+            margin: 20px;
+            cursor: pointer;
+            // background-color: #FFDDDD;
+            text-decoration: none;
+            // border-radius: 60px 0 60px 0;
+          }
+
+          .h-active{
+            background-color: #FFCFCF;
+            transition: background-color 1s;
+          }
+        }
+      }
+    }
+
+  }
+  
+}
+

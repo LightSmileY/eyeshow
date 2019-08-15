@@ -1,0 +1,17 @@
+@import "../public/variables.scss";
+@import "../public/mixins.scss";
+
+#mall{
+  background-color: #FFDEDE;
+
+  .mall-header{
+
+    .el-row{
+
+      .el-col{
+
+        @include flex-center(column);
+      }
+    }
+  }
+}
