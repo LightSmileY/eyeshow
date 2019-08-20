@@ -5,30 +5,42 @@
   @include flex-center();
 
   .container{
+    position: relative;
     width: 100%;
     max-width: 1000px;
     box-sizing: border-box;
-    // background-color: #B6FFDC;
+    // background-color: #FFE5E5;
     display: flex;
 
     .main{
       width: 700px;
-      background-color: #B6FFDC;
+      // background-color: #B6FFDC;
       display: flex;
       flex-direction: column;
       align-items: center;
 
       .nav{
         width: 70%;
-        height: 50px;
-        margin: 30px 0;
+        height: 40px;
+        box-sizing: border-box;
+        margin: 20px 0;
         @include flex-center();
         list-style: none;
-        background-color: #FFD8BB;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
         li{
           flex: 1;
           @include flex-center(column);
+
+          .el-dropdown-link {
+            cursor: pointer;
+            font-size: 17px;
+          }
+          .el-icon-arrow-down {
+            font-size: 14px;
+          }
         }
       }
 
@@ -47,27 +59,30 @@
     }
 
     .aside{
-      // position: fixed;
-      // right: 50px;
-      margin-left: 100px;
-      width: 200px;
-      height: 500px;
-      align-self: center;
-      @include flex-center(column);
+      margin-top: 78px;
+      margin-left: 60px;
+      width: 220px;
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 0 10px;
 
       .youLike{
         flex: 1;
         width: 100%;
-        @include flex-center(column);
-        background-color: #FBD3FF;
+        background-color: #fff;
+        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
       }
 
       .recommend{
         flex: 1;
         width: 100%;
         margin-top: 20px;
-        @include flex-center(column);
-        background-color: #FFCDD7;
+        background-color: #fff;
+        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
       }
     }
 

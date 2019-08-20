@@ -1,6 +1,11 @@
 <template>
   <div id="youLike">
-    猜你喜欢
+    <div class="title">
+      猜你喜欢
+    </div>
+    <ul class="items">
+      <li v-for="item in 8">人生若只如初见人生若只如初见</li>
+    </ul>
   </div>
 </template>
 
@@ -25,5 +30,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/register/index.scss";
+  @import "../../assets/scss/community/youLike.scss";
 </style>

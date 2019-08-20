@@ -8,42 +8,189 @@
     width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
-    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
 
     .banner{
       width: 100%;
       height: 300px;
       @include flex-center();
       margin: 20px 0;
+      box-sizing: border-box;
+      padding: 0 35px;
 
       .picStyle{
         flex: 1;
         @include flex-center(column);
         height: 100%;
         margin-right: 30px;
-        background-color: #CAFFDF;
+        background: url('~@/assets/images/5.jpg');
+        background-size: 100% 100%;
+        cursor: pointer;
+        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
       }
 
       .slide{
         flex: 3;
-        @include flex-center(column);
         height: 100%;
-        background-color: #FFDFCA;
+        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+        img{
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
       }
     }
 
     .main{
       width: 100%;
-      height: 1200px;
-      @include flex-center(column);
-      background-color: #FFE8E8;
-      margin-bottom: 20px;
+      // background-color: #fff;
+      margin-top: 20px;
+      // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
       .list{
         width: 100%;
-        height: 400px;
-        @include flex-center(column);
-        border-bottom: 1px solid #C1C1C1;
+
+        .title{
+          width: 100%;
+          height: 50px;
+          font-size: 20px;
+          line-height: 50px;
+          text-align: center;
+          text-shadow: 2px 2px 3px #323232;
+        }
+
+        .youLikeList{
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 0 20px;
+          list-style: none;
+
+          // .youLikeList-item{
+          //   @include flex-center();
+
+          //   // .youLikeList1-item{
+          //   //   width: 355px;
+          //   //   height: 90px;
+          //   //   margin: 10px 15px;
+          //   //   box-sizing: border-box;
+          //   //   padding: 5px;
+          //   //   display: flex;
+          //   //   background-color: #fff;
+          //   //   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+          //   //   border-radius: 2px;
+          //   //   cursor: pointer;
+
+          //   //   img{
+          //   //     width: 120px;
+          //   //     height: 80px;
+          //   //   }
+
+          //   //   div{
+          //   //     max-width: 200px;
+          //   //     margin: 0 5px 0 10px;
+          //   //     font-size: 14px;
+          //   //     white-space:wrap;
+          //   //     overflow: hidden;
+          //   //     text-overflow:ellipsis;
+          //   //     box-sizing: border-box;
+          //   //     padding: 2px;
+          //   //   }
+          //   // }
+
+          //   // .youLikeList2-item{
+          //   //   width: 259px;
+          //   //   height: 170px;
+          //   //   background-color: #fff;
+          //   //   margin: 10px 15px;
+          //   //   box-sizing: border-box;
+          //   //   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+          //   //   img{
+          //   //     width: 100%;
+          //   //     height: 135px;
+          //   //   }
+
+          //   //   .desc{
+          //   //     text-align: center;
+          //   //     padding: 2px;
+          //   //   }
+          //   // }
+          // }
+
+          
+        }
+
+        .hotPostsList{
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 20px 20px;
+          list-style: none;
+          @include flex-center();
+          flex-wrap: wrap;
+          
+          // .postItem{
+          //   width: 355px;
+          //   height: 100px;
+          //   margin: 10px 15px;
+          //   box-sizing: border-box;
+          //   padding: 10px;
+          //   display: flex;
+          //   background-color: #fff;
+          //   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+          //   border-radius: 2px;
+          //   cursor: pointer;
+
+          //   img{
+          //     width: 120px;
+          //     height: 80px;
+          //   }
+
+          //   div{
+          //     max-width: 200px;
+          //     margin: 0 5px 0 10px;
+          //     font-size: 14px;
+          //     white-space:wrap;
+          //     overflow: hidden;
+          //     text-overflow:ellipsis;
+          //     box-sizing: border-box;
+          //     padding: 2px;
+
+          //     color: #606060;
+          //   }
+          // }
+        }
+
+        .hotCosmeticsList{
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 20px 20px;
+          list-style: none;
+          @include flex-center();
+          flex-wrap: wrap;
+          
+          // .hotCosmeticsList-item{
+          //   width: 259px;
+          //   height: 170px;
+          //   background-color: #fff;
+          //   margin: 10px 15px;
+          //   box-sizing: border-box;
+          //   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+          //   img{
+          //     width: 100%;
+          //     height: 135px;
+          //   }
+
+          //   .desc{
+          //     text-align: center;
+          //     padding: 2px;
+          //   }
+          // }
+        }
       }
     }
   }

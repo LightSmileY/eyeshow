@@ -1,6 +1,10 @@
 <template>
   <div id="login">
-    登录
+    <div class="master">
+      <div class="loginbox">
+        
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,17 +13,17 @@ export default {
   name: 'login',
   data(){
     return {
-
+      
     }
   },
   methods: {
-
+    
   },
   components:{
-
+    
   },
   beforeMount(){
-
+    
   }
 };
 </script>

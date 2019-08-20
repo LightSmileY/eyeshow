@@ -9,7 +9,7 @@
   .el-row{
     height: 100%;
     background-color: #fff;
-    box-shadow: 3px 0 6px #9F9F9F;
+    box-shadow: 3px 0 5px #BFBFBF;
 
     .el-col{
       @include flex-center(column);
@@ -54,6 +54,11 @@
             // background-color: #FFDDDD;
             text-decoration: none;
             // border-radius: 60px 0 60px 0;
+            // border-radius: 60px 0 60px 0;
+            
+          }
+          a:first-child{
+            // background-color: #FFCFCF;
           }
 
           .h-active{

@@ -23,7 +23,7 @@
             <router-link to="index"><li>首页</li></router-link>
             <router-link to="community"><li>社区</li></router-link>
             <router-link to="mall"><li>眼妆商城</li></router-link>
-            <router-link to="mine"><li>个人中心</li></router-link>
+            <router-link to="mine/myPosts"><li>个人中心</li></router-link>
           </ul>
         </div>
       </el-col>
@@ -42,7 +42,8 @@ export default {
   name: 'g-header',
   data(){
     return {
-      isActive: 1
+      isActive: 1,
+      input3: ''
     }
   },
   methods: {

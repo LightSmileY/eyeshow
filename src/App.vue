@@ -47,7 +47,11 @@ export default {
       z-index: 100;
     }
     .el-main{
-      background-color: #DAE5F3;
+      // background-image: url('~@/assets/images/bg.jpg');
+      // background-size: 100vw 100vh;
+      // background-origin: top left;
+      // background-attachment: fixed;
+      background-color: #ff9797;
     }
   }
   

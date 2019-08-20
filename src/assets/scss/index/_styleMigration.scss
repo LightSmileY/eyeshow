@@ -5,7 +5,8 @@
   @include flex-center(column);
 
   .container{
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px;
 
     .banner{
       width: 100%;

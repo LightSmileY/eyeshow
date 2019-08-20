@@ -1,6 +1,8 @@
 <template>
   <ul id="postList">
-    <li class="postList-li" v-for="item in 5">
+    <li 
+    class="postList-li" 
+    v-for="(item,index) in 5">
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
@@ -12,11 +14,11 @@
           </div>
         </div>
         <div class="attent">
-          <el-button type="danger" size="mini">关注TA</el-button>
+          <el-button size="mini" type="primary">关注TA</el-button>
         </div>
       </div>
       <div class="body">
-        <p>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+        <p @click="toDetailPage" title="查看帖子详情">东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
       </div>
       <!-- <div class="images">
         <el-image 
@@ -46,8 +48,9 @@
         </div>
       </div>
       <div class="comments">
-        <el-collapse v-model="activeName" accordion>
-          <el-collapse-item title="展开评论">
+        <el-collapse accordion>
+          <el-collapse-item 
+          :title='"展开评论 ("+commentCount+")"'>
             <div class="tocomment">
               <el-input
                 type="textarea"
@@ -61,17 +64,24 @@
                 评论
               </el-button>
             </div>
-            <li class="commentList" v-for="item in 5">
+            <li 
+            class="commentList" 
+            v-for="item in 5"
+            title="回复TA"
+            @click="openMessageBox('袁乾峰')">
               <span class="obj">
                 <span>
-                  <span>浅笑半离兮&nbsp;</span>
+                  <span>袁乾峰&nbsp;</span>
                   <span v-if="true">
                     <span class="reply">回复</span>
-                    淡然
+                    胡健龙
                   </span>
                 </span>
                 :&nbsp;
-              </span>哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
+              </span>
+              <span>
+                哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
+              </span>
             </li>
           </el-collapse-item>
         </el-collapse>
@@ -90,6 +100,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'postList',
   data(){
@@ -106,16 +117,31 @@ export default {
         "@/assets/images/8.jpg",
         "@/assets/images/9.jpg"
       ],
-      textarea: ''
+      textarea: '',
+      commentCount: 37
     }
   },
   methods: {
     openDrawer(title, arr){
       this.drawer = true;
+    },
+    openMessageBox(i){
+      this.$prompt('回复  '+i, {
+        confirmButtonText: '提交',
+        cancelButtonText: '取消',
+        // beforeClose: 
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '回复成功'
+        });
+      }).catch(() => {
+             
+      });
+    },
+    toDetailPage(){
+      this.$router.push({name:'PostDetails'});
     }
-  },
-  components:{
-
   },
   beforeMount(){
 
