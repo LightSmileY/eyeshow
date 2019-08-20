@@ -2,16 +2,45 @@
 @import "../public/mixins.scss";
 
 #mall{
-  background-color: #FFDEDE;
+  // background-color: #FFDEDE;
+  @include flex-center();
+  flex-wrap: wrap;
 
-  .mall-header{
+  .header{
+    width: 100%;
+    max-width: 1200px;
+    // background-color: #FFECEC;
+    display: flex;
 
-    .el-row{
+    .container{
+      width: 100%;
+      height: 80px;
+      @include flex-center();
+      flex-wrap: wrap;
 
-      .el-col{
+      .title{
+        width: 150px;
+        height: 100%;
+        @include flex-center(columns);
+      }
 
-        @include flex-center(column);
+      .search{
+        flex: 1;
+        height: 100%;
+        @include flex-center(columns);
+
+        .input{
+          width: 40%;
+          @include flex-center(columns);
+        }
       }
     }
+  }
+
+  .main{
+    width: 100%;
+    max-width: 1200px;
+    min-height: 800px;
+    background-color: rgba(#4F4F4F, .1);
   }
 }

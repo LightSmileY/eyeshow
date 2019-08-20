@@ -47,6 +47,12 @@ export default new Router({
       name: 'Mall',
       component: () => import('@/views/mall'),
       children: [
+        // 商城首页
+        {
+          path: '/mall/mallIndex',
+          name: 'MallIndex',
+          component: () => import('@/views/mall/mallIndex')
+        },
         // 搜索详情页
         {
           path: '/mall/searchDetail',
@@ -72,30 +78,6 @@ export default new Router({
               component: () => import('@/views/mall/productDetail/evaluationDetail')
             }
           ]
-        },
-        // 购物车页
-        {
-          path: '/mall/shoppingCart',
-          name: 'ShoppingCart',
-          component: () => import('@/views/mall/shoppingCart')
-        },
-        // 订单详情页
-        {
-          path: '/mall/orderDetail',
-          name: 'OrderDetail',
-          component: () => import('@/views/mall/orderDetail')
-        },
-        // 我的订单页
-        {
-          path: '/mall/myOrders',
-          name: 'MyOrders',
-          component: () => import('@/views/mall/myOrders')
-        },
-        // 我的已完成订单页
-        {
-          path: '/mall/myDoneOrders',
-          name: 'MyDoneOrders',
-          component: () => import('@/views/mall/myDoneOrders')
         }
       ]
     },

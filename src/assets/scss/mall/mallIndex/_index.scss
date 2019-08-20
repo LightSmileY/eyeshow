@@ -1,0 +1,52 @@
+@import "../../public/variables.scss";
+@import "../../public/mixins.scss";
+
+#mallIndex{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+
+  .banner{
+    width: 100%;
+    height: 300px;
+    display: flex;
+
+    .navbar{
+      width: 200px;
+      height: 100%;
+      // background-color: #fff;
+      color: #fff;
+      list-style: none;
+      @include flex-center(column);
+
+      li{
+        flex: 1;
+        width: 100%;
+        @include flex-center(column);
+        box-sizing: border-box;
+        border-bottom: 1px solid #FFBCBC;
+        border-left: 1px solid #FFBCBC;
+        cursor: pointer;
+      }
+
+      li:first-child{
+        border-top: 1px solid #FFBCBC;
+      }
+
+      li:hover{
+        background-color: #FFEDED;
+        color: #000;
+        transition: background-color 1s;
+      }
+    }
+
+    .slide{
+      flex: 1;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

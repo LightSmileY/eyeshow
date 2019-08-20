@@ -10,6 +10,7 @@
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgba(#4F4F4F, .1);
 
     .banner{
       width: 100%;
@@ -28,14 +29,14 @@
         background-size: 100% 100%;
         cursor: pointer;
         // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
       }
 
       .slide{
         flex: 3;
         height: 100%;
         // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
         img{
           width: 100%;

@@ -7,11 +7,10 @@
     background-color: #fff;
     box-sizing: border-box;
     padding: 20px;
-    border-radius: 4px;
+    border-radius: 2px;
     list-style: none;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    margin-bottom: 20px;
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
     .user{
       height: 50px;
@@ -69,7 +68,8 @@
     }
 
     .images{
-      width: 400px;
+      width: 100%;
+      max-width: 400px;
       display:flex;
       flex-wrap: wrap;
       margin-left: 10px;
@@ -83,8 +83,9 @@
     }
 
     .video{
-      width: 400px;
-      margin-left: 10px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 10px;
     }
 
     .operate{

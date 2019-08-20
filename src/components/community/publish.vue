@@ -1,11 +1,17 @@
 <template>
   <div id="publishPage">
-    <el-button type="text" @click="dialogFormVisible = true">发表帖子</el-button>
+    <el-button 
+    @click="dialogFormVisible = true" 
+    type="primary" 
+    icon="el-icon-edit" 
+    title="发表帖子" 
+    circle
+    style="margin:0;"></el-button>
 
     <el-dialog 
     title="发表帖子" 
     :visible.sync="dialogFormVisible"
-    close-on-click-modal="false">
+    :close-on-click-modal="false">
       <el-form :model="form">
         <el-form-item label="类型" :label-width="formLabelWidth">
           <el-radio v-model="post.style" label="1" value="眼妆教程/分享">眼妆教程&nbsp;/&nbsp;分享</el-radio>

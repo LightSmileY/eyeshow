@@ -1,9 +1,26 @@
 <template>
   <div id="community">
     <div class="container">
+      <div class="navs">
+        <dl class="teachList">
+          <dt>化妆教程</dt>
+          <dd>最新</dd>
+          <dd>热门</dd>
+          <dd>图文</dd>
+          <dd>视频</dd>
+        </dl>
+        <el-divider></el-divider>
+        <dl class="cusList">
+          <dt>妆品推荐</dt>
+          <dd>最新</dd>
+          <dd>热门</dd>
+          <dd>图文</dd>
+          <dd>视频</dd>
+        </dl>
+      </div>
       <div class="main">
-        <ul class="nav">
-          <!-- <li>
+        <!-- <ul class="nav">
+          <li>
             <el-dropdown>
               <span class="el-dropdown-link">
                 全部<i class="el-icon-arrow-down el-icon--right"></i>
@@ -15,7 +32,7 @@
                 <el-dropdown-item>视频</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-          </li> -->
+          </li>
           <li>
             <el-dropdown>
               <span class="el-dropdown-link">
@@ -44,7 +61,7 @@
               </el-dropdown-menu>
             </el-dropdown>
           </li>
-        </ul>
+        </ul> -->
         <!-- <el-menu
           :default-active="activeIndex2"
           class="el-menu-demo"
@@ -56,9 +73,17 @@
           <el-menu-item index="1">处理中心</el-menu-item>
           <el-menu-item index="3">消息中心</el-menu-item>
           <el-menu-item index="4">订单管理</el-menu-item>
-        </el-menu>
-        <publish-page/> -->
+        </el-menu> -->
+        
         <ul class="posts">
+          <div class="publish">
+            <div class="publishDesc">
+              有什么化妆技巧想告诉大家？
+            </div>
+            <div class="publishBtn">
+              <publish-page/>
+            </div>
+          </div>
           <!-- 帖子列表组件 -->
           <post-list :arrayList="postList"/>
         </ul>
