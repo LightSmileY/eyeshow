@@ -1,13 +1,7 @@
 <template>
   <div id="myPosts">
     <div class="time-line">
-      <el-timeline>
-        <el-timeline-item 
-        timestamp="2018/4/12" 
-        placement="top">
-          <post-list/>
-        </el-timeline-item>
-      </el-timeline>
+      <post-list/>
     </div>
   </div>
 </template>

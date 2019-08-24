@@ -1,10 +1,62 @@
 <template>
   <div id="searchDetail">
-    搜索详情
+    <div class="navs">
+      <div class="navBox">
+        <div class="type">妆品分类</div>
+        <div class="infos">
+          <li>眼影</li>
+          <li>眼线</li>
+        </div>
+      </div>
+      <div class="navBox">
+        <div class="type">适用人群</div>
+        <div class="infos">
+          <li>男士</li>
+          <li>女士</li>
+        </div>
+      </div>
+      <div class="navBox">
+        <div class="type">适用肤质</div>
+        <div class="infos">
+          <li>中性皮肤</li>
+          <li>敏感皮肤</li>
+        </div>
+      </div>
+      <div class="navBox">
+        <div class="type">使用效果</div>
+        <div class="infos">
+          <li>柔和</li>
+          <li>持久</li>
+        </div>
+      </div>
+    </div>
+    <div class="navbar">
+      <el-button plain size="mini">
+        综合
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-button plain size="mini">
+        销量
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-button plain size="mini">
+        评价
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-button plain size="mini">
+        价格
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+    </div>
+    <div class="product-main">
+      <cosmetic-item/>
+    </div>
   </div>
 </template>
 
 <script>
+import CosmeticItem from '@/components/pubComponents/cosmeticItem'
+
 export default {
   name: 'searchDetail',
   data(){
@@ -13,10 +65,12 @@ export default {
     }
   },
   methods: {
-
+    toSearchDetailPage(){
+      this.$router.push({name:'SearchDetail'});
+    }
   },
   components:{
-
+    CosmeticItem
   },
   beforeMount(){
 

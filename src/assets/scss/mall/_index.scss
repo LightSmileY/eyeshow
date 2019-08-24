@@ -21,6 +21,8 @@
       .title{
         width: 150px;
         height: 100%;
+        font-size: 22px;
+        color: #fff;
         @include flex-center(columns);
       }
 

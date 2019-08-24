@@ -12,7 +12,10 @@
             v-model="input" 
             class="input-with-select"
             size="small">
-              <el-button slot="append" icon="el-icon-search"></el-button>
+              <el-button 
+              slot="append" 
+              icon="el-icon-search"
+              @click="toSearchDetailPage"></el-button>
             </el-input>
           </div>
         </div>
@@ -35,7 +38,9 @@ export default {
     }
   },
   methods: {
-
+    toSearchDetailPage(){
+      this.$router.push({name:'SearchDetail'});
+    }
   },
   components:{
     

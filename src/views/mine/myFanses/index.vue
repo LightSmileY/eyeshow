@@ -1,10 +1,12 @@
 <template>
   <div id="myFanses">
-    我的粉丝
+    <user-list/>
   </div>
 </template>
 
 <script>
+import UserList from '@/components/pubComponents/userList'
+
 export default {
   name: 'myFanses',
   data(){
@@ -16,7 +18,7 @@ export default {
 
   },
   components:{
-
+    UserList
   },
   beforeMount(){
 

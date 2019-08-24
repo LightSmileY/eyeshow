@@ -3,7 +3,7 @@
     <el-row> 
       <el-col :span="24">
         <div class="">
-          底部栏1
+          底部栏
         </div>
       </el-col>
       <!-- <el-col :span="8">

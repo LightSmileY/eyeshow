@@ -1,10 +1,12 @@
 <template>
   <div id="myLikes">
-    注册
+    <post-item/>
   </div>
 </template>
 
 <script>
+import PostItem from '@/components/pubComponents/postItem'
+
 export default {
   name: 'myLikes',
   data(){
@@ -16,7 +18,7 @@ export default {
 
   },
   components:{
-
+    PostItem
   },
   beforeMount(){
 

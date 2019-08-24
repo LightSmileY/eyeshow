@@ -10,7 +10,8 @@
 		width: 100%;
 		height: 230px;
 		@include flex-center(column);
-		background-color: #B6FFDB;
+		background-image: url('~@/assets/images/minebg.jpg');
+    background-size: 100% 100%;
 
 		.avatar{
 			width: 70px;
@@ -30,12 +31,10 @@
 			max-width: 500px;
 			display: flex;
 			margin-top: 20px;
-			@include flex-center();
-
-
-
-			.edit{
-				
+			@include flex-center(column);
+			
+			.signature{
+				margin-bottom: 10px;
 			}
 		}
 	}
@@ -44,7 +43,9 @@
 		width: 100%;
 		height: 50px;
 		@include flex-center();
-		background-color: #FFD1D1;
+		background-color: #fff;
+		border-top: 1px solid #DDDDDD;
+		border-bottom: 1px solid #DDDDDD;
 
 		.nav-bar-ul{
 			width: 100%;
@@ -66,7 +67,7 @@
 		width: 100%;
 		max-width: 1000px;
 		min-height: 500px;
-		background-color: #D5F5FF;
+		background-color: rgba(#4F4F4F, .1);
 	}
   // @include flex-center(column);
   // 个人中心头像部分

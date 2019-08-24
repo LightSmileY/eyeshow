@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="attent">
-              <el-button type="danger" size="mini">关注TA</el-button>
+              <el-button type="primary" size="mini">关注TA</el-button>
             </div>
           </div>
           <div class="body">
@@ -116,9 +116,8 @@
           </div>
         </li>
       </div>
-      <div class="return" @click="toCommunityPage">
+      <div class="return" @click="returnLastPage">
         <el-button 
-        type="danger" 
         icon="el-icon-arrow-left" 
         circle
         title="返回上一页">
@@ -143,8 +142,8 @@ export default {
   },
   methods: {
     // 跳转到社区页
-    toCommunityPage(){
-      this.$router.push({name:'Community'});
+    returnLastPage(){
+      this.$router.go(-1);
     },
     openMessageBox(i){
       this.$prompt('回复  '+i, {
