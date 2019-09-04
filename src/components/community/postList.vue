@@ -1,7 +1,8 @@
 <template>
   <ul id="postList">
+    <!--************************************** 商品帖子 **************************************-->
     <li 
-    class="postList-li" 
+    class="postList-li-1" 
     v-for="(item,index) in 5">
       <div class="user">
         <div class="userInfo">
@@ -20,19 +21,19 @@
       <div class="body">
         <p @click="toDetailPage" title="查看帖子详情">东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
       </div>
-      <!-- <div class="images">
+      <div class="images">
         <el-image 
-          :src="item"
+          :src="imageUrl"
           :preview-src-list="images"
           :fit="cover"
           v-for="item in images">
         </el-image>
-      </div> -->
-      <div class="video">
-        <video src="http://fengblog.xyz:8080/videos/test.mp4" width="100%" controls="controls">
+      </div>
+      <!-- <div class="video">
+        <video src="http://fengblog.xyz/videos/test.mp4" width="100%" controls="controls">
           您的浏览器不支持 video 标签。
         </video>
-      </div>
+      </div> -->
       <div class="operate">
         <div class="like" title="点赞">
           <img src="@/assets/icons/like.png" class="like">
@@ -85,21 +86,13 @@
             </li>
           </el-collapse-item>
         </el-collapse>
-        <!-- <div class="title">评论</div>
-        <li class="commentList" v-for="item in 5">
-          <span class="obj">
-            <span>袁乾峰</span>
-            回复
-            <span>朱宇晴</span>
-            :&nbsp;
-          </span>哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
-        </li> -->
       </div>
     </li>
   </ul>
 </template>
 
 <script>
+import Img from '@/assets/images/8.jpg'
 
 export default {
   name: 'postList',
@@ -118,7 +111,8 @@ export default {
         "@/assets/images/9.jpg"
       ],
       textarea: '',
-      commentCount: 37
+      commentCount: 37,
+      imageUrl: Img
     }
   },
   methods: {

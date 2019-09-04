@@ -61,15 +61,19 @@
             // background-color: #FFCFCF;
           }
 
-          .h-active{
-            background-color: #FFCFCF;
-            transition: background-color 1s;
-          }
+          // .active{
+          //   background-color: #FFCFCF;
+          //   transition: background-color 1s;
+          // }
         }
       }
     }
 
+    .me{
+      span{
+        cursor: pointer;
+      }
+    }
   }
-  
 }
 

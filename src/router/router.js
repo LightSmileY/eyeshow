@@ -63,21 +63,7 @@ export default new Router({
         {
           path: '/mall/productDetail',
           name: 'ProductDetail',
-          component: () => import('@/views/mall/productDetail'),
-          children: [
-            // 商品图文详情页
-            {
-              path: '/mall/productDetail/productPicDetail',
-              name: 'EvaluationDetail',
-              component: () => import('@/views/mall/productDetail/productPicDetail')
-            },
-            // 评价详情页
-            {
-              path: '/mall/productDetail/evaluationDetail',
-              name: 'EvaluationDetail',
-              component: () => import('@/views/mall/productDetail/evaluationDetail')
-            }
-          ]
+          component: () => import('@/views/mall/productDetail')
         }
       ]
     },

@@ -47,7 +47,7 @@ export default {
       z-index: 100;
     }
     .el-main{
-      // background-image: url('~@/assets/images/bg.jpg');
+      // background-image: url('~@/assets/images/bg1.jpg');
       // background-size: 100vw 100vh;
       // background-origin: top left;
       // background-attachment: fixed;

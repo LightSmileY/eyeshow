@@ -1,47 +1,47 @@
 <template>
   <div id="mallIndex">
     <div class="banner">
-      <ul class="navbar">
-        <li>
+      <ul class="navbar-ul">
+        <li class="navbar-li">
           <div class="li-title">眼影</div>
           <div class="navbar2">
-            1
+            <nav-bar2/>
           </div>
         </li>
-        <li>
+        <li class="navbar-li">
           <div class="li-title">眼线</div>
           <div class="navbar2">
-            2
+            <nav-bar2/>
           </div>
         </li>
-        <li>
+        <li class="navbar-li">
           <div class="li-title">睫毛角</div>
           <div class="navbar2">
-            3
+            <nav-bar2/>
           </div>
         </li>
-        <li>
+        <li class="navbar-li">
           <div class="li-title">画笔</div>
           <div class="navbar2">
-            4
+            <nav-bar2/>
           </div>
         </li>
-        <li>
+        <li class="navbar-li">
           <div class="li-title">辅助品</div>
           <div class="navbar2">
-            5
+            <nav-bar2/>
           </div>
         </li>
-        <li>
+        <li class="navbar-li">
           <div class="li-title">眼影</div>
           <div class="navbar2">
-            6
+            <nav-bar2/>
           </div>
         </li>
-        <li>
+        <li class="navbar-li">
           <div class="li-title">眼线</div>
           <div class="navbar2">
-            7
+            <nav-bar2/>
           </div>
         </li>
       </ul>
@@ -95,6 +95,7 @@
 
 <script>
 import CosmeticItem from '@/components/pubComponents/cosmeticItem'
+import NavBar2 from '@/components/mall/navbar2'
 
 export default {
   name: 'mallIndex',
@@ -107,7 +108,8 @@ export default {
 
   },
   components:{
-    CosmeticItem
+    CosmeticItem,
+    NavBar2
   },
   beforeMount(){
     

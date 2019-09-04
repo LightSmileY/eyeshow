@@ -11,7 +11,7 @@
         </dl>
         <el-divider></el-divider>
         <dl class="cusList">
-          <dt>妆品推荐</dt>
+          <dt>妆容分享</dt>
           <dd>最新</dd>
           <dd>热门</dd>
           <dd>图文</dd>
@@ -62,23 +62,11 @@
             </el-dropdown>
           </li>
         </ul> -->
-        <!-- <el-menu
-          :default-active="activeIndex2"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#F8BABA"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-menu-item index="3">消息中心</el-menu-item>
-          <el-menu-item index="4">订单管理</el-menu-item>
-        </el-menu> -->
         
         <ul class="posts">
           <div class="publish">
             <div class="publishDesc">
-              有什么化妆技巧想告诉大家？
+              <img src="@/assets/images/123.png">
             </div>
             <div class="publishBtn">
               <publish-page/>
@@ -115,7 +103,8 @@ export default {
     return {
       postList: [],
       youLikeList: [],
-      hotRecommendList: []
+      hotRecommendList: [],
+      imageUrl: Img
     }
   },
   components:{

@@ -1,6 +1,6 @@
 <template>
   <div id="cosmeticItem">
-    <li class="youLikeList-item" v-for="item in 12">
+    <li class="youLikeList-item" v-for="item in 12" @click="toDetailPage">
       <div class="image">
         <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" alt="">
       </div>
@@ -27,6 +27,11 @@ export default {
   },
   props: {
 
+  },
+  methods: {
+    toDetailPage(){
+      this.$router.push({name:'ProductDetail'});
+    }
   }
 };
 </script>

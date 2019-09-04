@@ -2,52 +2,104 @@
 @import "../public/mixins.scss";
 
 #styleMigration{
-  @include flex-center(column);
+  @include flex-center();
 
   .container{
     width: 100%;
     max-width: 1200px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: rgba(#4F4F4F, .2);
 
-    .banner{
+    .select{
       width: 100%;
-      height: 250px;
-      @include flex-center();
-      margin: 20px 0;
-      
-      .uploadImage{
-        flex: 1;
-        @include flex-center(column);
-        height: 100%;
-        background-color: #BFFFFE;
-        margin-right: 50px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 20px 20px 0;
+      background-color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+
+      .myPhoto{
+        flex: 2;
+        height: 300px;
+        // background-color: #fff;
+        border-radius: 2px;
+        
+        .title{
+          // color: #fff;
+          font-size: 17px;
+        }
+
+        .upload{
+          margin-top: 50px;
+        }
       }
 
-      .pictures{
-        flex: 1;
+      .fusionPhoto{
+        flex: 5;
+        height: 300px;
+        // background-color: #fff;
+        border-radius: 2px;
+        margin-left: 30px;
+
+        .title{
+          // color: #fff;
+          font-size: 17px;
+        }
+
+        .styleList{
+          list-style: none;
+          width: 100%;
+          height: 45px;
+          display: flex;
+          align-items: center;
+
+          li{
+            @include flex-center(column);
+            margin-right: 20px;
+          }
+        }
+
+        .images{
+          width: 100%;
+          height: 190px;
+          display: flex;
+          list-style: none;
+
+          li{
+            flex: 1;
+            // background-color: #FFBFBF;
+            margin: 2px;
+            border-radius: 4px;
+
+            img{
+
+            }
+          }
+        }
+        .pagenation{
+          width: 100%;
+          height: 50px;
+          @include flex-center(column);
+        }
+      }
+
+      .submit{
+        width: 100%;
+        height: 80px;
         @include flex-center(column);
-        height: 100%;
-        background-color: #FEDDFD;
       }
     }
 
-    .main{
+    .result{
       width: 100%;
-      @include flex-center(column);
-      margin-bottom: 20px;
-
-      .matchResult{
-        width: 100%;
-        height: 300px;
-        @include flex-center(column);
-        background-color: #FFE8E8;
-      }
-
-      .recommend{
-        width: 100%;
-        height: 300px;
-        @include flex-center(column);
-        background-color: #CDFFED;
-      }
+      height: 500px;
+      box-sizing: border-box;
+      padding: 20px;
+      margin-top: 20px;
+      background-color: #fff;
+      display: flex;
     }
   }
   

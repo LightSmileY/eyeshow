@@ -1,6 +1,8 @@
 <template>
-  <div id="productDetail">
-    <div class="detail">
+  <ul id="postList">
+    <!--************************************** 商品帖子 **************************************-->
+    <li 
+    class="postList-li-2">
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
@@ -17,28 +19,12 @@
       </div>
       <div class="postList-main">
         <div class="cosImage">
-          <img class="bigImg" src="@/assets/images/avatar.jpg" alt="商品图片">
-          <div class="smallImages">
-            <img src="@/assets/images/avatar.jpg" alt="">
-            <img src="@/assets/images/avatar.jpg" alt="">
-            <img src="@/assets/images/avatar.jpg" alt="">
-            <img src="@/assets/images/avatar.jpg" alt="">
-          </div>
+          <img src="@/assets/images/avatar.jpg" alt="商品图片">
         </div>
         <div class="desc-operate">
           <div class="prductTitle">精致的眼妆品精致的眼妆品精致的眼妆品</div>
           <div class="produtcPrice">￥198~298</div>
           <div class="productUrl">商品链接</div>
-          
-        </div>
-      </div>
-      <!-- 描述、评论区 -->
-      <div class="desc-comment">
-        <div class="header">
-          <div class="changeBar">
-            <div class="changeBar-desc">描述</div>
-            <div class="changeBar-comment">评论</div>
-          </div>
           <div class="productOperate">
             <div class="operate">
               <div class="like" title="点赞">
@@ -55,6 +41,13 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <!-- 描述、评论区 -->
+      <div class="desc-comment">
+        <div class="changeBar">
+          <div class="changeBar-desc">描述</div>
+          <div class="changeBar-comment">评论</div>
         </div>
         <!-- 商品描述 -->
         <div class="desc" v-if="false">
@@ -83,7 +76,7 @@
             <span class="obj">
               <span>
                 <span>袁乾峰&nbsp;</span>
-                <span v-if="false">
+                <span v-if="true">
                   <span class="reply">回复</span>
                   胡健龙
                 </span>
@@ -96,19 +89,28 @@
           </li>
         </div>
       </div>
-    </div>
-    <div class="recommend">
-      hhh
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
 
 export default {
-  name: 'productDetail',
+  name: 'postList',
   data(){
     return {
+      drawer: false,
+      images: [
+        "@/assets/images/1.jpg",
+        "@/assets/images/2.jpg",
+        "@/assets/images/3.jpg",
+        "@/assets/images/4.jpg",
+        "@/assets/images/5.jpg",
+        "@/assets/images/6.jpg",
+        "@/assets/images/7.jpg",
+        "@/assets/images/8.jpg",
+        "@/assets/images/9.jpg"
+      ],
       textarea: '',
       commentCount: 37
     }
@@ -135,17 +137,12 @@ export default {
       this.$router.push({name:'PostDetails'});
     }
   },
-  components:{
-
-  },
   beforeMount(){
-    this.$alert('这是一段内容', '警告', {
-      confirmButtonText: '确定',
-    });
+
   }
 };
 </script>
 
 <style lang="scss">
-  @import "../../../assets/scss/mall/productDetail/index.scss";
+  @import "../../assets/scss/community/postList.scss";
 </style>

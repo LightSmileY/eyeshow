@@ -11,7 +11,7 @@
     height: 300px;
     display: flex;
 
-    .navbar{
+    .navbar-ul{
       position: relative;
       width: 200px;
       height: 100%;
@@ -20,7 +20,7 @@
       @include flex-center(column);
       // background-color: rgba(#000, .7);
 
-      li{
+      .navbar-li{
         flex: 1;
         width: 100%;
         @include flex-center(column);
@@ -35,15 +35,15 @@
         // }
       }
 
-      li:first-child{
+      .navbar-li:first-child{
         border-top: 3px solid #FFBCBC;
       }
 
-      li:last-child{
+      .navbar-li:last-child{
         border-bottom: 3px solid #FFBCBC;
       }
 
-      li:hover{
+      .navbar-li:hover{
         background-color: #FFEDED;
         color: #000;
         transition: background-color .5s;
@@ -58,9 +58,11 @@
         background-color: rgba(#FFEDED, .9);
         z-index: 120;
         display: none;
+        // display: block;
+        color: #000;
       }
 
-      li:hover .navbar2{
+      .navbar-li:hover .navbar2{
         display: block;
       }
     }

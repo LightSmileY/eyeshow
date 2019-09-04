@@ -14,8 +14,8 @@
     :close-on-click-modal="false">
       <el-form :model="form">
         <el-form-item label="类型" :label-width="formLabelWidth">
-          <el-radio v-model="post.style" label="1" value="眼妆教程/分享">眼妆教程&nbsp;/&nbsp;分享</el-radio>
-          <el-radio v-model="post.style" label="2" value="商品推荐">商品推荐</el-radio>
+          <el-radio v-model="post.style" label="1" value="眼妆教程">眼妆教程</el-radio>
+          <el-radio v-model="post.style" label="2" value="妆容分享">妆容分享</el-radio>
         </el-form-item>
         <el-form-item label="风格" :label-width="formLabelWidth">
           <el-radio v-model="post.type" label="1" value="图片">图片</el-radio>

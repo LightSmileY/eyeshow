@@ -2,8 +2,10 @@
   <div id="g-header">
     <el-row>
       <el-col :span="2">
-        <div class="logo" @click="toIndexPage">
-          <img src="../../assets/images/logo.png" alt="logo">
+        <div class="logo">
+          <router-link to="/index">
+            <img src="../../assets/images/logo.png" alt="logo">
+          </router-link>
         </div>
       </el-col>
       <el-col :span="6">
@@ -13,17 +15,17 @@
             width="90%"
             placeholder="搜索您想要的内容···"
             suffix-icon="el-icon-search"
-            v-model="input3">
+            v-model="input">
           </el-input>
         </div>
       </el-col>
       <el-col :span="12">
         <div class="nav">
           <ul>
-            <router-link to="/index"><li>首页</li></router-link>
-            <router-link to="/community"><li>社区</li></router-link>
-            <router-link to="/mall/mallIndex"><li>眼妆商城</li></router-link>
-            <router-link to="/mine/myPosts"><li>个人中心</li></router-link>
+            <router-link to="/index" :class="{'active': status == 1}" @click="changeLink(1)"><li>首页</li></router-link>
+            <router-link to="/community" :class="{'active': status == 2}" @click="changeLink(2)"><li>社区</li></router-link>
+            <router-link to="/mall/mallIndex" :class="{'active': status == 3}" @click="changeLink(3)"><li>眼妆商城</li></router-link>
+            <router-link to="/mine/myPosts" :class="{'active': status == 4}" @click="changeLink(4)"><li>个人中心</li></router-link>
           </ul>
         </div>
       </el-col>
@@ -42,33 +44,22 @@ export default {
   name: 'g-header',
   data(){
     return {
-      isActive: 1,
-      input3: ''
+      status: 1,
+      input: ''
     }
   },
   methods: {
-    // 跳转到首页
-    toIndexPage(){
-      this.$router.push({name:'Index'});
-      this.isActive = 1;
-    },
-    // 跳转到社区页
-    toCommunityPage(){
-      this.$router.push({name:'Community'});
-      this.isActive = 2;
-    },
-    // 跳转到商城页
-    toMallPage(){
-      this.$router.push({name:'Mall'});
-      this.isActive = 3;
+    // tabbar跳转
+    changeLink(i){
+      this.status = i
     },
     // 跳转到登录页
     toLoginPage(){
-      this.$router.push({name:'Login'});
+      this.$router.push({name:'Login'})
     },
     // 跳转到注册页
     toRegisterPage(){
-      this.$router.push({name:'Register'});
+      this.$router.push({name:'Register'})
     }
   },
   components:{

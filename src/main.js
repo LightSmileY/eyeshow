@@ -12,3 +12,13 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+
+// forward: {
+//   forwardPid: "",
+//   forwardUserAvatarUrl: "",
+//   forwardNikeName: "",
+//   forwardPostTime: "",
+//   forwardPostBody: ""
+// }

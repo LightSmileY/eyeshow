@@ -79,6 +79,7 @@
       // }
       // 
       .publish{
+        position: relative;
         width: 100%;
         height: 50px;
         border-radius: 2px;
@@ -88,11 +89,16 @@
         @include flex-center();
 
         .publishDesc{
-          flex: 4;
-          @include flex-center();
+          @include flex-center(column);
+
+          img{
+            height: 32px;
+          }
         }
 
         .publishBtn{
+          position: absolute;
+          right: 20px;
           flex: 1;
           @include flex-center();
         }
