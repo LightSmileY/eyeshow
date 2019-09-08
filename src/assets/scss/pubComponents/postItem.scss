@@ -4,10 +4,11 @@
 #postItem{
   @include flex-center();
   flex-wrap: wrap;
+  justify-content: space-around;
 
   .hotPostsList-item{
     width: 355px;
-    margin: 10px 15px;
+    margin: 0 0 16px 0;
     box-sizing: border-box;
     padding: 10px;
     display: flex;

@@ -17,12 +17,9 @@
       </div>
       <div class="postList-main">
         <div class="cosImage">
-          <img class="bigImg" src="@/assets/images/avatar.jpg" alt="商品图片">
+          <img class="bigImg" src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" alt="商品图片">
           <div class="smallImages">
-            <img src="@/assets/images/avatar.jpg" alt="">
-            <img src="@/assets/images/avatar.jpg" alt="">
-            <img src="@/assets/images/avatar.jpg" alt="">
-            <img src="@/assets/images/avatar.jpg" alt="">
+            <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" v-for="item in 4">
           </div>
         </div>
         <div class="desc-operate">
@@ -98,12 +95,13 @@
       </div>
     </div>
     <div class="recommend">
-      hhh
+      <guess-youlike/>
     </div>
   </div>
 </template>
 
 <script>
+import GuessYoulike from '@/components/mall/guessYouLike'
 
 export default {
   name: 'productDetail',
@@ -136,12 +134,10 @@ export default {
     }
   },
   components:{
-
+    GuessYoulike
   },
   beforeMount(){
-    this.$alert('这是一段内容', '警告', {
-      confirmButtonText: '确定',
-    });
+    
   }
 };
 </script>

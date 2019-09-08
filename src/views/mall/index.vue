@@ -17,6 +17,23 @@
               icon="el-icon-search"
               @click="toSearchDetailPage"></el-button>
             </el-input>
+            <!-- 搜索框推荐 -->
+            <div class="hoverRecommendCon">
+              <div class="hoverRecommend">
+                <div class="hotSearch">
+                  <div class="h-title">热门搜索</div>
+                  <ul>
+                    <li v-for="item in 15">新化妆品</li>
+                  </ul>
+                </div>
+                <div class="youLike">
+                  <div class="y-title">猜你喜欢</div>
+                  <ul>
+                    <li v-for="item in 5">柔和眼妆品</li>
+                  </ul>
+                </div>
+              </div> 
+            </div>
           </div>
         </div>
       </div>

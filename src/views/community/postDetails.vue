@@ -32,7 +32,7 @@
             </el-image>
           </div> -->
           <div class="video">
-            <video src="http://fengblog.xyz:8080/videos/test.mp4" width="100%" controls="controls">
+            <video src="http://fengblog.xyz/videos/test.mp4" width="100%" controls="controls">
               您的浏览器不支持 video 标签。
             </video>
           </div>

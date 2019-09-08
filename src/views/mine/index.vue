@@ -10,7 +10,7 @@
       </div>
       <div class="signature-edit">
         <div class="signature">
-          人生若只如初见，何事秋风悲画扇。
+          东风夜放花千树，更吹落，星如雨。
         </div>
         <el-button 
         type="primary" 
@@ -19,6 +19,18 @@
         size="mini"
         title="修改个性签名"
         style="margin-top: 0;"></el-button>
+      </div>
+      <div class="upload">
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          :on-exceed="handleExceed"
+          :file-list="fileList">
+          <el-button type="primary" size="mini" plain><i class="el-icon-upload el-icon--right">上传封面图</i></el-button>
+        </el-upload>
       </div>
     </div>
     <div class="nav-bar">

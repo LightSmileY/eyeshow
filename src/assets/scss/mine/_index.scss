@@ -7,6 +7,7 @@
 	justify-content: center;
 
 	.mine-back{
+		position: relative;
 		width: 100%;
 		height: 230px;
 		@include flex-center(column);
@@ -36,6 +37,12 @@
 			.signature{
 				margin-bottom: 10px;
 			}
+		}
+
+		.upload{
+			position: absolute;
+			right: 30px;
+			top: 20px;
 		}
 	}
 

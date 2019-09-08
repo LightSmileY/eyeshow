@@ -6,7 +6,7 @@
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
-            <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64ut8pyppj30ty0kze59.jpg">
+            <img src="@/assets/images/avatar.jpg">
           </div>
           <div class="name-time">
             <div class="name">浅笑半离兮</div>

@@ -1,6 +1,6 @@
 <template>
   <ul id="postList">
-    <!--************************************** 商品帖子 **************************************-->
+    <!--************************************** 帖子 **************************************-->
     <li 
     class="postList-li-1" 
     v-for="(item,index) in 5">
@@ -36,16 +36,16 @@
       </div> -->
       <div class="operate">
         <div class="like" title="点赞">
-          <img src="@/assets/icons/like.png" class="like">
-          <div>334</div>
+          <img src="@/assets/icons/like.png" class="like" @click="toLike(index)">
+          <div @click="viewLikes(index)">334</div>
         </div>
         <div class="collection" title="收藏">
-          <img src="@/assets/icons/collection.png" class="collection">
-          <div>223</div>
+          <img src="@/assets/icons/collection.png" class="collection" @click="toCollection(index)">
+          <div @click="viewCollections(index)">223</div>
         </div>
         <div class="forward" title="转发">
           <img src="@/assets/icons/forward.png" class="forward">
-          <div>135</div>
+          <div @click="viewForwards(index)">135</div>
         </div>
       </div>
       <div class="comments">
@@ -116,9 +116,31 @@ export default {
     }
   },
   methods: {
-    openDrawer(title, arr){
-      this.drawer = true;
+    // 点赞
+    toLike(i){
+
     },
+    // 查看点赞的人
+    viewLikes(i){
+
+    },
+    // 收藏
+    toCollection(i){
+
+    },
+    // 查看收藏的人
+    viewCollections(i){
+
+    },
+    // 转发
+    toForward(i){
+
+    },
+    // 查看转发的人
+    viewLikes(i){
+
+    },
+    // 回复评论
     openMessageBox(i){
       this.$prompt('回复  '+i, {
         confirmButtonText: '提交',
@@ -133,6 +155,7 @@ export default {
              
       });
     },
+    // 去帖子详情页
     toDetailPage(){
       this.$router.push({name:'PostDetails'});
     }

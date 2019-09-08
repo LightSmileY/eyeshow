@@ -72,7 +72,7 @@
       margin: 10px 0;
 
       .cosImage{
-        width: 280px;
+        flex: 1;
         height: 180px;
 
         .bigImg{
@@ -93,11 +93,11 @@
       .desc-operate{
         flex: 1;
         box-sizing: border-box;
-        padding: 5px 20px;
+        padding: 5px 40px;
 
         .prductTitle{
           box-sizing: border-box;
-          font-size: 25px;
+          font-size: 23px;
           margin-left: 5px;
         }
         .produtcPrice{
@@ -240,8 +240,6 @@
   
   .recommend{
     width: 250px;
-    height: 500px;
-    background-color: #9FF6C2;
     margin-left: 30px;
   }
 }
