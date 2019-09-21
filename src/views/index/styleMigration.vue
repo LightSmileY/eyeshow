@@ -1,8 +1,85 @@
 <template>
   <div id="styleMigration">
     <div class="container">
+      <div class="sectionA">
+        <div class="example">
+          <div class="pic1">
+            <img src="@/assets/images/10.jpg">
+          </div>
+          <div class="add">
+            +
+          </div>
+          <div class="pic2">
+            <img src="@/assets/images/4.png">
+          </div>
+          <div class="arrow">
+            =>
+          </div>
+          <div class="pic3">
+            <img src="@/assets/images/a.jpg">
+          </div>
+        </div>
+        <!-- 原图 -->
+        <div class="myPicture">
+          <div class="title">选择您的照片</div>
+          <div class="select">
+            <div class="image">
+              <img src="@/assets/images/10.jpg">
+            </div>
+            <div class="dragUpload">
+              <el-upload
+                class="upload-demo"
+                drag
+                action="https://jsonplaceholder.typicode.com/posts/">
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将图片拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+              </el-upload>
+            </div>
+          </div>
+        </div>
+        <!-- 融合图 -->
+        <div class="tempPicture">
+          <div class="title">选择模板照片</div>
+          <div class="select">
+            <div class="image">
+              <img src="@/assets/images/4.png">
+            </div>
+            <div class="tempSelect">
+              <div class="head">选择您想要融合的眼妆</div>
+              <ul class="images">
+                <li v-for="item in 5">
+                  <img src="@/assets/images/4.png">
+                </li>
+              </ul>
+              <div class="pagenation">
+                <el-pagination
+                  small
+                  layout="prev, pager, next"
+                  :total="50">
+                </el-pagination>
+              </div>
+              <div class="selectPictrue">
+                <div class="tip">没有喜欢的？选择图片上传</div>
+                <el-upload
+                  class="upload-demo"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :on-change="handleChange">
+                  <el-button size="small" type="primary">点击上传</el-button>
+                </el-upload>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 生成眼妆按钮 -->
+        <div class="submit">
+          <el-button type="primary" size="small">生成眼妆</el-button>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
       <div class="select">
-        <!-- 照片上传区 -->
+        照片上传区
         <div class="myPhoto">
           <div class="title">
             上传照片:
@@ -19,7 +96,7 @@
             </el-upload>
           </div>
         </div>
-        <!-- 融合图选择区 -->
+        融合图选择区
         <div class="fusionPhoto">
           <div class="title">
             选择融合图:
@@ -49,7 +126,7 @@
       <div class="result">
         
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -60,7 +137,14 @@ export default {
   name: 'styleMigration',
   data(){
     return {
-      imageUrl: Img
+      imageUrl: Img,
+      fileList: [{
+        name: 'food.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+      }, {
+        name: 'food2.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+      }]
     }
   },
   methods: {

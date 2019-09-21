@@ -138,11 +138,6 @@
           a:first-child{
             // background-color: #FFCFCF;
           }
-
-          // .active{
-          //   background-color: #FFCFCF;
-          //   transition: background-color 1s;
-          // }
         }
       }
     }
@@ -152,6 +147,10 @@
         cursor: pointer;
       }
     }
+  }
+  .router-link-active {
+    background-color: #FFCFCF;
+    transition: background-color 1s;
   }
 }
 

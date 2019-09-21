@@ -70,6 +70,11 @@
 		}
 	}
 
+	.router-link-active {
+    background-color: #FFCFCF;
+    transition: background-color 1s;
+  }
+
 	.main{
 		width: 100%;
 		max-width: 1000px;

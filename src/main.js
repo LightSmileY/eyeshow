@@ -14,11 +14,3 @@ new Vue({
 }).$mount('#app')
 
 
-
-// forward: {
-//   forwardPid: "",
-//   forwardUserAvatarUrl: "",
-//   forwardNikeName: "",
-//   forwardPostTime: "",
-//   forwardPostBody: ""
-// }

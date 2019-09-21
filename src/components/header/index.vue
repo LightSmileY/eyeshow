@@ -41,10 +41,10 @@
       <el-col :span="12">
         <div class="nav">
           <ul>
-            <router-link to="/index" :class="{'active': status == 1}" @click="changeLink(1)"><li>首页</li></router-link>
-            <router-link to="/community" :class="{'active': status == 2}" @click="changeLink(2)"><li>社区</li></router-link>
-            <router-link to="/mall/mallIndex" :class="{'active': status == 3}" @click="changeLink(3)"><li>眼妆商城</li></router-link>
-            <router-link to="/mine/myPosts" :class="{'active': status == 4}" @click="changeLink(4)"><li>个人中心</li></router-link>
+            <router-link to="/index"><li>首页</li></router-link>
+            <router-link to="/community"><li>社区</li></router-link>
+            <router-link to="/mall/mallIndex"><li>眼妆商城</li></router-link>
+            <router-link to="/mine/myPosts"><li>个人中心</li></router-link>
           </ul>
         </div>
       </el-col>
@@ -63,15 +63,15 @@ export default {
   name: 'g-header',
   data(){
     return {
-      status: 1,
       input: ''
     }
   },
   methods: {
     // tabbar跳转
-    changeLink(i){
+    /*changeLink(i){
       this.status = i
-    },
+      console.log(this.status)
+    },*/
     // 跳转到登录页
     toLoginPage(){
       this.$router.push({name:'Login'})
@@ -85,7 +85,7 @@ export default {
 
   },
   beforeMount(){
-
+    this.status = 1
   }
 };
 </script>

@@ -25,7 +25,6 @@
         <el-image 
           :src="imageUrl"
           :preview-src-list="images"
-          :fit="cover"
           v-for="item in images">
         </el-image>
       </div>

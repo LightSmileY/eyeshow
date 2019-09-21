@@ -19,50 +19,6 @@
         </dl>
       </div>
       <div class="main">
-        <!-- <ul class="nav">
-          <li>
-            <el-dropdown>
-              <span class="el-dropdown-link">
-                全部<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>最新</el-dropdown-item>
-                <el-dropdown-item>热门</el-dropdown-item>
-                <el-dropdown-item>图文</el-dropdown-item>
-                <el-dropdown-item>视频</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </li>
-          <li>
-            <el-dropdown>
-              <span class="el-dropdown-link">
-                眼妆教程<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>全部</el-dropdown-item>
-                <el-dropdown-item>最新</el-dropdown-item>
-                <el-dropdown-item>热门</el-dropdown-item>
-                <el-dropdown-item>图文</el-dropdown-item>
-                <el-dropdown-item>视频</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </li>
-          <li>
-            <el-dropdown>
-              <span class="el-dropdown-link">
-                妆品推荐<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>全部</el-dropdown-item>
-                <el-dropdown-item>最新</el-dropdown-item>
-                <el-dropdown-item>最热</el-dropdown-item>
-                <el-dropdown-item>图文</el-dropdown-item>
-                <el-dropdown-item>视频</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </li>
-        </ul> -->
-        
         <ul class="posts">
           <div class="publish">
             <div class="publishDesc">
@@ -73,17 +29,17 @@
             </div>
           </div>
           <!-- 帖子列表组件 -->
-          <post-list :arrayList="postList"/>
+          <post-list/><!--  :arrayList="postList" -->
         </ul>
       </div>
       <div class="aside">
         <div class="youLike">
           <!-- 猜你喜欢组件 -->
-          <you-like :arrayList="youLikeList"/>
+          <you-like/><!--  :arrayList="youLikeList" -->
         </div>
         <div class="recommend">
           <!-- 热门推荐组件 -->
-          <hot-recommend :arrayList="hotRecommendList"/>
+          <hot-recommend/><!--  :arrayList="hotRecommendList" -->
         </div>
       </div>
     </div>
