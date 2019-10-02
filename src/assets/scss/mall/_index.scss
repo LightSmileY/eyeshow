@@ -14,15 +14,18 @@
 
     .container{
       width: 100%;
-      height: 80px;
+      height: 70px;
+      margin-top: 20px;
       @include flex-center();
       flex-wrap: wrap;
+      background-color: #fff;
 
       .title{
         width: 150px;
         height: 100%;
         font-size: 22px;
-        color: #fff;
+        color: #000;
+
         @include flex-center(columns);
       }
 
@@ -121,7 +124,6 @@
   .main{
     width: 100%;
     max-width: 1200px;
-    min-height: 800px;
-    background-color: rgba(#4F4F4F, .1);
+    background-color: #fff;
   }
 }

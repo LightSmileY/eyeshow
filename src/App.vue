@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "./assets/scss/public/variables.scss";
+
   * {
     margin: 0;
     padding: 0;
@@ -51,7 +53,7 @@ export default {
       // background-size: 100vw 100vh;
       // background-origin: top left;
       // background-attachment: fixed;
-      background-color: #ff9797;
+      background-color: $theme-color;
     }
   }
   

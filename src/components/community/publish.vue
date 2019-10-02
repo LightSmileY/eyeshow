@@ -7,7 +7,6 @@
     title="发表帖子" 
     circle
     style="margin:0;"></el-button>
-
     <el-dialog 
     title="发表帖子" 
     :visible.sync="dialogFormVisible"
@@ -29,13 +28,31 @@
             v-model="post.body">
           </el-input>
         </el-form-item>
-        <el-form-item label="图片" :label-width="formLabelWidth">
+        <el-form-item label="图片" 
+        :label-width="formLabelWidth"
+        v-if="post.type == '1'">
           <el-upload
             action="https://jsonplaceholder.typicode.com/posts/"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
             multiple="true"
+            limit="9">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
+        </el-form-item>
+        <el-form-item label="视频" 
+        :label-width="formLabelWidth"
+        v-if="post.type == '2'">
+          <el-upload
+            action="https://jsonplaceholder.typicode.com/posts/"
+            list-type="picture-card"
+            :on-preview="handlePictureCardPreview"
+            :on-remove="handleRemove"
+            multiple="false"
             limit="9">
             <i class="el-icon-plus"></i>
           </el-upload>

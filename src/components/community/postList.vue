@@ -34,17 +34,17 @@
         </video>
       </div> -->
       <div class="operate">
-        <div class="like" title="点赞">
+        <div class="like" title="点赞" @click="toLike(index)">
           <img src="@/assets/icons/like.png" class="like" @click="toLike(index)">
-          <div @click="viewLikes(index)">334</div>
+          <div @click.stop="viewLikes(index)">334</div>
         </div>
-        <div class="collection" title="收藏">
+        <div class="collection" title="收藏" @click="toCollection(index)">
           <img src="@/assets/icons/collection.png" class="collection" @click="toCollection(index)">
-          <div @click="viewCollections(index)">223</div>
+          <div @click.stop="viewCollections(index)">223</div>
         </div>
-        <div class="forward" title="转发">
+        <div class="forward" title="转发" @click="toForward(index)">
           <img src="@/assets/icons/forward.png" class="forward">
-          <div @click="viewForwards(index)">135</div>
+          <div @click.stop="viewForwards(index)">135</div>
         </div>
       </div>
       <div class="comments">
@@ -133,7 +133,21 @@ export default {
     },
     // 转发
     toForward(i){
-
+      this.$confirm('确定转发该帖子吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '转发成功!'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消转发'
+        });          
+      });
     },
     // 查看转发的人
     viewLikes(i){

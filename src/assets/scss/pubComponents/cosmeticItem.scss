@@ -4,15 +4,17 @@
 #cosmeticItem{
   @include flex-center();
   flex-wrap: wrap;
+  justify-content: space-around;
   
   .youLikeList-item{
-    width: 259px;
-    height: 170px;
+    width: 260px;
+    height: 165px;
     background-color: #fff;
-    margin: 10px 15px;
+    margin: 10px 0;
     box-sizing: border-box;
-    padding: 10px;
+    // padding: 10px;
     cursor: pointer;
+    border: 1px solid #E5E5E5;
     // @include flex-center(column);
     // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
