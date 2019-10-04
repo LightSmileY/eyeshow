@@ -63,7 +63,7 @@ export default {
     
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

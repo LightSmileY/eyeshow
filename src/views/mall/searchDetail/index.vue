@@ -51,6 +51,13 @@
     <div class="product-main">
       <cosmetic-item/>
     </div>
+    <div class="return" @click="returnLastPage">
+      <el-button 
+      icon="el-icon-arrow-left" 
+      circle
+      title="返回上一页">
+      </el-button>
+    </div>
   </div>
 </template>
 
@@ -67,13 +74,16 @@ export default {
   methods: {
     toSearchDetailPage(){
       this.$router.push({name:'SearchDetail'});
+    },
+    returnLastPage(){
+      this.$router.go(-1);
     }
   },
   components:{
     CosmeticItem
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

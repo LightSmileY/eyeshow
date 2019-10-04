@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="attent">
-          <el-button size="mini" type="primary">关注TA</el-button>
+          <!-- <el-button size="mini" type="primary">关注TA</el-button> -->
         </div>
       </div>
     </div>

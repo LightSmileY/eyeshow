@@ -51,42 +51,6 @@
             </div>
           </div>
           <div class="comments">
-            <!-- <el-collapse accordion>
-              <el-collapse-item title="展开评论">
-                <div class="tocomment">
-                  <el-input
-                    type="textarea"
-                    autosize
-                    placeholder="我也要评论..."
-                    v-model="textarea">
-                  </el-input>
-                  <el-button 
-                  type="primary"
-                  size="mini">
-                    评论
-                  </el-button>
-                </div>
-                <li 
-                class="commentList" 
-                v-for="item in 5"
-                title="回复TA"
-                @click="openMessageBox('浅笑半离兮')">
-                  <span class="obj">
-                    <span>
-                      <span>浅笑半离兮&nbsp;</span>
-                      <span v-if="true">
-                        <span class="reply">回复</span>
-                        淡然
-                      </span>
-                    </span>
-                    :&nbsp;
-                  </span>
-                  <span>
-                    哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
-                  </span>
-                </li>
-              </el-collapse-item>
-            </el-collapse> -->
             <div class="title">评论</div>
             <div class="tocomment">
               <el-input
@@ -137,7 +101,12 @@ export default {
   data(){
     return {
       postList: [],
-      textarea: ""
+      textarea: "",
+      images: [
+        "@/assets/images/1.jpg",
+        "@/assets/images/2.jpg",
+        "@/assets/images/3.jpg"
+      ]
     }
   },
   methods: {
@@ -166,7 +135,7 @@ export default {
     HotRecommend
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

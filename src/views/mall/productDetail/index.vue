@@ -97,6 +97,13 @@
     <div class="recommend">
       <guess-youlike/>
     </div>
+    <div class="return" @click="returnLastPage">
+      <el-button 
+      icon="el-icon-arrow-left" 
+      circle
+      title="返回上一页">
+      </el-button>
+    </div>
   </div>
 </template>
 
@@ -131,13 +138,16 @@ export default {
     },
     toDetailPage(){
       this.$router.push({name:'PostDetails'});
+    },
+    returnLastPage(){
+      this.$router.go(-1);
     }
   },
   components:{
     GuessYoulike
   },
   beforeMount(){
-    
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

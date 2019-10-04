@@ -34,14 +34,17 @@ export default {
 #guessYouLike{
   background-color: #fff;
   border-radius: 2px;
+  border: 1px solid #E5E5E5;
+  border-bottom: 0;
 
   .title{
     height: 40px;
     line-height: 40px;
     text-align: center;
     font-size: 18px;
-    border-bottom: 1px solid #8E8E8E;
+    border-bottom: 1px solid #E5E5E5;
     font-weight: bold;
+    background-color: #FFDEDE;
   }
 
   .items{
@@ -62,7 +65,7 @@ export default {
         line-height: 25px;
         text-align: center;
         font-size: 17px;
-        border-bottom: 1px solid #B7B7B7;
+        border-bottom: 1px solid #D1D1D1;
       }
     }
   }

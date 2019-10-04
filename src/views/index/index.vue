@@ -81,7 +81,7 @@ export default {
     CosmeticItem
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

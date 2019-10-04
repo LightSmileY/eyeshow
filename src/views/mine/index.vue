@@ -24,27 +24,65 @@
         <el-upload
           class="upload-demo"
           action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          :on-exceed="handleExceed"
-          :file-list="fileList">
+          <!-- :on-preview="handlePreview" -->
+          <!-- :on-remove="handleRemove" -->
+          <!-- :before-remove="beforeRemove" -->
+          <!-- :on-exceed="handleExceed" -->
+          <!-- :file-list="fileList"> -->
           <el-button type="primary" size="mini" plain><i class="el-icon-upload el-icon--right">上传封面图</i></el-button>
         </el-upload>
       </div>
     </div>
-    <div class="nav-bar">
-      <ul class="nav-bar-ul">
-        <router-link to="/mine/myPosts" exact><li>我的帖子</li></router-link>
-        <router-link to="/mine/myLikes" exact><li>我的喜欢</li></router-link>
-        <router-link to="/mine/myCollections" exact><li>我的收藏</li></router-link>
-        <router-link to="/mine/myFanses" exact><li>我的粉丝</li></router-link>
-        <router-link to="/mine/myFocus" exact><li>我的关注</li></router-link>
-        <router-link to="/mine/myProfile" exact><li>我的资料</li></router-link>
-      </ul>
-    </div>
     <div class="main">
-      <router-view/>
+      <div class="nav-bar">
+        <ul>
+          <router-link to="/mine/myPosts">
+            <li to="/mine/myPosts">
+              <dt>
+                4375
+              </dt>
+              <dd>
+                帖子
+              </dd>
+            </li>
+          </router-link>
+          <el-divider direction="vertical"></el-divider>
+          <router-link to="/mine/myCollections">
+            <li>
+              <dt>
+                4375
+              </dt>
+              <dd>
+                收藏
+              </dd>
+            </li>
+          </router-link>
+          <router-link to="/mine/myFocus">
+            <li to="/mine/myFocus">
+              <dt>
+                4375
+              </dt>
+              <dd>
+               关注
+              </dd>
+            </li>
+          </router-link>
+          <el-divider direction="vertical"></el-divider>
+          <router-link to="/mine/myFanses">
+            <li to="/mine/myFanses">
+              <dt>
+                4375
+              </dt>
+              <dd>
+                粉丝
+              </dd>
+            </li>
+          </router-link>
+        </ul>
+      </div>
+      <div class="mine-body">
+        <router-view/>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +95,8 @@ export default {
       avatarUrl: "",
       avatarUrlList: [
         ""
-      ]
+      ],
+      fileList: ""
     }
   },
   methods: {
@@ -67,7 +106,7 @@ export default {
 
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

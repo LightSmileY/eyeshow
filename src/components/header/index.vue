@@ -44,14 +44,24 @@
             <router-link to="/index"><li>首页</li></router-link>
             <router-link to="/community"><li>社区</li></router-link>
             <router-link to="/mall/mallIndex"><li>眼妆商城</li></router-link>
-            <router-link to="/mine/myPosts"><li>个人中心</li></router-link>
+            <!-- <router-link to="/mine/myPosts"><li>个人中心</li></router-link> -->
           </ul>
         </div>
       </el-col>
-      <el-col :span="4">
-        <div class="me">
+      <!-- <el-col :span="4">
+        <div class="me-1">
           <span @click="toLoginPage">登录</span>&nbsp;/
           <span @click="toRegisterPage">注册</span>
+        </div>
+      </el-col> -->
+      <el-col :span="4">
+        <div class="me-2" @click="toMine()">
+          <div class="avatar">
+            <img src="@/assets/images/avatar.jpg">
+          </div>
+          <div class="nickName">
+            浅笑半离兮
+          </div>
         </div>
       </el-col>
     </el-row>
@@ -72,6 +82,9 @@ export default {
       this.status = i
       console.log(this.status)
     },*/
+    toMine(){
+      this.$router.push({name:'Mine'})
+    },
     // 跳转到登录页
     toLoginPage(){
       this.$router.push({name:'Login'})

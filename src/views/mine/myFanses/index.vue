@@ -21,7 +21,7 @@ export default {
     UserList
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

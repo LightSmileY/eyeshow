@@ -18,8 +18,9 @@
           <el-button size="mini" type="primary">关注TA</el-button>
         </div>
       </div>
-      <div class="body">
-        <p @click="toDetailPage" title="查看帖子详情">东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+      <div @click="toDetailPage" title="查看帖子详情" class="body">
+        <p class="ptitle">#蓦然回首，那人却在，灯火阑珊处#</p>
+        <p>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
       </div>
       <div class="images">
         <el-image 
@@ -33,15 +34,36 @@
           您的浏览器不支持 video 标签。
         </video>
       </div> -->
+      <!-- 转发 -->
+      <!-- <div @click="toDetailPage" title="查看原帖" class="pforward">
+        <div class="user">
+          <div class="userInfo">
+            <div class="avatar">
+              <img src="@/assets/images/avatar.jpg">
+            </div>
+            <div class="name-time">
+              <div class="name">浅笑半离兮</div>
+              <div class="time">2019-8-12 11:48:56</div>
+            </div>
+          </div>
+        </div>
+        <div class="body">
+          <p class="ptitle">#蓦然回首，那人却在，灯火阑珊处#</p>
+          <p>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+        </div>
+      </div> -->
+      <!-- 操作 -->
       <div class="operate">
         <div class="like" title="点赞" @click="toLike(index)">
           <img src="@/assets/icons/like.png" class="like" @click="toLike(index)">
           <div @click.stop="viewLikes(index)">334</div>
         </div>
+        <span>|</span>
         <div class="collection" title="收藏" @click="toCollection(index)">
           <img src="@/assets/icons/collection.png" class="collection" @click="toCollection(index)">
           <div @click.stop="viewCollections(index)">223</div>
         </div>
+        <span>|</span>
         <div class="forward" title="转发" @click="toForward(index)">
           <img src="@/assets/icons/forward.png" class="forward">
           <div @click.stop="viewForwards(index)">135</div>
@@ -101,13 +123,7 @@ export default {
       images: [
         "@/assets/images/1.jpg",
         "@/assets/images/2.jpg",
-        "@/assets/images/3.jpg",
-        "@/assets/images/4.jpg",
-        "@/assets/images/5.jpg",
-        "@/assets/images/6.jpg",
-        "@/assets/images/7.jpg",
-        "@/assets/images/8.jpg",
-        "@/assets/images/9.jpg"
+        "@/assets/images/3.jpg"
       ],
       textarea: '',
       commentCount: 37,

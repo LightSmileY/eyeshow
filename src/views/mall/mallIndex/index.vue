@@ -112,7 +112,7 @@ export default {
     NavBar2
   },
   beforeMount(){
-    
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

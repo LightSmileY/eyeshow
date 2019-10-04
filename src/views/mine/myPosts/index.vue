@@ -1,6 +1,6 @@
 <template>
   <div id="myPosts">
-    <div class="time-line">
+    <div class="post-li">
       <post-list/>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
     PostList
   },
   beforeMount(){
-
+    document.documentElement.scrollTop = 0
   }
 };
 </script>

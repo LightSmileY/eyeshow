@@ -5,13 +5,13 @@
   .postList-li-1{
     box-sizing: border-box;
     background-color: #fff;
-    box-sizing: border-box;
     padding: 20px;
     border-radius: 2px;
     list-style: none;
     margin-bottom: 20px;
     // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E5E5;
 
     .user{
       height: 50px;
@@ -61,6 +61,10 @@
     .body{
       margin: 8px;
 
+      .ptitle{
+        margin-bottom: 10px;
+      }
+
       p{
         font-size: 16px;
         line-height: 23px;
@@ -88,6 +92,73 @@
       max-width: 400px;
       margin: 0 10px;
     }
+    // 转发的帖子
+    .pforward{
+      width: 98%;
+      border: 1px solid #D7D7D7;
+      box-sizing: border-box;
+      padding: 8px;
+      margin: 0 1%;
+      border-radius: 2px;
+
+      .user{
+        height: 45px;
+        display: flex;
+
+        .userInfo{
+          width: 100%;
+          display: flex;
+
+          .avatar{
+            width: 36px;
+            height: 36px;
+            border: 1px solid #808080;
+            border-radius: 50%;
+            box-sizing: border-box;
+
+            img{
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+
+          .name-time{
+            height: 36px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 8px;
+
+            .name{
+              font-size: 13px;
+            }
+            .time{
+              font-size: 7px;
+              margin-top: 4px;
+            }
+          }
+        }
+        .attent{
+          width: 120px;
+          height: 40px;
+          @include flex-center(column);
+        }
+      }
+
+      .body{
+        margin: 0 5px;
+
+        .ptitle{
+          margin-bottom: 5px;
+        }
+
+        p{
+          font-size: 14px;
+          line-height: 20px;
+          cursor: pointer;
+        }
+      }
+    }
 
     .operate{
       width: 100%;
@@ -96,6 +167,11 @@
       display: flex;
       justify-content: flex-end;
       margin: 8px 0;
+
+      span{
+        line-height: 30px;
+        color: #CFCFCF;
+      }
 
       .like,
       .collection,
