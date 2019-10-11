@@ -27,5 +27,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../../../assets/scss/mine/myLikes/index.scss";
+  @import "../../../assets/scss/mine/detail.scss";
 </style>

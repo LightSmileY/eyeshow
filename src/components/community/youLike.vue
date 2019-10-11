@@ -4,7 +4,7 @@
       猜你喜欢
     </div>
     <ul class="items">
-      <li v-for="item in 8">人生若只如初见人生若只如初见</li>
+      <li v-for="item in arrayList">{{item.title}}</li>
     </ul>
   </div>
 </template>
@@ -17,14 +17,8 @@ export default {
 
     }
   },
-  methods: {
-
-  },
-  components:{
-
-  },
-  beforeMount(){
-
+  props: {
+    arrayList: Array
   }
 };
 </script>

@@ -26,7 +26,7 @@
           <div class="youLikeList">
             <div class="youLikeList-items">
               <!--****************** 帖子列表 ******************-->
-              <post-item/>
+              <post-item :oper="0"/>
             </div>
             <div class="youLikeList-items">
               <!--****************** 妆品列表 ******************-->
@@ -41,7 +41,7 @@
           </div>
           <ul class="hotPostsList">
             <!--****************** 帖子列表 ******************-->
-            <post-item/>
+            <post-item :oper="0"/>
           </ul>
         </div>
         <el-divider></el-divider>
@@ -63,22 +63,34 @@
 import PostItem from '@/components/pubComponents/postItem'
 import CosmeticItem from '@/components/pubComponents/cosmeticItem'
 
+import {getAllPosts} from '@/api/post.js'
+
 export default {
   name: 'index',
   data(){
     return {
-
+      postList: [],
+      search: ''
     }
   },
   methods: {
     // 跳转到图像风格迁移页
     toStyleMigrationPage(){
       this.$router.push({name:'StyleMigration'});
+    },
+    // 获取所有帖子
+    getAllPostsData(){
+      getAllPosts().then(data => {
+        this.postList = data
+      })
     }
   },
   components:{
     PostItem,
     CosmeticItem
+  },
+  created(){
+    // this.getAllPostsData()
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

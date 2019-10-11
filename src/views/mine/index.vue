@@ -37,46 +37,19 @@
       <div class="nav-bar">
         <ul>
           <router-link to="/mine/myPosts">
-            <li to="/mine/myPosts">
-              <dt>
-                4375
-              </dt>
-              <dd>
-                帖子
-              </dd>
-            </li>
+            <li>帖子 (56)</li>
           </router-link>
-          <el-divider direction="vertical"></el-divider>
           <router-link to="/mine/myCollections">
-            <li>
-              <dt>
-                4375
-              </dt>
-              <dd>
-                收藏
-              </dd>
-            </li>
+            <li>收藏 (243)</li>
           </router-link>
           <router-link to="/mine/myFocus">
-            <li to="/mine/myFocus">
-              <dt>
-                4375
-              </dt>
-              <dd>
-               关注
-              </dd>
-            </li>
+            <li>关注 (58)</li>
           </router-link>
-          <el-divider direction="vertical"></el-divider>
           <router-link to="/mine/myFanses">
-            <li to="/mine/myFanses">
-              <dt>
-                4375
-              </dt>
-              <dd>
-                粉丝
-              </dd>
-            </li>
+            <li>粉丝 (11.5w)</li>
+          </router-link>
+          <router-link to="/mine/myProfile">
+            <li>资料</li>
           </router-link>
         </ul>
       </div>

@@ -3,6 +3,7 @@
     <div class="container">
       <div class="sectionA">
         <div class="example">
+          <div class="title">眼妆迁移示例</div>
           <div class="pic1">
             <img src="@/assets/images/10.jpg">
           </div>
@@ -48,8 +49,8 @@
             <div class="tempSelect">
               <div class="head">选择您想要融合的眼妆</div>
               <ul class="images">
-                <li v-for="item in 5">
-                  <img src="@/assets/images/4.png">
+                <li v-for="item in imageList">
+                  <img :src="item.id">
                 </li>
               </ul>
               <div class="pagenation">
@@ -89,28 +90,32 @@
 
 <script>
 import Img from '@/assets/images/yz.jpeg'
+import { getMyImages } from '@/api/slide'
 
 export default {
   name: 'styleMigration',
   data(){
     return {
       imageUrl: Img,
-      fileList: [{
-        name: 'food.jpeg',
-        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-      }, {
-        name: 'food2.jpeg',
-        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-      }]
+      imageList: []
     }
   },
   methods: {
     returnLastPage(){
       this.$router.go(-1);
+    },
+    // 获取所有素材
+    getImageList(){
+      getMyImages().then(data => {
+        this.imageList = data
+      })
     }
   },
   components:{
 
+  },
+  created(){
+    this.getImageList()
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

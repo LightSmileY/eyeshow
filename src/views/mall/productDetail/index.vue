@@ -1,20 +1,6 @@
 <template>
   <div id="productDetail">
     <div class="detail">
-      <div class="user">
-        <div class="userInfo">
-          <div class="avatar">
-            <img src="@/assets/images/avatar.jpg">
-          </div>
-          <div class="name-time">
-            <div class="name">浅笑半离兮</div>
-            <div class="time">2019-8-12 11:48:56</div>
-          </div>
-        </div>
-        <div class="attent">
-          <el-button size="mini" type="primary">关注TA</el-button>
-        </div>
-      </div>
       <div class="postList-main">
         <div class="cosImage">
           <img class="bigImg" src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" alt="商品图片">
@@ -26,7 +12,6 @@
           <div class="prductTitle">精致的眼妆品精致的眼妆品精致的眼妆品</div>
           <div class="produtcPrice">￥198~298</div>
           <div class="productUrl">商品链接</div>
-          
         </div>
       </div>
       <!-- 描述、评论区 -->

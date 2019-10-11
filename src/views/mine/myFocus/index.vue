@@ -1,5 +1,6 @@
 <template>
-  <div id="myFocus">
+  <div id="detail">
+    <div class="title">我的关注</div>
     <user-list/>
   </div>
 </template>
@@ -27,5 +28,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../../../assets/scss/mine/myFocus/index.scss";
+  @import "../../../assets/scss/mine/detail.scss";
 </style>

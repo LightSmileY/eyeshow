@@ -19,6 +19,9 @@
       @include flex-center();
       flex-wrap: wrap;
       background-color: #fff;
+      box-sizing: border-box;
+      // background-color: #FFECEC;
+      // border: 1px solid #E4E4E4;
 
       .title{
         width: 150px;

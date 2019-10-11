@@ -69,6 +69,14 @@
       }
     }
 
+    .delete{
+      font-size: 12px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      color: #1769C0;
+    }
+
     .postItem-main{
       width: 100%;
       margin-top: 8px;
@@ -102,5 +110,9 @@
         overflow: hidden;
       }
     }
+  }
+  .hotPostsList-item:hover{
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow .3s;
   }
 }

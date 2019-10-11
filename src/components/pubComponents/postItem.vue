@@ -13,9 +13,8 @@
             <div class="time">2019-8-12 11:48:56</div>
           </div>
         </div>
-        <!-- <div class="attent">
-          <el-button size="mini" type="primary">关注TA</el-button>
-        </div> -->
+        <div class="delete" @click.stop="deletePost" v-if="oper === 1">删除</div>
+        <div class="delete" @click.stop="unCollect" v-if="oper === 2">取消收藏</div>
       </div>
       <div class="postItem-main">
         <div class="image" @click="toDetailPage">
@@ -35,15 +34,49 @@ export default {
   name: 'index',
   data(){
     return {
-
+      
     }
   },
   props: {
-
+    oper: Number
   },
   methods: {
     toDetailPage(){
       this.$router.push({name:'PostDetails'});
+    },
+    deletePost(){
+      this.$confirm('确定删除该帖子吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消删除'
+        });          
+      });
+    },
+    unCollect(){
+      this.$confirm('确定取消收藏该帖子吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '放弃操作'
+        });          
+      });
     }
   }
 };

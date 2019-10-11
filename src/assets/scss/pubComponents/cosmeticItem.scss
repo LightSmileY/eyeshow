@@ -16,8 +16,6 @@
     // padding: 10px;
     cursor: pointer;
     border: 1px solid #E5E5E5;
-    // @include flex-center(column);
-    // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
     .image{
       width: 100%;
@@ -45,5 +43,9 @@
         font-size: 18px;
       }
     }
+  }
+  .youLikeList-item:hover{
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow .3s;
   }
 }

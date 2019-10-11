@@ -11,65 +11,17 @@
     box-sizing: border-box;
     background-color: #fff;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 0 20px;
     border-radius: 2px;
     list-style: none;
     margin-bottom: 20px;
     // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    
-    // 用户信息块
-
-    .user{
-      height: 50px;
-      display: flex;
-
-      .userInfo{
-        width: 100%;
-        display: flex;
-
-        .avatar{
-          width: 45px;
-          height: 45px;
-          border: 1px solid #808080;
-          border-radius: 50%;
-          box-sizing: border-box;
-          // margin: 5px;
-
-          img{
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
-        }
-
-        .name-time{
-          height: 40px;
-          display: flex;
-          flex-direction: column;
-          margin: 0 8px;
-
-          .name{
-            font-size: 16px;
-          }
-          .time{
-            font-size: 11px;
-            margin-top: 6px;
-          }
-        }
-      }
-      .attent{
-        width: 120px;
-        height: 40px;
-        @include flex-center(column);
-      }
-    }
 
     .postList-main{
       width: 100%;
       height: 250px;
       // background-color: #C1FFF9;
       display: flex;
-      margin: 10px 0;
 
       .cosImage{
         flex: 1;
@@ -84,9 +36,9 @@
           display: flex;
 
           img{
-            flex: 1;
+            width: 66px;
             height: 66px;
-            margin: 2px;
+            margin-right: 10px;
           }
         }
       }

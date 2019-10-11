@@ -50,11 +50,11 @@
           <div class="changeBar-comment">评论</div>
         </div>
         <!-- 商品描述 -->
-        <div class="desc" v-if="false">
+        <div class="desc" v-if="true">
           这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述
         </div>
         <!-- 商品评论 -->
-        <div class="comments">
+        <div class="comments" v-if="false">
           <div class="tocomment">
             <el-input
               type="textarea"

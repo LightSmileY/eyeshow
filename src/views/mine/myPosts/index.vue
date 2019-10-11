@@ -1,13 +1,14 @@
 <template>
-  <div id="myPosts">
+  <div id="detail">
+    <div class="title">我的帖子</div>
     <div class="post-li">
-      <post-list/>
+      <post-item :oper="1"/>
     </div>
   </div>
 </template>
 
 <script>
-import PostList from "@/components/community/postList"
+import PostItem from '@/components/pubComponents/postItem'
 
 export default {
   name: 'myPosts',
@@ -20,7 +21,7 @@ export default {
 
   },
   components:{
-    PostList
+    PostItem
   },
   beforeMount(){
     document.documentElement.scrollTop = 0
@@ -29,5 +30,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../../../assets/scss/mine/myPosts/index.scss";
+  @import "../../../assets/scss/mine/detail.scss";
 </style>

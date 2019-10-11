@@ -1,9 +1,7 @@
 <template>
-  <div id="myProfile">
+  <div id="detail">
+    <div class="title">我的资料</div>
     <div class="myProfile-box">
-      <div class="myProfile-title">
-        我的资料
-      </div>
       <div class="myProfile-main">
         <ul class="myProfile-main-ul">
           <li>
@@ -115,5 +113,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../../../assets/scss/mine/myProfile/index.scss";
+  @import "../../../assets/scss/mine/detail.scss";
 </style>

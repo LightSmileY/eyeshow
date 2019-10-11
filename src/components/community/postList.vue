@@ -1,39 +1,44 @@
 <template>
   <ul id="postList">
-    <!--************************************** 帖子 **************************************-->
+    <!--*********************** 帖子 ********************-->
     <li 
     class="postList-li-1" 
-    v-for="(item,index) in 5">
+    v-for="(item,index) in arrayList">
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
-            <img src="@/assets/images/avatar.jpg">
+            <img :src="item.avatarUrl" alt="">
           </div>
           <div class="name-time">
-            <div class="name">浅笑半离兮</div>
-            <div class="time">2019-8-12 11:48:56</div>
+            <div class="name">{{item.nickname}}</div>
+            <div class="time">{{item.postTime}}</div>
           </div>
         </div>
         <div class="attent">
-          <el-button size="mini" type="primary">关注TA</el-button>
+          <el-button size="mini" type="primary">{{isAttent(index)}}</el-button>
         </div>
       </div>
-      <div @click="toDetailPage" title="查看帖子详情" class="body">
-        <p class="ptitle">#蓦然回首，那人却在，灯火阑珊处#</p>
-        <p>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+      <div @click="toDetailPage(item.pid)" title="查看帖子详情" class="body">
+        <p class="ptitle">#{{item.title}}#</p>
+        <p>{{item.body}}</p>
       </div>
       <div class="images">
         <el-image 
-          :src="imageUrl"
-          :preview-src-list="images"
-          v-for="item in images">
+          :src="image"
+          :preview-src-list="item.images"
+          v-for="image in item.images"
+          v-if="item.images.length">
         </el-image>
       </div>
-      <!-- <div class="video">
-        <video src="http://fengblog.xyz/videos/test.mp4" width="100%" controls="controls">
+      <div class="video">
+        <video 
+        :src="item.video[0]" 
+        width="100%" 
+        controls="controls"
+        v-if="item.video.length">
           您的浏览器不支持 video 标签。
         </video>
-      </div> -->
+      </div>
       <!-- 转发 -->
       <!-- <div @click="toDetailPage" title="查看原帖" class="pforward">
         <div class="user">
@@ -55,24 +60,24 @@
       <!-- 操作 -->
       <div class="operate">
         <div class="like" title="点赞" @click="toLike(index)">
-          <img src="@/assets/icons/like.png" class="like" @click="toLike(index)">
-          <div @click.stop="viewLikes(index)">334</div>
+          <img :src="isLike(index)" class="like" @click="toLike(index)">
+          <div @click.stop="viewLikes(index)">{{item.likeCount}}</div>
         </div>
         <span>|</span>
         <div class="collection" title="收藏" @click="toCollection(index)">
-          <img src="@/assets/icons/collection.png" class="collection" @click="toCollection(index)">
-          <div @click.stop="viewCollections(index)">223</div>
+          <img :src="isCollection(index)" class="collection" @click="toCollection(index)">
+          <div @click.stop="viewCollections(index)">{{item.commentCount}}</div>
         </div>
         <span>|</span>
-        <div class="forward" title="转发" @click="toForward(index)">
-          <img src="@/assets/icons/forward.png" class="forward">
-          <div @click.stop="viewForwards(index)">135</div>
+        <div class="forward" title="转发" @click="toForward(item)">
+          <img :src="forwardIcon" class="forward">
+          <div @click.stop="viewForwards(index)">{{item.forwardCount}}</div>
         </div>
       </div>
       <div class="comments">
         <el-collapse accordion>
           <el-collapse-item 
-          :title='"展开评论 ("+commentCount+")"'>
+          :title='"展开评论 (" + item.commentCount + ")"'>
             <div class="tocomment">
               <el-input
                 type="textarea"
@@ -88,21 +93,21 @@
             </div>
             <li 
             class="commentList" 
-            v-for="item in 5"
+            v-for="comment in item.comments"
             title="回复TA"
-            @click="openMessageBox('袁乾峰')">
+            @click="openMessageBox(comment.userId)">
               <span class="obj">
                 <span>
-                  <span>袁乾峰&nbsp;</span>
-                  <span v-if="true">
+                  <span>{{comment.nickname}}&nbsp;</span>
+                  <span v-if="comment.objectNickname != item.nickname">
                     <span class="reply">回复</span>
-                    胡健龙
+                    {{comment.objectNickname}}
                   </span>
                 </span>
                 :&nbsp;
               </span>
               <span>
-                哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
+                {{comment.content}}
               </span>
             </li>
           </el-collapse-item>
@@ -113,21 +118,38 @@
 </template>
 
 <script>
-import Img from '@/assets/images/8.jpg'
+import LikeIcon from '@/assets/icons/like.png'
+import LikeActiveIcon from '@/assets/icons/like-active.png'
+import CollectionIcon from '@/assets/icons/collection.png'
+import CollectionActiveIcon from '@/assets/icons/collection-active.png'
+import ForwardIcon from '@/assets/icons/forward.png'
+
+import { getTime } from '@/assets/js/pubFunctions'
 
 export default {
   name: 'postList',
   data(){
     return {
       drawer: false,
-      images: [
-        "@/assets/images/1.jpg",
-        "@/assets/images/2.jpg",
-        "@/assets/images/3.jpg"
-      ],
       textarea: '',
-      commentCount: 37,
-      imageUrl: Img
+      forwardIcon: ForwardIcon
+    }
+  },
+  props: {
+    arrayList: Array
+  },
+  computed: {
+    isAttent(){
+      return i => this.arrayList[i].isAttent ? "取消关注" : "关注TA"
+    },
+    isLike(){
+      return i => this.arrayList[i].isLike ? LikeIcon : LikeActiveIcon
+    },
+    isCollection(){
+      return i => this.arrayList[i].isCollect ? CollectionIcon : CollectionActiveIcon
+    },
+    transTime(t){
+      return getTime(t)
     }
   },
   methods: {
@@ -185,12 +207,13 @@ export default {
       });
     },
     // 去帖子详情页
-    toDetailPage(){
-      this.$router.push({name:'PostDetails'});
+    toDetailPage(i){
+      let _this = this
+      this.$router.push({
+        name:'PostDetails',
+        query: { id: i }
+      });
     }
-  },
-  beforeMount(){
-
   }
 };
 </script>
