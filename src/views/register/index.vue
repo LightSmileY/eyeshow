@@ -15,19 +15,17 @@
           label-position="left" 
           class="demo-ruleForm"
           size="small">
-            <el-form-item label="邮箱" prop="username">
-              <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="验证码" prop="nickname">
-              <el-input type="text" v-model="ruleForm.nickname" autocomplete="off">
-                <el-button slot="append">获取验证码</el-button>
-              </el-input>
+            <el-form-item label="用户名" prop="login_name">
+              <el-input type="text" v-model="ruleForm.login_name" autocomplete></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+              <el-input type="password" v-model="ruleForm.password"></el-input>
             </el-form-item>
             <el-form-item label="确认密码" prop="checkPassword">
-              <el-input type="password" v-model="ruleForm.checkPassword" autocomplete="off"></el-input>
+              <el-input type="password" v-model="ruleForm.checkPassword"></el-input>
+            </el-form-item>
+            <el-form-item label="昵称" prop="nickname">
+              <el-input type="text" v-model="ruleForm.nickname" autocomplete="off"></el-input>
             </el-form-item>
           </el-form>
           <div class="operate">
@@ -51,6 +49,9 @@
 </template>
 
 <script>
+import { uuid } from '@/assets/js/pubFunctions'
+import { signUp } from '@/api/user'
+
 export default {
   name: 'register',
   data() {
@@ -58,12 +59,7 @@ export default {
       if (value === '') {
         return callback(new Error('请输入用户名'));
       }
-    };
-    let checkNickname = (rule, value, callback) => {
-      if (value === '') {
-        return callback(new Error('请输入昵称'));
-      }
-    };
+    }
     let validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
@@ -73,7 +69,7 @@ export default {
         }
         callback();
       }
-    };
+    }
     let validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'));
@@ -82,23 +78,31 @@ export default {
       } else {
         callback();
       }
-    };
+    }
+    let checkNickname = (rule, value, callback) => {
+      if (value === '') {
+        return callback(new Error('请输入用户名'));
+      }
+    }
     return {
       msg: false,
-      toLoginInfo: {
-        isMask: true,
-        isLogin: true,
-        isRegister: false
-      },
       ruleForm: {
-        username: '',
+        id: '',
+        login_name: '',
         password: '',
         checkPassword: '',
         nickname: '',
-        create_time: ''
+        phone_number: '',
+        mailbox: '',
+        register_date: '',
+        sex: '',
+        birthday: '',
+        avatar: '',
+        profile: '',
+        avatar: 'http://fengblog.xyz/images/flyy/avatar.jpg'
       },
       rules: {
-        username: [
+        login_name: [
           { validator: checkUsername, trigger: 'blur' }
         ],
         password: [
@@ -125,27 +129,23 @@ export default {
     toLogin(){
       this.$router.push({name:'Login'});
     },
-    /*注册成功后给nav组件发送传递信息*/
-    sendRegisterInfo(){
-      this.$emit('registerInfo',this.$store.state.userInfo)
-    },
     registerSuccess() {
       this.$message({
         message: '注册成功',
         type: 'success'
-      });
+      })
     },
     loginSuccess() {
       this.$message({
         message: '自动登录成功',
         type: 'success'
-      });
+      })
     },
     fail() {
       this.$message({
         message: '注册失败, 该用户名已存在',
         type: 'error'
-      });
+      })
     },
     error() {
       this.$message({
@@ -154,43 +154,39 @@ export default {
       });
     },
     register(){
-      if(this.ruleForm.username != ''
+      if(this.ruleForm.login_name != ''
         &&this.ruleForm.password != ''
         &&this.ruleForm.checkPassword !=''
         &&this.ruleForm.nickname != ''){
         /*任何一项为空时不允许提交，并执行表单验证*/
         let _this = this
-        _this.ruleForm.create_time = getDate()
-        signup(_this.ruleForm)
+        _this.ruleForm.id = uuid()
+        _this.ruleForm.register_date = new Date()
+        signUp(_this.ruleForm)
         .then(res => {
-          console.log(res)
-          //将后台获取到的userInfo存到store
-          _this.$store.dispatch('getUserInfo', res.data.user) 
-          console.log(_this.$store.state.userInfo)
-          if(res.data.code === 0){
-            _this.registerSuccess()      //"注册成功"消息提示
-            setTimeout(() => {
-              _this.loginSuccess()       //"自动登录成功"消息提示
-              _this.sendRegisterInfo()     //将登录信息发送给父组件
-              _this.sendUnRegister()       //关闭登录框
-            }, 1000)
-          }else{
-            _this.fail()                 //"注册失败，用户名已存在"消息提示
+          if(res.data.message == "程序员开小差了，请您稍后再试。"){
+            this.$message.error('注册失败~')
+            return
           }
+          _this.$store.dispatch('getUserInfo', res.data.detailMsg.data)
+          localStorage.setItem('userInfo', JSON.stringify(res.data.detailMsg.data))
+          _this.registerSuccess()
+          setTimeout(() => {
+            _this.$router.push({
+              name:'MyPosts'
+            })
+          },1000)
+          setTimeout(() => {
+            _this.loginSuccess()
+          },1000)
         })
-        .catch(() => {
-          _this.error()             //网络或服务器错误时"登注册失败"消息提示
+        .catch(err => {
+          _this.error()
         })
       }else{
         this.$refs.ruleForm.validate()
       }
     }
-  },
-  components:{
-    
-  },
-  beforeMount(){
-    
   }
 };
 </script>

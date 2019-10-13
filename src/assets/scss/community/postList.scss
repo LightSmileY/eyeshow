@@ -11,8 +11,6 @@
     border-radius: 2px;
     list-style: none;
     margin-bottom: 20px;
-    // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     border: 1px solid #E5E5E5;
 
     .user{
@@ -26,9 +24,9 @@
         .avatar{
           width: 45px;
           height: 45px;
-          border: 1px solid #808080;
-          border-radius: 50%;
+          border: 1px solid #DADADA;
           box-sizing: border-box;
+          border-radius: 50%;
           // margin: 5px;
 
           img{
@@ -53,17 +51,28 @@
           }
         }
       }
-      .attent{
+      .attent,
+      .deletePost{
         width: 120px;
         height: 40px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
       }
+      .deletePost{
+        font-size: 12px;
+        color: #2E62C5;
+        cursor: pointer;
+      }
     }
 
     .body{
       margin: 5px 8px;
+
+      .forwardWord{
+        color: #FF8181;
+        margin-right: 10px;
+      }
 
       .ptitle{
         margin-bottom: 5px;
@@ -107,6 +116,7 @@
       margin: 0 1%;
       border-radius: 2px;
       color: #747474;
+      cursor: pointer;
 
       .user{
         height: 45px;
@@ -213,17 +223,30 @@
       // border: 1px solid #B5B5B5;
 
       .commentList{
-        margin: 8px 0 0 0;
+        margin: 4px 0 0 0;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 25px;
         cursor: pointer;
+        display: flex;
+
         .obj{
+          flex-grow: 1;
           span{
             color: #DE505E;
           }
           .reply{
             color: #000;
           }
+          .content{
+            color: #000;
+          }
+        }
+        .delete{
+          min-width: 50px;
+          height: 100%;
+          font-size: 12px;
+          color: #1F5EB3;
+          text-align: right;
         }
       }
 

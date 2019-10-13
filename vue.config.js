@@ -12,6 +12,15 @@ module.exports = {
         port: 8080,
         https: false,
         hotOnly: false,
+        proxy: {
+            '/api': {
+                target: 'http://eyetouch-seentao.e2d1f38a-d663-43e3-b62e-3eb86df16574.dev.app.yyuap.com/eyetouch-seentao-be',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        },
         before: app => { }
     }
 }

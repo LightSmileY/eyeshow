@@ -47,19 +47,24 @@
           </ul>
         </div>
       </el-col>
-      <!-- <el-col :span="4">
+      <el-col :span="4" v-if="!isLogin">
         <div class="me-1">
-          <span @click="toLoginPage">登录</span>&nbsp;/
-          <span @click="toRegisterPage">注册</span>
+          <span class="login" @click="toLoginPage">登录</span>&nbsp;/&nbsp;
+          <span class="register" @click="toRegisterPage">注册</span>
         </div>
-      </el-col> -->
-      <el-col :span="4">
+      </el-col>
+      <el-col :span="4" v-if="isLogin">
         <div class="me-2" @click="toMine()">
-          <div class="avatar">
-            <img src="@/assets/images/avatar.jpg">
+          <div class="avatar-name">
+            <div class="avatar">
+              <img :src="userInfo.avatar">
+            </div>
+            <div class="nickName">
+              {{userInfo.nickname}}
+            </div>
           </div>
-          <div class="nickName">
-            浅笑半离兮
+          <div class="exit" @click.stop="exit">
+            退出
           </div>
         </div>
       </el-col>
@@ -72,7 +77,18 @@ export default {
   name: 'g-header',
   data(){
     return {
-      input: ''
+      input: '',
+      userInfo: {},
+      userInfo2: {}
+    }
+  },
+  watch: {
+    
+  },
+  computed: {
+    isLogin(){
+      this.userInfo = this.$store.state.userInfo
+      return this.userInfo.id != "-1" && this.userInfo.id
     }
   },
   methods: {
@@ -91,13 +107,28 @@ export default {
     // 跳转到注册页
     toRegisterPage(){
       this.$router.push({name:'Register'})
+    },
+    // 退出登录
+    exit(){
+      this.$confirm('确定退出登录?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.state.userInfo = {}
+        // localStorage.removeItem('userInfo')
+        this.$message({
+          type: 'success',
+          message: '退出登录!'
+        });
+      })
     }
   },
   components:{
 
   },
-  beforeMount(){
-    this.status = 1
+  mounted(){
+    this.$store.dispatch('getUserInfo', JSON.parse(localStorage.userInfo))
   }
 };
 </script>

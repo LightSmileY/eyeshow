@@ -2,27 +2,43 @@
   <div id="community">
     <div class="container">
       <div class="navs">
-        <dl class="teachList">
-          <dt>化妆教程</dt>
-          <dd :class="{navActive: status === 0}" @click="changePost(0)">最新</dd>
-          <dd :class="{navActive: status === 1}" @click="changePost(1)">热门</dd>
-          <dd :class="{navActive: status === 2}" @click="changePost(2)">图文</dd>
-          <dd :class="{navActive: status === 3}" @click="changePost(3)">视频</dd>
-        </dl>
-        <!-- <el-divider></el-divider> -->
-        <dl class="cusList">
-          <dt>妆容分享</dt>
-          <dd :class="{navActive: status === 4}" @click="changePost(4)">最新</dd>
-          <dd :class="{navActive: status === 5}" @click="changePost(5)">热门</dd>
-          <dd :class="{navActive: status === 6}" @click="changePost(6)">图文</dd>
-          <dd :class="{navActive: status === 7}" @click="changePost(7)">视频</dd>
-        </dl>
-        <!-- <el-divider></el-divider> -->
-        <dl class="cosList">
-          <dt>妆品推荐</dt>
-          <dd :class="{navActive: status === 8}" @click="changePost(8)">最新</dd>
-          <dd :class="{navActive: status === 9}" @click="changePost(9)">热门</dd>
-        </dl>
+        <div class="cusList">
+          <el-dropdown placement="bottom-start">
+            <span class="el-dropdown-link">
+              妆容分享
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item icon="el-icon-plus">最新</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus">热门</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus-outline">图文</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-check">视频</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <div class="teachList">
+          <el-dropdown placement="bottom-start">
+            <span class="el-dropdown-link">
+              化妆教程
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item icon="el-icon-plus">最新</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus">热门</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus-outline">图文</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-check">视频</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <div class="cosList">
+          <el-dropdown placement="bottom-start">
+            <span class="el-dropdown-link">
+              妆品推荐
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item icon="el-icon-plus">最新</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus">热门</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
         <div class="aboutMe"  @click="openMessage">
           <el-badge :value="100" :max="10" class="item">
             与我相关
@@ -85,6 +101,7 @@ export default {
   name: 'community',
   data(){
     return {
+      activeName: '1',
       status: 0,
       bodyStatus: 1,
       postList: [],

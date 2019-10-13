@@ -37,59 +37,35 @@
             v-model="postData.post.content">
           </el-input>
         </el-form-item>
-        <el-form-item 
-        label="图片" 
-        :label-width="formLabelWidth"
-        v-if="postData.post.style == '1'">
+        <!-- ****************************上传图片********************** -->
+        <el-form-item label="图片" :label-width="formLabelWidth">
           <el-upload
-            :action="uploadQiniuUrl"
-            ref="upload"
-            list-type="picture-card"
-            :auto-upload=false
-            :data="qiniuData"
-            :before-upload="beforeUploadGetKey"
-            :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove"
-            :multiple="true"
-            :limit="9">
-            <i class="el-icon-plus"></i>
+              :action="upload_qiniu_url"
+              ref="upload"
+              list-type="picture-card"
+              multiple
+              :data="qiniuData"
+              :limit="9"
+              :before-upload="beforeUpload"
+              :on-success="handleSuccess"
+              :on-error="handleError"
+              :on-preview="handlePictureCardPreview"
+              :auto-upload="false"
+              >
+              <i class="el-icon-plus"></i>
           </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl">
+          <el-dialog :visible.sync="dialogVisible" 
+          :append-to-body="true" 
+          :modal-append-to-body="false">
+            <!-- <img width="100%" :src="dialogImageUrl" alt=""> -->
+            <el-image
+              width="100%"
+              :src="dialogImageUrl"
+              fit="contain"></el-image>
           </el-dialog>
         </el-form-item>
-        <!-- <el-form-item 
-        label="视频" 
-        prop="Video"
-        :label-width="formLabelWidth"
-        v-if="postData.post.style == '2'">
-          action必选参数, 上传的地址
-          <el-upload 
-          class="avatar-uploader el-upload--text" 
-          :action="uploadUrl" 
-          :show-file-list="false" 
-          :on-success="handleVideoSuccess" 
-          :before-upload="beforeUploadVideo" 
-          :on-progress="uploadVideoProcess">
-            <video 
-            v-if="videoForm.Video !='' && videoFlag == false" 
-            :src="videoForm.Video" 
-            class="avatar" 
-            controls="controls">您的浏览器不支持视频播放</video>
-            <i 
-            v-else-if="videoForm.Video =='' && videoFlag == false" 
-            class="el-icon-plus avatar-uploader-icon"></i>
-            <el-progress 
-            v-if="videoFlag == true" 
-            type="circle" 
-            :percentage="videoUploadPercent" 
-            style="margin-top:30px;"></el-progress>
-          </el-upload>
-          <P class="text">请保证视频格式正确，且不超过50M</P>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl">
-          </el-dialog>
-        </el-form-item> -->
+        <!-- ****************************上传视频********************** -->
+        
       </el-form>
       
       <div slot="footer" class="dialog-footer">
@@ -106,83 +82,58 @@
 </template>
 
 <script>
-import { addPostAndImages, addPost, addPostImages } from '@/api/post.js'
+import CryptoJS from 'crypto-js'
+import { addPostAndImages, addPost, addPostImage, getQiniuToken } from '@/api/post.js'
 import { uuid } from '@/assets/js/pubFunctions'
 
 export default {
   name: 'publishPage',
   data() {
     return {
+      qiniuData: {
+        key: "",
+        token: ""
+      },
+      upload_qiniu_url: "http://upload-z2.qiniup.com",
+      // 七牛云返回储存图片的子域名
+      upload_qiniu_addr: "http://pymhh35l8.bkt.clouddn.com/",
+      imageUrl: "",
+      dialogImageUrl: '',
+      dialogVisible: false,
+      
       dialogTableVisible: false,
       dialogFormVisible: false,
-      uploadQiniuUrl: "",
-      qiniuData:{             //上传图片携带的参数
-        token : "",
-        key : "",
-      },
       postData: {       //帖子内容
         post: {
-          id: "a111",
+          id: "",
           type: "1",
           style: "1",
           title: "",
           content: "",
-          uid: "1122",
+          uid: "",
           time: "",
           fpid: "-1",
         },
         images: [
-          {
-            pid: "a111",
-            id: "http://fengblog.xyz/images/2/a1.jpg"
-          },
-          {
-            pid: "112233",
-            id: "http://fengblog.xyz/images/2/a2.jpg"
-          },
-          {
-            pid: "112233",
-            id: "http://fengblog.xyz/images/2/a3.jpg"
-          }
+          // {
+          //   pid: "",
+          //   id: "http://fengblog.xyz/images/2/1.jpg"
+          // },
+          // {
+          //   pid: "",
+          //   id: "http://fengblog.xyz/images/2/2.jpg"
+          // },
+          // {
+          //   pid: "",
+          //   id: "http://fengblog.xyz/images/2/3.jpg"
+          // }
         ]
       },
-      /*"post": {
-        "id": "112233",
-        "type": "1",
-        "style": "1",
-        "title": "999",
-        "content": "23333333333333333333",
-        "uid": "1122",
-        "time": "2019",
-        "fpid": "-1"
-      },
-      "images": {[
-        {
-          "pid": "112233",
-          "id": "http://fengblog.xyz/images/2/1.jpg"
-        },
-        {
-          "pid": "112233",
-          "id": "http://fengblog.xyz/images/2/2.jpg"
-        },
-        {
-          "pid": "112233",
-          "id": "http://fengblog.xyz/images/2/3.jpg"
-        }
-      ]}*/
-      formLabelWidth: '120px',
-      dialogImageUrl: '',
-      dialogVisible: false
+      formLabelWidth: '120px'
     }
   },
   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
+    
     /*一起发表帖子*/
     // toAddPost() {
     //   this.postData.post.time = new Date()
@@ -205,69 +156,64 @@ export default {
       let _this = this
       this.postData.post.id = uuid()
       this.postData.post.time = new Date()
+      this.postData.post.uid = this.$store.state.userInfo.id
       addPost(this.postData.post)
-      .then(data => {
-        if(data.message == "程序员开小差了，请您稍后再试。"){
+      .then(res => {
+        console.log(res.data)
+        if(res.data.message == "程序员开小差了，请您稍后再试。"){
           _this.$message.error('程序员开小差了，请您稍后再试~')
           return
         }else {
-          if(this.postData.images.length){
-            for(let i in this.postData.images){
-              i.pid = this.postData.post.id
-            }
-            addPostImages(this.postData.images)
-            .then(data => {
-              if(data.message == "程序员开小差了，请您稍后再试。"){
-                throw new Error("图片添加失败")
-              }
-              _this.$message({
-                message: '发表成功',
-                type: 'success'
-              })
-              this.dialogFormVisible = false
-            })
-            .catch(() => {
-              // 请求删除帖子
-            })
-          }
+          // 上传图片
+          _this.$refs.upload.submit()
         }
       })
     },
-    getToken(){  //上传之前获取 token
-      var url1 = this.$store.state.frontUrl + "/getQiniuToken?bucket=xdx97-album";
-      this.$ajax.get(url1)
-      .then( response => {
-          //获取 token
-          this.qiniuData.token = response.data.token;  
-      })
-    },
     submitUpload() {   //提交上传
-      this.$refs.upload.submit();
+      this.$refs.upload.submit()
     },
-    beforeUploadGetKey() {   //每个文件上传之前 给它一个 名字
-         this.qiniuData.key = this.guid();      
-    },
-    handlePictureCardPreview(file) {   //查看某张图片的原图
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-    },
-    beforeUploadVideo(file) {
-      const isLt10M = file.size / 1024 / 1024  < 10;
-      if (['video/mp4', 'video/ogg', 'video/flv','video/avi','video/wmv','video/rmvb'].indexOf(file.type) == -1) {
-          this.$message.error('请上传正确的视频格式');
-          return false;
+    beforeUpload(file) {
+      this.qiniuData.key = uuid() + file.name;
+      const isJPG = file.type === "image/jpeg";
+      const isPNG = file.type === "image/png";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isJPG && !isPNG) {
+        this.$message.error("图片只能是 JPG/PNG 格式!");
+        return false;
       }
-      if (!isLt50M) {
-          this.$message.error('上传视频大小不能超过50MB哦!');
-          return false;
+      if (!isLt2M) {
+        this.$message.error("图片大小不能超过 2MB!");
+        return false;
       }
+    },
+    handleSuccess(res, file) {
+      let imageInfo = {
+        id: "",
+        pid: ""
+      }
+      imageInfo.id = this.upload_qiniu_addr + res.key
+      imageInfo.pid = this.postData.post.id
+      console.log(imageInfo)
+      addPostImage(imageInfo) //发表图片
+    },
+    handleError(res) {
+      this.$message({
+        message: "上传失败",
+        duration: 2000,
+        type: "warning"
+      });
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
     }
   },
-  components:{
-
-  },
-  beforeMount(){
-
+  created(){
+    getQiniuToken()
+    .then(res => {
+      this.qiniuData.token = res.data
+      console.log(this.qiniuData.token)
+    })
   }
 };
 </script>

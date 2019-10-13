@@ -21,6 +21,7 @@
 <script>
 import GHeader from '@/components/header'
 import GFooter from '@/components/footer'
+import '@/assets/js/heart.js'
 
 export default {
   name: 'App',

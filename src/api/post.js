@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {serverUrl} from '../utils/env.js'
+import store from '@/store/store'
 
 // 发表帖子
 export const addPostAndImages = data => {
@@ -26,32 +27,14 @@ export const addPost = data => {
     method: 'post',
     data
   })
-  .then(res => {
-    console.log(res)
-    return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
-  })
 }
 
 // 添加图片
-export const addPostImages = data => {
+export const addPostImage = data => {
   return axios({
-    url: serverUrl + '/pimage/pimage/insertImages',
+    url: serverUrl + '/pimage/pimage/insertSelective',
     method: 'post',
     data
-  })
-  .then(res => {
-    console.log(res)
-    // return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
   })
 }
 
@@ -77,10 +60,11 @@ export const addPostVideo = data => {
 export const getAllPosts = () => {
   return axios({
     url: serverUrl + '/community/community/getAllPosts',
-    method: 'get'
+    method: 'get',
+    params: {user_ID: store.state.userInfo.id || "-1"}
   })
   .then(res => {
-    console.log(res.data.detailMsg.data)
+    console.log(res)
     return res.data.detailMsg.data
   })
   .catch(err => {
@@ -162,17 +146,9 @@ export const getPostById = params => {
 // 根据id删除一条帖子
 export const deletePostById = params => {
   return axios({
-    url: serverUrl + '/post/post/deletePostById',
+    url: serverUrl + '/community/community/deletePostById',
     method: 'delete',
     params
-  })
-  .then(res => {
-    return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
   })
 }
 
@@ -180,15 +156,60 @@ export const deletePostById = params => {
 export const likePost = data => {
   return axios({
     url: serverUrl + '/plikes/plikes/insertSelective',
-    method: 'delete',
+    method: 'post',
     data
   })
-  .then(res => {
-    return res.data
+}
+
+// 取消点赞
+export const unLikePost = params => {
+  return axios({
+    url: '/api/plikes/plikes/deleteByUserIdAndPostId',
+    method: 'delete',
+    params
   })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
+}
+
+// 收藏
+export const collectPost = data => {
+  return axios({
+    url: serverUrl + '/pfavorites/pfavorites/insertSelective',
+    method: 'post',
+    data
+  })
+}
+
+// 取消收藏
+export const unCollectPost = params => {
+  return axios({
+    url: '/api/pfavorites/pfavorites/deleteByUserIdAndPostId',
+    method: 'delete',
+    params
+  })
+}
+
+// 评论
+export const commentPost = data => {
+  return axios({
+    url: serverUrl + '/pcomments/pcomments/insertSelective',
+    method: 'post',
+    data
+  })
+}
+
+// 删除评论
+export const deleteComment = params => {
+  return axios({
+    url: serverUrl + '/pcomments/pcomments/insertSelective',
+    method: 'delete',
+    params
+  })
+}
+
+// 从koa2服务端获取七牛云token
+export const getQiniuToken = () => {
+  return axios({
+    url: 'https://fengblog.xyz:3029/message/getQiniuToken',
+    method: 'get'
   })
 }
