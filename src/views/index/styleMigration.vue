@@ -25,13 +25,19 @@
           <div class="title">选择您的照片</div>
           <div class="select">
             <div class="image">
-              <img src="@/assets/images/10.jpg">
+              <img :src="imageUrl" alt="">
             </div>
             <div class="dragUpload">
               <el-upload
                 class="upload-demo"
                 drag
-                action="https://jsonplaceholder.typicode.com/posts/">
+                :action="upload_qiniu_url"
+                :data="qiniuData"
+                :limit="1"
+                :before-upload="beforeUpload1"
+                :on-success="handleSuccess1"
+                :on-error="handleError1"
+                on-remove="removeImage">
                 <i class="el-icon-upload"></i>
                 <div class="el-upload__text">将图片拖到此处，或<em>点击上传</em></div>
                 <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -89,15 +95,24 @@
 </template>
 
 <script>
-import Img from '@/assets/images/yz.jpeg'
 import { getMyImages } from '@/api/slide'
+import { getQiniuToken } from '@/api/post.js'
+import { uuid } from '@/assets/js/pubFunctions'
 
 export default {
   name: 'styleMigration',
   data(){
     return {
-      imageUrl: Img,
-      imageList: []
+      imageList: [],
+      qiniuData: {
+        key: "",
+        token: ""
+      },
+      upload_qiniu_url: "http://upload-z2.qiniup.com",
+      // 七牛云返回储存图片的子域名
+      upload_qiniu_addr: "http://pymhh35l8.bkt.clouddn.com/",
+      imageUrl: "",
+      dialogImageUrl: '',
     }
   },
   methods: {
@@ -109,6 +124,35 @@ export default {
       getMyImages().then(data => {
         this.imageList = data
       })
+    },
+    /*------------------------图片上传事件-----------------------*/
+    beforeUpload1(file) {
+      this.qiniuData.key = uuid() + file.name
+      const isJPG = file.type === "image/jpeg"
+      const isPNG = file.type === "image/png"
+      const isLt5M = file.size / 1024 / 1024 < 5
+      if (!isJPG && !isPNG) {
+        this.$message.error("图片只能是 JPG/PNG 格式!")
+        return false;
+      }
+      if (!isLt5M) {
+        this.$message.error("图片大小不能超过 5MB!")
+        return false
+      }
+    },
+    handleSuccess1(res, file) {
+      this.imageUrl = this.upload_qiniu_addr + res.key
+      console.log(this.imageUrl)
+    },
+    handleError1(res) {
+      this.$message({
+        message: "上传失败",
+        duration: 2000,
+        type: "warning"
+      });
+    },
+    removeImage(){
+      this.imageUrl = ""
     }
   },
   components:{
@@ -116,6 +160,11 @@ export default {
   },
   created(){
     this.getImageList()
+    getQiniuToken()
+    .then(res => {
+      this.qiniuData.token = res.data
+      console.log(this.qiniuData.token)
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

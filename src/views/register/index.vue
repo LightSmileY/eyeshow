@@ -164,6 +164,7 @@ export default {
         _this.ruleForm.register_date = new Date()
         signUp(_this.ruleForm)
         .then(res => {
+          console.log(res)
           if(res.data.message == "程序员开小差了，请您稍后再试。"){
             this.$message.error('注册失败~')
             return

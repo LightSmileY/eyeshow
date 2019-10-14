@@ -4,6 +4,9 @@ import App from './App.vue'
 import router from './router/router'
 import store from './store/store'
 import './plugins/element.js'
+import animated from 'animate.css'
+ 
+Vue.use(animated)
 
 Vue.config.productionTip = false
 

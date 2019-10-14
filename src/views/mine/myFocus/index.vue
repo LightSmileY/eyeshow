@@ -1,25 +1,43 @@
 <template>
   <div id="detail">
     <div class="title">我的关注</div>
-    <user-list/>
+    <user-list :arrayList="userList"/>
   </div>
 </template>
 
 <script>
 import UserList from '@/components/pubComponents/userList'
+import { 
+  getPostsByUserID, 
+  getCollectionPosts, 
+  getAttents, 
+  getFanses, 
+  getUserInfo 
+} from '@/api/user'
 
 export default {
   name: 'myFocus',
   data(){
     return {
-
+      user_ID: this.$store.state.userInfo.id,
+      userList: []
     }
   },
   methods: {
-
+    // 获取该用户的所有关注
+    getMyAttents(){
+      getAttents({user_ID: this.user_ID})
+      .then(res => {
+        this.userList = res.data.detailMsg.data
+        console.log(this.userList)
+      })
+    }
   },
   components:{
     UserList
+  },
+  created(){
+    this.getMyAttents()
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

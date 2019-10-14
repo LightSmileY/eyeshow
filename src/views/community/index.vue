@@ -2,42 +2,52 @@
   <div id="community">
     <div class="container">
       <div class="navs">
-        <div class="cusList">
-          <el-dropdown placement="bottom-start">
+        <div class="allPost">
             <span class="el-dropdown-link">
+              最新帖子
+            </span>
+        </div>
+        <div class="allPost">
+            <span class="el-dropdown-link">
+              热门帖子
+            </span>
+        </div>
+        <div class="cusList">
+          <!-- <el-dropdown placement="bottom-start"> -->
+            <span class="el-dropdown-link" @click="getAllPostsByType('1')">
               妆容分享
             </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-plus">最新</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus">热门</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus-outline">图文</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-check">视频</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+            <!-- <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item icon="el-icon-view">最新</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-sunny">热门</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-picture">图文</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-video-camera-solid">视频</el-dropdown-item>
+            </el-dropdown-menu> -->
+          <!-- </el-dropdown> -->
         </div>
         <div class="teachList">
-          <el-dropdown placement="bottom-start">
+          <!-- <el-dropdown placement="bottom-start"> -->
             <span class="el-dropdown-link">
               化妆教程
             </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-plus">最新</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus">热门</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus-outline">图文</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-check">视频</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+            <!-- <el-dropdown-menu slot="dropdown" @click="getAllPostsByType('2')"> -->
+              <!-- <el-dropdown-item icon="el-icon-view">最新</el-dropdown-item> -->
+              <!-- <el-dropdown-item icon="el-icon-sunny">热门</el-dropdown-item> -->
+              <!-- <el-dropdown-item icon="el-icon-picture">图文</el-dropdown-item> -->
+              <!-- <el-dropdown-item icon="el-icon-video-camera-solid">视频</el-dropdown-item> -->
+            <!-- </el-dropdown-menu> -->
+          <!-- </el-dropdown> -->
         </div>
         <div class="cosList">
-          <el-dropdown placement="bottom-start">
+          <!-- <el-dropdown placement="bottom-start"> -->
             <span class="el-dropdown-link">
               妆品推荐
             </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-plus">最新</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-circle-plus">热门</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+            <!-- <el-dropdown-menu slot="dropdown"> -->
+              <!-- <el-dropdown-item icon="el-icon-view">最新</el-dropdown-item> -->
+              <!-- <el-dropdown-item icon="el-icon-sunny">热门</el-dropdown-item> -->
+            <!-- </el-dropdown-menu> -->
+          <!-- </el-dropdown> -->
         </div>
         <div class="aboutMe"  @click="openMessage">
           <el-badge :value="100" :max="10" class="item">
@@ -95,7 +105,9 @@ import MessageList from '@/components/community/messageList'
 import YouLike from '@/components/community/youLike'
 import HotRecommend from '@/components/community/hotRecommend'
 
-import {getAllPosts} from '@/api/post.js'
+import { getAllPosts, getAllPostsByType, getAllPostsByStyle } from '@/api/post.js'
+
+import { arraySort } from '@/assets/js/pubFunctions'
 
 export default {
   name: 'community',
@@ -135,9 +147,19 @@ export default {
     getAllPostsData(){
       getAllPosts().then(data => {
         this.postList = data
+        this.postList.sort((a,b) => a.postTime > b.postTime)
         this.youLikeList = data.slice(0,8)
         this.hotRecommendList = data.slice(0,10)
         this.loading = false
+        console.log(this.postList)
+      })
+    },
+    // 根据类型获取所有帖子
+    getAllPostsByType(i){
+      getAllPosts({type: i, user_ID: this.$store.state.userInfo.id})
+      .then(res => {
+        console.log(res)
+        this.postList = res.data.detailMsg.data.sort((a,b) => Number(a.postTime) - Number(b.postTime))
         console.log(this.postList)
       })
     }

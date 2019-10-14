@@ -2,15 +2,15 @@
   <div id="postItem">
     <li 
     class="hotPostsList-item" 
-    v-for="item in 12">
+    v-for="(item,index) in arrayList">
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
-            <img src="@/assets/images/avatar.jpg">
+            <img :src="$store.state.userInfo.avatar">
           </div>
           <div class="name-time">
-            <div class="name">浅笑半离兮</div>
-            <div class="time">2019-8-12 11:48:56</div>
+            <div class="name">{{item.username}}</div>
+            <div class="time">{{item.time}}</div>
           </div>
         </div>
         <div class="delete" @click.stop="deletePost" v-if="oper === 1">删除</div>
@@ -21,7 +21,8 @@
           <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64ut8pyppj30ty0kze59.jpg" alt="">
         </div>
         <div class="desc" @click="toDetailPage">
-          人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。
+          <div class="ptitle">#{{item.title}}#</div>
+          <div>{{item.content}}</div>
         </div>
       </div>
     </li>
@@ -38,7 +39,8 @@ export default {
     }
   },
   props: {
-    oper: Number
+    oper: Number,
+    arrayList: Array
   },
   methods: {
     toDetailPage(){

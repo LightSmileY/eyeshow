@@ -2,7 +2,7 @@
   <div id="index">
     <div class="container">
       <div class="banner">
-        <div class="picStyle" @click="toStyleMigrationPage">
+        <div class="picStyle animated rotateIn" @click="toStyleMigrationPage">
           风格迁移页入口
         </div>
         <!--****************** 幻灯片 ******************-->

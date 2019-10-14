@@ -34,8 +34,9 @@
         <el-image 
           :src="image"
           :preview-src-list="item.images"
-          v-for="(image,iindex) in item.images"
-          v-if="item.images.length">
+          v-for="image in item.images"
+          v-if="item.images.length"
+          fit="cover">
         </el-image>
       </div>
       <div class="video">
@@ -212,7 +213,8 @@ export default {
         content: ""
       },
       forwardIndex: 0,  //打开转发框时记录帖子索引
-      formLabelWidth: '100px'
+      formLabelWidth: '100px',
+      fit: "cover"
     }
   },
   props: {
@@ -273,6 +275,10 @@ export default {
     },
     // 点赞&&取消点赞
     toLike(i){
+      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
+        this.$message.warning("请先登录哦！")
+        return
+      }
       if(this.arrayList[i].isLike){
         this.unLike(i)
       }else{
@@ -281,6 +287,10 @@ export default {
     },
     // 收藏&&取消收藏
     toCollect(i){
+      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
+        this.$message.warning("请先登录哦！")
+        return
+      }
       if(this.arrayList[i].isCollect){
         this.unCollect(i)
       }else{
@@ -289,6 +299,10 @@ export default {
     },
     // 关注
     attent(i){
+      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
+        this.$message.warning("请先登录哦！")
+        return
+      }
       let _this = this
       let attentInfo = {
         id: uuid(),
@@ -377,6 +391,10 @@ export default {
     },
     // 转发
     openForwardBox(i){
+      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
+        this.$message.warning("请先登录哦！")
+        return
+      }
       this.dialogFormVisible = true
       this.forwardIndex = i
     },
@@ -404,6 +422,10 @@ export default {
     },
     // 评论
     toComment(i){
+      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
+        this.$message.warning("请先登录哦！")
+        return
+      }
       let _this = this
       let commentInfo = {
         id: uuid(),
@@ -436,6 +458,10 @@ export default {
         // beforeClose: 
       })
       .then(({ value }) => {
+        if (this.$store.state.userInfo.id == "" || this.$store.state.userInfo.id == "-1"){
+          this.$message.warning("请先登录哦！")
+          return
+        }
         let _this = this
         let commentInfo = {
           id: uuid(),
@@ -466,17 +492,22 @@ export default {
     },
     // 删除评论
     deleteComment(i,j){
+      let _this = this
       this.$confirm('确定删除评论?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       })
       .then(() => {
-        deleteComment(this.arrayList[i].comments[j])
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
+        deleteComment({id: this.arrayList[i].comments[j].id})
+        .then(res => {
+          this.arrayList[i].comments[j].splice(j, 1)
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
         })
+        
       })
     },
     // 去帖子详情页
@@ -485,7 +516,7 @@ export default {
       this.$router.push({
         name:'PostDetails',
         query: { id: i }
-      });
+      })
     }
   }
 };

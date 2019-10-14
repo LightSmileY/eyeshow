@@ -1,3 +1,24 @@
+// 时间格式化
+Date.prototype.Format = function (fmt) {
+  var o = {
+      "M+": this.getMonth() + 1, //月份 
+      "d+": this.getDate(), //日 
+      "h+": this.getHours(), //小时 
+      "m+": this.getMinutes(), //分 
+      "s+": this.getSeconds(), //秒 
+      "q+": Math.floor((this.getMonth() + 3) / 3) //季度
+  }
+  if (/(y+)/.test(fmt))
+    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o){
+    if (new RegExp("(" + k + ")").test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    }
+  }
+  return fmt;
+}
+
+// UUID
 export const uuid = () => {
     var s = [];
     var hexDigits = "0123456789abcdef";
@@ -11,14 +32,8 @@ export const uuid = () => {
     return uuid;
 }
 
-export const getTime = time => {
-    year = time.getFullYear(),
-    month = time.getMonth() + 1,
-    day = time.getDate(),
-    hour = time.getHours(),
-    minute = time.getMinutes(),
-    second = time.getSeconds()
-  return year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second
+export const getTime = () => {
+  return (new Date()).Format("yyyy-MM-dd hh:mm:ss")
 }
 
 export const arraySort = {
@@ -29,13 +44,5 @@ export const arraySort = {
   // 点赞数排序
   sortByLikeCount(arr){
     arr.sort((a,b) => a.likeCount - b.likeCount)
-  },
-  // 收藏数排序
-  sortByCollectionCount(arr){
-    arr.sort((a,b) => a.collectionCount - b.collectionCount)
-  },
-  // 转发数排序
-  sortByForwardCount(arr){
-    arr.sort((a,b) => a.forwardCount - b.forwardCount)
   }
 }

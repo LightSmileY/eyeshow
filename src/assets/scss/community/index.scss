@@ -37,16 +37,18 @@
       .aboutMe,
       .teachList,
       .cusList,
-      .cosList{
+      .cosList,
+      .allPost{
         margin-top: 10px;
         width: 100%;
         height: 40px;
         border-top: 1px solid #DADADA;
         border-bottom: 1px solid #DADADA;
         @include flex-center();
+        cursor: pointer;
 
-        dl{
-          display: none;
+        .el-dropdown-link:hover{
+          color: #ff9797;
         }
       }
 
@@ -57,9 +59,11 @@
       .aboutMe:hover,
       .teachList:hover,
       .cusList:hover,
-      .cosList:hover{
+      .cosList:hover,
+      .allPost:hover{
         color: #ff9797;
         cursor: pointer;
+        // background-color: #ff9797;
       }
     }
 

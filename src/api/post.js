@@ -45,21 +45,12 @@ export const addPostVideo = data => {
     method: 'post',
     data
   })
-  .then(res => {
-    console.log(res)
-    // return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
-  })
 }
 
 // 获取所有帖子
 export const getAllPosts = () => {
   return axios({
-    url: serverUrl + '/community/community/getAllPosts',
+    url: serverUrl + '/community/community/getAllPostsLogin',
     method: 'get',
     params: {user_ID: store.state.userInfo.id || "-1"}
   })
@@ -98,30 +89,14 @@ export const getAllPostsByType = params => {
     method: 'get',
     params
   })
-  .then(res => {
-    return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
-  })
 }
 
-// 根据类型获取该类型所有帖子
+// 根据风格获取该类型所有帖子
 export const getAllPostsByStyle = params => {
   return axios({
     url: serverUrl + '/community/community/getAllPostsByStyle',
     method: 'get',
     params
-  })
-  .then(res => {
-    return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
   })
 }
 
@@ -131,15 +106,6 @@ export const getPostById = params => {
     url: serverUrl + '/community/community/getPostById',
     method: 'get',
     params
-  })
-  .then(res => {
-    console.log(res.data)
-    return res.data.detailMsg.data[0]
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
   })
 }
 
@@ -164,7 +130,7 @@ export const likePost = data => {
 // 取消点赞
 export const unLikePost = params => {
   return axios({
-    url: '/api/plikes/plikes/deleteByUserIdAndPostId',
+    url: serverUrl + '/plikes/plikes/deleteByUserIdAndPostId',
     method: 'delete',
     params
   })
@@ -182,7 +148,7 @@ export const collectPost = data => {
 // 取消收藏
 export const unCollectPost = params => {
   return axios({
-    url: '/api/pfavorites/pfavorites/deleteByUserIdAndPostId',
+    url: serverUrl + '/pfavorites/pfavorites/deleteByUserIdAndPostId',
     method: 'delete',
     params
   })
@@ -200,7 +166,7 @@ export const commentPost = data => {
 // 删除评论
 export const deleteComment = params => {
   return axios({
-    url: serverUrl + '/pcomments/pcomments/insertSelective',
+    url: serverUrl + '/pcomments/pcomments/deleteById',
     method: 'delete',
     params
   })
