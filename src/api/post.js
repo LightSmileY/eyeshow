@@ -85,16 +85,16 @@ export const getFollowsPost = params => {
 // 根据类型获取该类型所有帖子
 export const getAllPostsByType = params => {
   return axios({
-    url: serverUrl + '/community/community/getAllPostsByType',
+    url: serverUrl + '/community/community/getAllPostsByTypeLogin',
     method: 'get',
     params
   })
 }
 
-// 根据风格获取该类型所有帖子
+// 根据风格获取该风格所有帖子
 export const getAllPostsByStyle = params => {
   return axios({
-    url: serverUrl + '/community/community/getAllPostsByStyle',
+    url: serverUrl + '/community/community/getAllPostsByStyleLogin',
     method: 'get',
     params
   })
@@ -103,7 +103,7 @@ export const getAllPostsByStyle = params => {
 // 根据id查询一条帖子
 export const getPostById = params => {
   return axios({
-    url: serverUrl + '/community/community/getPostById',
+    url: serverUrl + '/community/community/getPostByIdLogin',
     method: 'get',
     params
   })

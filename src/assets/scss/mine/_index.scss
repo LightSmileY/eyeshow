@@ -27,12 +27,15 @@
 				border-radius: 50%;
 			}
 		}
+		.nickname{
+			font-size: 20px;
+			margin: 10px 0;
+		}
 
 		.signature-edit{
 			width: 100%;
 			max-width: 500px;
 			display: flex;
-			margin-top: 20px;
 			@include flex-center(column);
 			
 			.signature{

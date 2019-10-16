@@ -87,8 +87,7 @@ export default {
       /*登录信息*/
       loginInfo: {
         username: '',
-        password: '',
-        last_login_time: ''
+        password: ''
       },
       rules: {
         username: [
@@ -122,12 +121,6 @@ export default {
         type: 'success'
       });
     },
-    fail() {
-      this.$message({
-        message: '登录失败, 密码错误',
-        type: 'error'
-      });
-    },
     error() {
       this.$message({
         message: '登录失败',
@@ -135,27 +128,21 @@ export default {
       });
     },
     login(){
-      if(this.ruleForm.username!=''&&this.ruleForm.password!=''){
+      if(this.loginInfo.username!=''&&this.loginInfo.password!=''){
         /*任何一项为空时不允许提交，并执行表单验证*/
         let _this = this
-        _this.ruleForm.last_login_time = getDate()
-        signin(_this.ruleForm)
+        signin(_this.loginInfo)
         .then(res => {
           //将后台获取到的userInfo存到store
-          _this.$store.dispatch('getUserInfo', res.data.user) 
-          if(res.data.code === 0){
-            _this.success()       //"登录成功"消息提示
-            _this.sendLoginInfo() //将登录信息发送给父组件
-            _this.sendUnLogin()   //关闭登录框
-          }else{
-            _this.fail()          //"密码错误"消息提示
-          }
+          console.log(res)
+          _this.$store.dispatch('getUserInfo', res.data.userMessage)
+          _this.success()       //"登录成功"消息提示
         })
         .catch(() => {
           _this.error()          //网络或服务器错误时"登录失败"消息提示
         })
       }else{
-        this.$refs.ruleForm.validate()
+        this.$refs.loginInfo.validate()
       }
     }
   },

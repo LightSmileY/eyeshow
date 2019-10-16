@@ -2,17 +2,13 @@
   <div id="mine">
     <div class="mine-back">
       <div class="avatar">
-        <img src="@/assets/images/avatar.jpg">
-        <!-- <el-image 
-          :src="avatarUrl" 
-          :preview-src-list="avatarUrlList">
-        </el-image> -->
+        <img :src="userInfo.avatar">
       </div>
+      <div class="nickname">{{userInfo.nickname}}</div>
       <div class="signature-edit">
-        <div class="signature">
-          东风夜放花千树，更吹落，星如雨。
-        </div>
+        <div class="signature">{{userInfo.profile}}</div>
         <el-button 
+        v-if="userInfo.id == $store.state.userInfo.id"
         type="primary" 
         icon="el-icon-edit" 
         circle
@@ -29,26 +25,30 @@
           <!-- :before-remove="beforeRemove" -->
           <!-- :on-exceed="handleExceed" -->
           <!-- :file-list="fileList"> -->
-          <el-button type="primary" size="mini" plain><i class="el-icon-upload el-icon--right">上传封面图</i></el-button>
+          <el-button 
+          v-if="userInfo.id == $store.state.userInfo.id"
+          type="primary" 
+          size="mini" 
+          plain><i class="el-icon-upload el-icon--right">上传封面图</i></el-button>
         </el-upload>
       </div>
     </div>
     <div class="main">
       <div class="nav-bar">
         <ul>
-          <router-link to="/mine/myPosts">
+          <router-link :to="{name:'MyPosts',query:{id: userInfo.uid}}">
             <li>帖子 (56)</li>
           </router-link>
-          <router-link to="/mine/myCollections">
+          <router-link :to="{name:'MyCollections',query:{id: userInfo.uid}}">
             <li>收藏 (243)</li>
           </router-link>
-          <router-link to="/mine/myFocus">
+          <router-link :to="{name:'MyFocus',query:{id: userInfo.uid}}">
             <li>关注 (58)</li>
           </router-link>
-          <router-link to="/mine/myFanses">
+          <router-link :to="{name:'MyFanses',query:{id: userInfo.uid}}">
             <li>粉丝 (11.5w)</li>
           </router-link>
-          <router-link to="/mine/myProfile">
+          <router-link :to="{name:'MyProfile',query:{id: userInfo.uid}}">
             <li>资料</li>
           </router-link>
         </ul>
@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import { getUserInfo } from '@/api/user'
+
 export default {
   name: 'mine',
   data(){
@@ -69,14 +71,15 @@ export default {
       avatarUrlList: [
         ""
       ],
-      fileList: ""
+      fileList: "",
+      userInfo: {}
     }
   },
-  methods: {
-
-  },
-  components:{
-
+  created(){
+    getUserInfo({ id: this.$store.state.viewUserId})
+    .then(res => {
+      this.userInfo = res.data.detailMsg.entity
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

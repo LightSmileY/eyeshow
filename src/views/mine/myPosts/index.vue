@@ -1,8 +1,8 @@
 <template>
   <div id="detail">
-    <div class="title">我的帖子</div>
+    <div class="title">{{isMe}}的帖子</div>
     <div class="post-li">
-      <post-item :arrayList="postList" :oper="1"/>
+      <post-item :arrayList="postList" :oper="1" :userObj="userInfo"/>
     </div>
   </div>
 </template>
@@ -21,14 +21,19 @@ export default {
   name: 'myPosts',
   data(){
     return {
-      user_ID: this.$store.state.userInfo.id,
-      postList: []
+      postList: [],
+      userInfo: {}
+    }
+  },
+  computed: {
+    isMe(){
+      return this.userInfo.id == this.$store.state.userInfo.id ? "我" : "TA"
     }
   },
   methods: {
     // 获取该用户的所有帖子
     getPostsOfUser(){
-      getPostsByUserID({user_ID: this.user_ID})
+      getPostsByUserID({user_ID: this.$store.state.viewUserId})
       .then(res => {
         this.postList = res.data.detailMsg.data
         console.log(this.postList)
@@ -40,6 +45,11 @@ export default {
   },
   created(){
     this.getPostsOfUser()
+    getUserInfo({ id: this.$store.state.viewUserId})
+    .then(res => {
+      console.log(res.data.detailMsg.entity)
+      this.userInfo = res.data.detailMsg.entity
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

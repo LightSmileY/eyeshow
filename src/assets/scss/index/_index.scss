@@ -70,13 +70,19 @@
 
         .youLikeList{
           width: 100%;
+          min-height: 500px;
           box-sizing: border-box;
           padding: 0 0 20px;
           list-style: none;
+
+          .youLikeList-items{
+            min-height: 200px;
+          }
         }
 
         .hotPostsList{
           width: 100%;
+          min-height: 300px;
           box-sizing: border-box;
           // padding: 0 0 20px;
           list-style: none;
@@ -86,6 +92,7 @@
 
         .hotCosmeticsList{
           width: 100%;
+          min-height: 300px;
           box-sizing: border-box;
           padding: 0 0 20px;
           list-style: none;

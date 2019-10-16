@@ -5,9 +5,8 @@
   width: 100%;
   @include flex-center();
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   box-sizing: border-box;
-  padding: 0 30px;
 
   .hotPostsList-item{
     width: 380px;
@@ -102,6 +101,7 @@
       .desc{
         max-width: 260px;
         height: 73px;
+        line-height: 16px;
         margin: 0 5px 0 10px;
         font-size: 11px;
         white-space:wrap;
@@ -125,8 +125,8 @@
     transition: box-shadow .3s;
   }
 }
-#postItem:after {
-  content: "";
-  height:0;
-  display:block;
-}
+// #postItem:after {
+//   content: "";
+//   height:0;
+//   display:block;
+// }

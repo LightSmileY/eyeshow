@@ -109,7 +109,8 @@ export default new Router({
           name: 'MyProfile',
           component: () => import('@/views/mine/myProfile')
         }
-      ]
+      ],
+      redirect:'/mine/myPosts'
     },
     {
       path: '*',

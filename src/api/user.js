@@ -13,7 +13,7 @@ export const signUp = data => {
 // 用户登录
 export const signIn = data => {
   return axios({
-    url: serverUrl + '/myuser/myuser/insertSelective',
+    url: serverUrl + '/community/community/login',
     method: 'post',
     data
   })

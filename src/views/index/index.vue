@@ -23,35 +23,51 @@
           <div class="title">
             猜你喜欢
           </div>
-          <div class="youLikeList">
-            <div class="youLikeList-items">
+          <div 
+          class="youLikeList"
+          v-loading="loading1"
+          element-loading-text="玩命加载中"
+          element-loading-background="rgba(255, 255, 255, 0)">
+            <div 
+            class="youLikeList-items"
+            v-loading="loading1"
+            element-loading-text="玩命加载中"
+            element-loading-background="rgba(255, 255, 255, 0)">
               <!--****************** 帖子列表 ******************-->
-              <post-item :oper="0"/>
+              <post-item :oper="0" :arrayList="hotPostList"/>
             </div>
             <div class="youLikeList-items">
               <!--****************** 妆品列表 ******************-->
-              <cosmetic-item/>
+              <cosmetic-item :arrayList="hotCommodityList"/>
             </div>
           </div>
         </div>
         <el-divider></el-divider>
-        <div class="list hotPosts">
+        <div 
+        class="list hotPosts"
+        v-loading="loading2"
+        element-loading-text="玩命加载中"
+        element-loading-background="rgba(255, 255, 255, 0)">
           <div class="title">
             热门帖子
           </div>
           <ul class="hotPostsList">
             <!--****************** 帖子列表 ******************-->
-            <post-item :oper="0"/>
+            <post-item :oper="0" :arrayList="hotPostList"/>
           </ul>
         </div>
         <el-divider></el-divider>
-        <div class="list hotCosmetics">
+        <div 
+        class="list hotCosmetics" 
+        v-loading="loading3"
+        element-loading-text="玩命加载中"
+        element-loading-background="rgba(255, 255, 255, 0)">
           <div class="title">
             热门妆品
           </div>
           <ul class="hotCosmeticsList">
             <!--****************** 妆品列表 ******************-->
-            <cosmetic-item/>
+            <cosmetic-item :arrayList="hotCommodityList"/>
           </ul>
         </div>
       </div>          
@@ -64,12 +80,18 @@ import PostItem from '@/components/pubComponents/postItem'
 import CosmeticItem from '@/components/pubComponents/cosmeticItem'
 
 import {getAllPosts} from '@/api/post.js'
+import {getAllCommodity} from '@/api/commodity.js'
 
 export default {
   name: 'index',
   data(){
     return {
-      postList: [],
+      loading1: true,
+      loading2: true,
+      loading3: true,
+      loading4: true,
+      hotPostList: [],
+      hotCommodityList: [],
       search: ''
     }
   },
@@ -81,7 +103,17 @@ export default {
     // 获取所有帖子
     getAllPostsData(){
       getAllPosts().then(data => {
-        this.postList = data
+        this.hotPostList = data.slice(0,12)
+        this.loading2 = false
+      })
+    },
+    // 获取所有商品
+    getAllCommodityData(){
+      getAllCommodity().then(res => {
+        console.log(res)
+        this.hotCommodityList = res.data.detailMsg.data
+        this.loading1 = false
+        this.loading3 = false
       })
     }
   },
@@ -90,7 +122,8 @@ export default {
     CosmeticItem
   },
   created(){
-    // this.getAllPostsData()
+    this.getAllPostsData()
+    this.getAllCommodityData()
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

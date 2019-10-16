@@ -11,7 +11,8 @@ export default new Vuex.Store({
       login_name: "",
       nickName: ""
     },
-    postStatus: 0
+    postStatus: 0,
+    viewUserId: ""
   },
 
   mutations: {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     ['postStatus'](state, data){
       state.postStatus = data
+    },
+    ['viewUserId'](state, data){
+      state.viewUserId = data
     }
   },
 
@@ -29,7 +33,9 @@ export default new Vuex.Store({
     },
     getPostStatus({commit}, data){
       commit('postStatus', data)
+    },
+    getViewUserId({commit}, data){
+      commit('viewUserId', data)
     }
   }
-
 })

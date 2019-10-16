@@ -29,7 +29,8 @@ export default {
     return {
       activeName: 'post',
       postList: [],
-      user_ID: this.$store.state.userInfo.id
+      user_ID: this.$store.state.userInfo.id,
+      userInfo: {}
     }
   },
   methods: {
@@ -48,6 +49,10 @@ export default {
   },
   created(){
     this.getCollections()
+    getUserInfo({ id: this.$route.query.uid})
+    .then(res => {
+      this.userInfo = res.data.detailMsg.entity
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

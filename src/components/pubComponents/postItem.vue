@@ -9,20 +9,20 @@
             <img :src="$store.state.userInfo.avatar">
           </div>
           <div class="name-time">
-            <div class="name">{{item.username}}</div>
-            <div class="time">{{item.time}}</div>
+            <div class="name">{{item.nickname}}</div>
+            <div class="time">{{item.postTime}}</div>
           </div>
         </div>
-        <div class="delete" @click.stop="deletePost" v-if="oper === 1">删除</div>
-        <div class="delete" @click.stop="unCollect" v-if="oper === 2">取消收藏</div>
+        <div class="delete" @click.stop="deletePost" v-if="oper == '1' && userObj.id == $store.state.userInfo.id">删除</div>
+        <div class="delete" @click.stop="unCollect" v-if="oper == '2' && userObj.id == $store.state.userInfo.id">取消收藏</div>
       </div>
       <div class="postItem-main">
-        <div class="image" @click="toDetailPage">
+        <div class="image" @click="toDetailPage(item.id)">
           <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64ut8pyppj30ty0kze59.jpg" alt="">
         </div>
-        <div class="desc" @click="toDetailPage">
+        <div class="desc" @click="toDetailPage(item.id)">
           <div class="ptitle">#{{item.title}}#</div>
-          <div>{{item.content}}</div>
+          <div>{{item.body}}</div>
         </div>
       </div>
     </li>
@@ -40,11 +40,15 @@ export default {
   },
   props: {
     oper: Number,
-    arrayList: Array
+    arrayList: Array,
+    userObj: Object
   },
   methods: {
-    toDetailPage(){
-      this.$router.push({name:'PostDetails'});
+    toDetailPage(i){
+      this.$router.push({
+        name:'PostDetails',
+        query: { id: i }
+      });
     },
     deletePost(){
       this.$confirm('确定删除该帖子吗?', '提示', {

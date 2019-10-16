@@ -1,13 +1,11 @@
 <template>
   <div id="cosmeticItem">
-    <li class="youLikeList-item" v-for="item in 12" @click="toDetailPage">
+    <li class="youLikeList-item" v-for="item in arrayList" @click="toDetailPage">
       <div class="image">
-        <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" alt="">
+        <img :src="item.imgUrl[0]" alt="">
       </div>
       <div class="cosmetic-info">
-        <div class="desc">
-        精致的眼妆品
-        </div>
+        <div class="desc">{{item.name}}</div>
         <div class="price">
           ￥<span>298</span>
         </div>
@@ -26,7 +24,7 @@ export default {
     }
   },
   props: {
-
+    arrayList: Array
   },
   methods: {
     toDetailPage(){

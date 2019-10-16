@@ -2,52 +2,26 @@
   <div id="community">
     <div class="container">
       <div class="navs">
-        <div class="allPost">
-            <span class="el-dropdown-link">
-              最新帖子
-            </span>
+        <div class="allPost" @click="getAllPostsData">
+          最新帖子
         </div>
-        <div class="allPost">
-            <span class="el-dropdown-link">
-              热门帖子
-            </span>
+        <div class="allPost" @click="getHotPost">
+          热门帖子
         </div>
-        <div class="cusList">
-          <!-- <el-dropdown placement="bottom-start"> -->
-            <span class="el-dropdown-link" @click="getAllPostsByType('1')">
-              妆容分享
-            </span>
-            <!-- <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-view">最新</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-sunny">热门</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-picture">图文</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-video-camera-solid">视频</el-dropdown-item>
-            </el-dropdown-menu> -->
-          <!-- </el-dropdown> -->
+        <div class="cusList" @click="getPostsByType('1')">
+          妆容分享
         </div>
-        <div class="teachList">
-          <!-- <el-dropdown placement="bottom-start"> -->
-            <span class="el-dropdown-link">
-              化妆教程
-            </span>
-            <!-- <el-dropdown-menu slot="dropdown" @click="getAllPostsByType('2')"> -->
-              <!-- <el-dropdown-item icon="el-icon-view">最新</el-dropdown-item> -->
-              <!-- <el-dropdown-item icon="el-icon-sunny">热门</el-dropdown-item> -->
-              <!-- <el-dropdown-item icon="el-icon-picture">图文</el-dropdown-item> -->
-              <!-- <el-dropdown-item icon="el-icon-video-camera-solid">视频</el-dropdown-item> -->
-            <!-- </el-dropdown-menu> -->
-          <!-- </el-dropdown> -->
+        <div class="teachList" @click="getPostsByType('2')">
+          化妆教程
         </div>
-        <div class="cosList">
-          <!-- <el-dropdown placement="bottom-start"> -->
-            <span class="el-dropdown-link">
-              妆品推荐
-            </span>
-            <!-- <el-dropdown-menu slot="dropdown"> -->
-              <!-- <el-dropdown-item icon="el-icon-view">最新</el-dropdown-item> -->
-              <!-- <el-dropdown-item icon="el-icon-sunny">热门</el-dropdown-item> -->
-            <!-- </el-dropdown-menu> -->
-          <!-- </el-dropdown> -->
+        <div class="cosList" @click="getPostsByType('3')">
+          妆品推荐
+        </div>
+        <div class="teachList" @click="getPostsBystyle('1')">
+          图文帖子
+        </div>
+        <div class="cosList" @click="getPostsBystyle('2')">
+          视频帖子
         </div>
         <div class="aboutMe"  @click="openMessage">
           <el-badge :value="100" :max="10" class="item">
@@ -62,7 +36,7 @@
               <img src="@/assets/images/123.png">
             </div>
             <div class="publishBtn">
-              <publish-page/>
+              <publish-page @func="addPost"/>
             </div>
           </div>
           <div
@@ -70,7 +44,9 @@
           element-loading-text="玩命加载中"
           element-loading-background="rgba(255, 255, 255, 0)">
             <!-- 帖子列表组件 -->
-            <post-list :arrayList="postList" v-if="bodyStatus === 1"/>
+            <post-list 
+            :arrayList="postList" 
+            v-if="bodyStatus === 1"/>
             <!-- 消息列表 -->
             <message-list v-if="bodyStatus === 2"/>
           </div>
@@ -79,7 +55,7 @@
       <div class="aside">
         <div 
         class="youLike"
-        v-loading="loading"
+        v-loading="loading2"
         element-loading-text="玩命加载中"
         element-loading-background="rgba(255, 255, 255, 0)">
           <!-- 猜你喜欢组件 -->
@@ -87,7 +63,7 @@
         </div>
         <div 
         class="recommend"
-        v-loading="loading"
+        v-loading="loading3"
         element-loading-text="玩命加载中"
         element-loading-background="rgba(255, 255, 255, 0)">
           <!-- 热门推荐组件 -->
@@ -117,9 +93,12 @@ export default {
       status: 0,
       bodyStatus: 1,
       postList: [],
+      hotPostList: [],
       youLikeList: [],
       hotRecommendList: [],
-      loading: true
+      loading: true,
+      loading2: true,
+      loading3: true
     }
   },
   components:{
@@ -133,10 +112,14 @@ export default {
     
   },
   methods: {
+    // 发表帖子成功后刷新
+    addPost(){
+      this.getAllPostsData()
+    },
     // 切换类型
     changePost(i){
-      this.status = i,
-      this.bodyStatus = 1,
+      this.status = i
+      this.bodyStatus = 1
       document.documentElement.scrollTop = 0
     },
     openMessage(){
@@ -145,22 +128,61 @@ export default {
     },
     // 获取所有帖子
     getAllPostsData(){
+      this.bodyStatus = 1
+      this.postList = {}
+      this.loading = true
       getAllPosts().then(data => {
         this.postList = data
-        this.postList.sort((a,b) => a.postTime > b.postTime)
+        this.postList.sort((a, b) => {
+          let x = a["postTime"]
+          let y = b["postTime"]
+          return x > y ? -1 : x < y ? 1 : 0
+        })
         this.youLikeList = data.slice(0,8)
         this.hotRecommendList = data.slice(0,10)
         this.loading = false
-        console.log(this.postList)
+        this.loading2 = false
+        this.loading3 = false
+      })
+    },
+    // 获取热门帖子
+    getHotPost(){
+      this.postList.sort((a, b) => {
+        let x = a["likeCount"]
+        let y = b["likeCount"]
+        return x > y ? -1 : x < y ? 1 : 0
       })
     },
     // 根据类型获取所有帖子
-    getAllPostsByType(i){
-      getAllPosts({type: i, user_ID: this.$store.state.userInfo.id})
+    getPostsByType(i){
+      this.bodyStatus = 1
+      this.postList = {}
+      this.loading = true
+      getAllPostsByType({type: i, user_ID: this.$store.state.userInfo.id})
       .then(res => {
-        console.log(res)
-        this.postList = res.data.detailMsg.data.sort((a,b) => Number(a.postTime) - Number(b.postTime))
-        console.log(this.postList)
+        this.postList = res.data.detailMsg.data
+        this.postList.sort((a, b) => {
+          let x = a["postTime"]
+          let y = b["postTime"]
+          return x > y ? -1 : x < y ? 1 : 0
+        })
+        this.loading = false
+      })
+    },
+    // 根据风格获取所有帖子
+    getPostsBystyle(i){
+      this.bodyStatus = 1
+      this.postList = {}
+      this.loading = true
+      getAllPostsByStyle({style: i, user_ID: this.$store.state.userInfo.id})
+      .then(res => {
+        this.postList = res.data.detailMsg.data
+        this.postList.sort((a, b) => {
+          let x = a["postTime"]
+          let y = b["postTime"]
+          return x > y ? -1 : x < y ? 1 : 0
+        })
+        this.loading = false
       })
     }
   },

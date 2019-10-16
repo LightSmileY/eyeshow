@@ -5,7 +5,7 @@
       <div class="myProfile-main">
         <ul class="myProfile-main-ul">
           <li>
-            <div class="item-name">用户名</div>
+            <div class="item-name">{{userInfo}}</div>
             <div class="item-body">
               <div>
                 1784618478
@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import { getUserInfo } from '@/api/user'
+
 export default {
   name: 'myProfile',
   data(){
@@ -97,7 +99,8 @@ export default {
       adress: '云南 大理',
       birthday: '',
       signiture: '人生若只如初见，何事秋风悲画扇。',
-      desc: ''
+      desc: '',
+      userInfo: {}
     }
   },
   methods: {
@@ -105,6 +108,12 @@ export default {
   },
   components:{
 
+  },
+  created(){
+    getUserInfo({ id: this.$route.query.uid})
+    .then(res => {
+      this.userInfo = res.data.detailMsg.entity
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

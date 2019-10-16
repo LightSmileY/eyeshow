@@ -20,7 +20,8 @@ export default {
   data(){
     return {
       user_ID: this.$store.state.userInfo.id,
-      userList: []
+      userList: [],
+      userInfo: {}
     }
   },
   methods: {
@@ -38,6 +39,10 @@ export default {
   },
   created(){
     this.getMyFanses()
+    getUserInfo({ id: this.$route.query.uid})
+    .then(res => {
+      this.userInfo = res.data.detailMsg.entity
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

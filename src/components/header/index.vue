@@ -99,6 +99,7 @@ export default {
     },*/
     toMine(){
       this.$router.push({name:'MyPosts'})
+      this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)
     },
     // 跳转到登录页
     toLoginPage(){

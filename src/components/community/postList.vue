@@ -6,16 +6,16 @@
     v-for="(item,index) in arrayList">
       <div class="user">
         <div class="userInfo">
-          <div class="avatar">
-            <img :src="item.avatarUrl" alt="">
+          <div class="avatar" @click="toMinePage(item.uid)">
+            <img :src="item.avatarUrl" alt="" title="查看用户主页">
           </div>
           <div class="name-time">
-            <div class="name">{{item.nickname}}</div>
+            <div class="name" @click="toMinePage(item.uid)" title="查看用户主页">{{item.nickname}}</div>
             <div class="time">{{item.postTime}}</div>
           </div>
         </div>
         <div class="attent" v-if="!isMyPost(item.uid)">
-          <el-button size="mini" type="primary" @click="toAttent(index)">{{isAttent(index)}}</el-button>
+          <el-button size="mini" type="primary" @click="toAttent(item.pid)">{{isAttent(index)}}</el-button>
         </div>
         <div class="deletePost" v-if="isMyPost(item.uid)">
           <div @click="deletePost(index)">删除</div>
@@ -50,7 +50,7 @@
       </div>
       <!-- *****************************转发*************************** -->
       <div 
-      @click="toDetailPage" 
+      @click="toDetailPage(item.forward.pid)" 
       title="查看原帖" 
       class="pforward"
       v-if="item.forward">
@@ -129,7 +129,7 @@
               class="delete" 
               title="删除评论" 
               v-if="canDelete(comment.userId)"
-              @click="deleteComment(index,cindex)">删除</span>
+              @click="deleteCommentById(index,cindex)">删除</span>
             </li>
           </el-collapse-item>
         </el-collapse>
@@ -491,7 +491,7 @@ export default {
       })
     },
     // 删除评论
-    deleteComment(i,j){
+    deleteCommentById(i,j){
       let _this = this
       this.$confirm('确定删除评论?', '提示', {
         confirmButtonText: '确定',
@@ -501,8 +501,9 @@ export default {
       .then(() => {
         deleteComment({id: this.arrayList[i].comments[j].id})
         .then(res => {
-          this.arrayList[i].comments[j].splice(j, 1)
-          this.$message({
+          console.log(res)
+          _this.arrayList[i].comments[j].splice(j, 1)
+          _this.$message({
             type: 'success',
             message: '删除成功!'
           })
@@ -512,11 +513,16 @@ export default {
     },
     // 去帖子详情页
     toDetailPage(i){
-      let _this = this
       this.$router.push({
         name:'PostDetails',
         query: { id: i }
       })
+    },
+    toMinePage(i){
+      this.$router.push({
+        name:'Mine'
+      })
+      this.$store.dispatch('getViewUserId', i)
     }
   }
 };
