@@ -29,17 +29,17 @@ export default {
     return {
       activeName: 'post',
       postList: [],
-      user_ID: this.$store.state.userInfo.id,
       userInfo: {}
     }
   },
   methods: {
     // 获取该用户收藏的帖子
     getCollections(){
-      getCollectionPosts({user_ID: this.user_ID})
+      getCollectionPosts({user_ID: this.$store.state.viewUserId || this.$store.state.userInfo.id})
       .then(res => {
         console.log(res)
         this.postList = Object.values(res.data.detailMsg.data)[0]
+        console.log(this.postList)
       })
     }
   },
@@ -49,10 +49,6 @@ export default {
   },
   created(){
     this.getCollections()
-    getUserInfo({ id: this.$route.query.uid})
-    .then(res => {
-      this.userInfo = res.data.detailMsg.entity
-    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

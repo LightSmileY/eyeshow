@@ -2,9 +2,8 @@
 @import "../public/mixins.scss";
 
 #cosmeticItem{
-  @include flex-center();
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   
   .youLikeList-item{
     list-style: none;
@@ -13,9 +12,9 @@
     background-color: #fff;
     margin: 10px 0;
     box-sizing: border-box;
-    // padding: 10px;
     cursor: pointer;
     border: 1px solid #E5E5E5;
+    margin: 14px;
 
     .image{
       width: 100%;

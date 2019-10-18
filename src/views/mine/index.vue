@@ -37,16 +37,16 @@
       <div class="nav-bar">
         <ul>
           <router-link :to="{name:'MyPosts',query:{id: userInfo.uid}}">
-            <li>帖子 (56)</li>
+            <li>帖子 ( {{userInfo.posts_count}} )</li>
           </router-link>
           <router-link :to="{name:'MyCollections',query:{id: userInfo.uid}}">
-            <li>收藏 (243)</li>
+            <li>收藏 ( {{userInfo.cfavorites_count}} )</li>
           </router-link>
           <router-link :to="{name:'MyFocus',query:{id: userInfo.uid}}">
-            <li>关注 (58)</li>
+            <li>关注 ( {{userInfo.follows_count}} )</li>
           </router-link>
           <router-link :to="{name:'MyFanses',query:{id: userInfo.uid}}">
-            <li>粉丝 (11.5w)</li>
+            <li>粉丝 ( {{userInfo.fans_count}} )</li>
           </router-link>
           <router-link :to="{name:'MyProfile',query:{id: userInfo.uid}}">
             <li>资料</li>
@@ -76,9 +76,10 @@ export default {
     }
   },
   created(){
-    getUserInfo({ id: this.$store.state.viewUserId})
+    getUserInfo({user_ID: this.$store.state.viewUserId})
     .then(res => {
-      this.userInfo = res.data.detailMsg.entity
+      this.userInfo = res.data.detailMsg.data[0]
+      console.log(this.userInfo)
     })
   },
   beforeMount(){

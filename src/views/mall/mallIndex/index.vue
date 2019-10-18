@@ -59,7 +59,7 @@
           眼影
         </div>
         <ul>
-          <cosmetic-item/>
+          <cosmetic-item :arrayList="eyeShadowList"/>
         </ul>
       </div>
       <el-divider></el-divider>
@@ -68,7 +68,7 @@
           眼线
         </div>
         <ul>
-          <cosmetic-item/>
+          <cosmetic-item :arrayList="eyeLineList"/>
         </ul>
       </div>
       <el-divider></el-divider>
@@ -77,7 +77,7 @@
           画笔
         </div>
         <ul>
-          <cosmetic-item/>
+          <cosmetic-item :arrayList="eyePancilList"/>
         </ul>
       </div>
       <el-divider></el-divider>
@@ -86,7 +86,7 @@
           辅助品
         </div>
         <ul>
-          <cosmetic-item/>
+          <cosmetic-item :arrayList="eyeHelpList"/>
         </ul>
       </div>
     </div>
@@ -97,19 +97,45 @@
 import CosmeticItem from '@/components/pubComponents/cosmeticItem'
 import NavBar2 from '@/components/mall/navbar2'
 
+import {
+  getAllCommodityByType
+} from '@/api/commodity'
+
 export default {
   name: 'mallIndex',
   data(){
     return {
-
+      eyeShadowList: [],
+      eyeLineList: [],
+      eyePancilList: [],
+      eyeHelpList: []
     }
   },
   methods: {
-
+    getComsByType(i){
+      return getAllCommodityByType({
+        type: i,
+        user_ID: this.$store.state.userInfo.id
+      })
+    }
   },
   components:{
     CosmeticItem,
     NavBar2
+  },
+  created(){
+    this.getComsByType("1").then(res => {
+      this.eyeShadowList = res.data.detailMsg.data
+    })
+    this.getComsByType("2").then(res => {
+      this.eyeLineList = res.data.detailMsg.data
+    })
+    this.getComsByType("3").then(res => {
+      this.eyePancilList = res.data.detailMsg.data
+    })
+    this.getComsByType("4").then(res => {
+      this.eyeHelpList = res.data.detailMsg.data
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

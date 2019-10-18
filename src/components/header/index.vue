@@ -98,8 +98,8 @@ export default {
       console.log(this.status)
     },*/
     toMine(){
-      this.$router.push({name:'MyPosts'})
       this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)
+      this.$router.push({name:'MyPosts'})
     },
     // 跳转到登录页
     toLoginPage(){
@@ -117,11 +117,11 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$store.state.userInfo = {}
-        // localStorage.removeItem('userInfo')
+        localStorage.removeItem('userInfo')
         this.$message({
           type: 'success',
           message: '退出登录!'
-        });
+        })
       })
     }
   },
@@ -130,6 +130,7 @@ export default {
   },
   mounted(){
     this.$store.dispatch('getUserInfo', JSON.parse(localStorage.userInfo))
+    this.$store.dispatch('getViewUserId', JSON.parse(localStorage.userInfo).id)
   }
 };
 </script>

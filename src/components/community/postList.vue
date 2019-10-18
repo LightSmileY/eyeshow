@@ -170,7 +170,7 @@ import CollectionIcon from '@/assets/icons/collection.png'
 import CollectionActiveIcon from '@/assets/icons/collection-active.png'
 import ForwardIcon from '@/assets/icons/forward.png'
 
-import { uuid } from '@/assets/js/pubFunctions'
+import { uuid, getTime } from '@/assets/js/pubFunctions'
 import { attentUser, unAttentUser } from '@/api/user'
 import { 
   addPost,
@@ -232,9 +232,6 @@ export default {
     },
     isCollection(){
       return i => this.arrayList[i].isCollect ? CollectionActiveIcon : CollectionIcon
-    },
-    transTime(t){
-      return getTime(t)
     },
     canDelete(){
       return i => i == this.$store.state.userInfo.id
@@ -333,7 +330,7 @@ export default {
       let _this = this
       let likeInfo = {
         id: uuid(),
-        time: new Date(),
+        time: getTime(),
         pid: this.arrayList[i].pid,
         uid: this.$store.state.userInfo.id
       }
@@ -364,7 +361,7 @@ export default {
       let _this = this
       let collectInfo = {
         id: uuid(),
-        time: new Date(),
+        time: getTime(),
         pid: this.arrayList[i].pid,
         uid: this.$store.state.userInfo.id
       }
@@ -407,7 +404,7 @@ export default {
         style: this.arrayList[i].style,
         uid: this.$store.state.userInfo.id,
         id: uuid(),
-        time: new Date(),
+        time: getTime(),
         fpid: this.arrayList[i].pid
       }
       console.log(forwardInfo)
@@ -418,6 +415,7 @@ export default {
           type: 'success',
           message: '转发成功!'
         })
+        this.$emit('fuc', "1")
       })
     },
     // 评论
@@ -429,7 +427,7 @@ export default {
       let _this = this
       let commentInfo = {
         id: uuid(),
-        time: new Date(),
+        time: getTime(),
         pid: this.arrayList[i].pid,
         auid: this.$store.state.userInfo.id,
         buid: this.arrayList[i].uid,
@@ -439,7 +437,7 @@ export default {
       .then(res => {
         _this.arrayList[i].comments.push({
           id: uuid(),
-          time: new Date(),
+          time: getTime(),
           pid: this.arrayList[i].pid,
           userId: this.$store.state.userInfo.id,
           nickname: this.$store.state.userInfo.nickname,
@@ -465,7 +463,7 @@ export default {
         let _this = this
         let commentInfo = {
           id: uuid(),
-          time: new Date(),
+          time: getTime(),
           pid: this.arrayList[i].pid,
           auid: this.$store.state.userInfo.id,
           buid: this.arrayList[i].comments[j].userId,
@@ -475,7 +473,7 @@ export default {
         .then(res => {
           _this.arrayList[i].comments.push({
             id: uuid(),
-            time: new Date(),
+            time: getTime(),
             pid: this.arrayList[i].pid,
             nickname: this.$store.state.userInfo.nickname,
             objectNickname: this.arrayList[i].comments[j].nickname,

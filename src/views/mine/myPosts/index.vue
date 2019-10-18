@@ -33,8 +33,9 @@ export default {
   methods: {
     // 获取该用户的所有帖子
     getPostsOfUser(){
-      getPostsByUserID({user_ID: this.$store.state.viewUserId})
+      getPostsByUserID({user_ID: this.$store.state.viewUserId || this.$store.state.userInfo.id})
       .then(res => {
+        console.log(res)
         this.postList = res.data.detailMsg.data
         console.log(this.postList)
       })
@@ -47,7 +48,6 @@ export default {
     this.getPostsOfUser()
     getUserInfo({ id: this.$store.state.viewUserId})
     .then(res => {
-      console.log(res.data.detailMsg.entity)
       this.userInfo = res.data.detailMsg.entity
     })
   },

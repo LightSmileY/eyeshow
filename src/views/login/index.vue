@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import {signIn} from '@/api/user'
+
 export default {
   name: 'login',
   data() {
@@ -66,17 +68,12 @@ export default {
       if (value === '') {
         return callback(new Error('请输入用户名'));
       }
-    };
+    }
     let validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
-      } else {
-        if (this.loginInfo.checkPassword !== '') {
-          this.$refs.loginInfo.validateField('checkPass');
-        }
-        callback();
       }
-    };
+    }
     return {
       msg: false,
       toRegisterInfo: {
@@ -119,7 +116,7 @@ export default {
       this.$message({
         message: '登录成功',
         type: 'success'
-      });
+      })
     },
     error() {
       this.$message({
@@ -128,29 +125,31 @@ export default {
       });
     },
     login(){
+      let _this = this
       if(this.loginInfo.username!=''&&this.loginInfo.password!=''){
         /*任何一项为空时不允许提交，并执行表单验证*/
-        let _this = this
-        signin(_this.loginInfo)
+        signIn(this.loginInfo)
         .then(res => {
           //将后台获取到的userInfo存到store
           console.log(res)
-          _this.$store.dispatch('getUserInfo', res.data.userMessage)
-          _this.success()       //"登录成功"消息提示
+          this.$store.dispatch('getUserInfo', res.data.userMessage[0])  //用户信息存入vuex
+          this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)  //资料页用户切换
+          localStorage.setItem('userInfo', JSON.stringify(res.data.userMessage[0]))  //用户信息存入localstorage
+          _this.$message({
+            message: '登录成功',
+            type: 'success'
+          })
+          _this.$router.push({
+            name:'MyPosts'
+          })
         })
         .catch(() => {
-          _this.error()          //网络或服务器错误时"登录失败"消息提示
+          this.error()          //网络或服务器错误时"登录失败"消息提示
         })
       }else{
         this.$refs.loginInfo.validate()
       }
     }
-  },
-  components:{
-    
-  },
-  beforeMount(){
-    
   }
 };
 </script>

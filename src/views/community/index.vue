@@ -2,11 +2,11 @@
   <div id="community">
     <div class="container">
       <div class="navs">
-        <div class="allPost" @click="getAllPostsData">
-          最新帖子
+        <div class="newPost" @click="getAllPostsData">
+          最新
         </div>
-        <div class="allPost" @click="getHotPost">
-          热门帖子
+        <div class="hotPost" @click="getHotPost">
+          热门
         </div>
         <div class="cusList" @click="getPostsByType('1')">
           妆容分享
@@ -17,14 +17,14 @@
         <div class="cosList" @click="getPostsByType('3')">
           妆品推荐
         </div>
-        <div class="teachList" @click="getPostsBystyle('1')">
-          图文帖子
+        <div class="imgList" @click="getPostsBystyle('1')">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图文
         </div>
-        <div class="cosList" @click="getPostsBystyle('2')">
-          视频帖子
+        <div class="videoList" @click="getPostsBystyle('2')">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;视频
         </div>
         <div class="aboutMe"  @click="openMessage">
-          <el-badge :value="100" :max="10" class="item">
+          <el-badge value="new" class="item">
             与我相关
           </el-badge>
         </div>
@@ -46,7 +46,8 @@
             <!-- 帖子列表组件 -->
             <post-list 
             :arrayList="postList" 
-            v-if="bodyStatus === 1"/>
+            v-if="bodyStatus === 1"
+            @fuc="addPost"/>
             <!-- 消息列表 -->
             <message-list v-if="bodyStatus === 2"/>
           </div>
@@ -147,10 +148,17 @@ export default {
     },
     // 获取热门帖子
     getHotPost(){
-      this.postList.sort((a, b) => {
-        let x = a["likeCount"]
-        let y = b["likeCount"]
-        return x > y ? -1 : x < y ? 1 : 0
+      this.bodyStatus = 1
+      this.postList = {}
+      this.loading = true
+      getAllPosts().then(data => {
+        this.postList = data
+        this.postList.sort((a, b) => {
+          let x = a["likeCount"]
+          let y = b["likeCount"]
+          return x > y ? -1 : x < y ? 1 : 0
+        })
+        this.loading = false
       })
     },
     // 根据类型获取所有帖子

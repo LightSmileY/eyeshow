@@ -11,173 +11,206 @@
     margin-top: 20px;
 
     .sectionA{
-
+    
       .example{
+        position: relative;
         width: 100%;
+        height: 550px;
         background-color: #fff;
         display: flex;
         flex-wrap: wrap;
         box-sizing: border-box;
         padding: 20px 40px 30px;
         justify-content: space-between;
-
+        background-image: url('~@/assets/images/shili.png');
+        background-size: 100% 100%;
+    
         .title{
           width: 100%;
           font-size: 20px;
-          text-shadow: 1px 1px 3px #323232;
           margin-bottom: 20px;
+          text-align: center;
+          line-height: 58px;
         }
-
-        .pic1, .pic2, .pic3{
-          width: 200px;
-          border: 1px solid #ADADAD;
-          padding: 10px;
+    
+        .pic1{
+          position: absolute;
+          top: 115px;
+          left: 100px;
+          width: 232px;
+          height: 306px;
           border-radius: 2px;
-
+    
           img{
             width: 100%;
             height: 100%;
           }
         }
-
-        .add, .arrow{
-          height: 300px;
-          line-height: 300px;
-          font-size: 80px;
-          color: #FF6565;
+    
+        .pic2{
+          position: absolute;
+          top: 195px;
+          left: 420px;
+          width: 233px;
+          height: 306px;
+          border-radius: 2px;
+    
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+    
+        .pic3{
+          position: absolute;
+          top: 115px;
+          right: 92px;
+          width: 234px;
+          height: 306px;
+          border-radius: 2px;
+    
+          img{
+            width: 100%;
+            height: 100%;
+          }
         }
       }
-
+    
       // 自己的照片
       .myPicture{
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
+        height: 600px;
         margin-top: 20px;
         box-sizing: border-box;
-        padding: 10px 40px 40px 40px;
         background-color: #fff;
+        background-image: url('~@/assets/images/ronghe.png');
+        background-size: 100% 100%;
 
         .title{
           width: 100%;
-          height: 60px;
-          line-height: 60px;
+          height: 40px;
           font-size: 20px;
-          text-shadow: 1px 1px 3px #323232;
+          margin-top: 30px;
+          text-align: center;
+          line-height: 40px;
         }
-        .select{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 10px;
-
-          .image{
-            width: 200px;
-            // height: 300px;
-            min-height: 250px;
-            border: 1px solid #ADADAD;
-            border-radius: 4px;
-            padding: 10px;
-
-            img{
-              width: 100%;
-            }
-          }
-
-          .dragUpload{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 750px;
-            height: 250px;
-
-            .el-upload__tip{
-              text-align: center;
-            }
-          }
-        }
-        
-      }
-
-      // 模板图
-      .tempPicture{
-        width: 100%;
-        box-sizing: border-box;
-        // border: 1px solid #686868;
-        box-sizing: border-box;
-        padding: 0 40px 20px 40px;
-        background-color: #fff;
-
-        .title{
+    
+        .temp{
+          margin-top: -25px;
           width: 100%;
-          height: 60px;
-          line-height: 60px;
-          font-size: 20px;
-          text-shadow: 2px 2px 3px #444444;
-        }
-
-        .select{
+          height: 450px;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 20px;
-
-          .image{
-            width: 200px;
-            border: 1px solid #ADADAD;
-            border-radius: 4px;
-            padding: 10px;
-
-            img{
-              width: 100%;
-              height: 100%;
-            }
-          }
-          .tempSelect{
-            width: 750px;
-            height: 300px;
+    
+          .temp-left{
+            // border: 2px solid #ff9797;
+            width: 31%;
+            @include flex-center(column);
             box-sizing: border-box;
-            padding: 0 40px;
-
-            .head{
-              line-height: 50px;
-            }
-
-            .images{
-              height: 150px;
-              // border: 1px solid #000;
-              display: flex;
-              justify-content: space-between;
-
-              li{
-                width: 120px;
-                height: 150px;
-                list-style: none;
-
-                img{
-                  width: 100%;
-                  height: 100%;
+    
+            .tempSelect{
+              width: 100%;
+              box-sizing: border-box;
+              padding: 0 10px;
+    
+              .head{
+                line-height: 50px;
+              }
+    
+              .images{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+    
+                li{
+                  width: 103px;
+                  margin: 5px 0;
+                  height: 135px;
+                  list-style: none;
+    
+                  img{
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+              }
+              .pagenation{
+                height: 50px;
+                @include flex-center(column);
+              }
+              .selectPictrue{
+                @include flex-center();
+    
+                .tip{
+                  margin-right: 30px;
                 }
               }
             }
-            .pagenation{
-              height: 50px;
+          }
+          .temp-image{
+            width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            box-sizing: border-box;
+    
+            .my-image, .obj-image{
+              width: 215px;
+              height: 280px;
+              box-sizing: border-box;
+              border: 1px solid #CDCDCD;
+              border-radius: 2px;
+              margin:30px 10px;
+              padding: 10px;
+
+              img{
+                width: 100%;
+                height: 100%;
+              }
+            }
+    
+            .submit{
+              width: 100%;
+              height: 40px;
               @include flex-center(column);
             }
-            .selectPictrue{
-              @include flex-center();
-
-              .tip{
-                margin-right: 30px;
+          }
+          .temp-right{
+            // border: 2px solid #ff9797;
+            width: 30%;
+            @include flex-center(column);
+            box-sizing: border-box;
+    
+            .dragUpload{
+              width: 300px;
+    
+              .el-upload-dragger{
+                width: 300px;
+    
+                .el-upload__text{
+                  text-align: center;
+                }
               }
             }
           }
         }
       }
-
-      .submit{
+      /******************融合结果*******************/
+      .result{
         width: 100%;
-        height: 70px;
+        height: 1000px;
+        margin: 20px 0;
         background-color: #fff;
-        @include flex-center(column);
+        background-image: url('~@/assets/images/result.png');
+        background-size: 100% 100%;
+
+        img{
+          width: 300px;
+          height: 420px;
+          border: 1px solid #D7D7D7;
+          margin: 50px 70px;
+        }
       }
     }
   }

@@ -16,7 +16,7 @@
 
     .navs{
       width: 160px;
-      height: 600px;
+      height: 550px;
       color: #000;
       display: flex;
       flex-direction: column;
@@ -25,45 +25,66 @@
       padding: 10px;
       background-color: #fff;
       position: fixed;
-      // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
       border: 1px solid #E1E1E1;
-      // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       border-radius: 2px;
+      background-image: url('~@/assets/images/nav-back.jpg');
+      background-size: 100% 100%;
+      font-weight: bold;
+      font-size: 14px;
 
       .el-collapse{
         width: 100%;
       }
 
-      .aboutMe,
+      .newPost,
+      .hotPost,
       .teachList,
       .cusList,
       .cosList,
-      .allPost{
-        margin-top: 10px;
+      .imgList,
+      .videoList,
+      .aboutMe{
         width: 100%;
-        height: 40px;
-        border-top: 1px solid #DADADA;
-        border-bottom: 1px solid #DADADA;
         @include flex-center();
         cursor: pointer;
+      }
 
-        .el-dropdown-link:hover{
-          color: #ff9797;
-        }
+      .newPost{
+        margin-top: 28px;
+      }
+      .hotPost{
+        margin-top: 30px;
+      }
+      .cusList{
+        margin-top: 35px;
+      }
+      .teachList{
+        margin-top: 37px;
+      }
+      .cosList{
+        margin-top: 35px;
+      }
+      .imgList{
+        margin-top: 43px;
+      }
+      .videoList{
+        margin-top: 31px;
       }
 
       .aboutMe{
-        margin-top: 50px;
+        margin-top: 78px;
       }
 
-      .aboutMe:hover,
+      .newPost:hover,
+      .hotPost:hover,
       .teachList:hover,
       .cusList:hover,
       .cosList:hover,
-      .allPost:hover{
+      .imgList:hover,
+      .videoList:hover,
+      .aboutMe:hover{
         color: #ff9797;
         cursor: pointer;
-        // background-color: #ff9797;
       }
     }
 
@@ -123,10 +144,9 @@
         width: 100%;
         background-color: #fff;
         padding-bottom: 3px;
-        // margin-top: 10px;
-        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
         border: 1px solid #E1E1E1;
+        background-image: url('~@/assets/images/youlike.png');
+        background-size: 100% 100%;
       }
 
       .recommend{
@@ -134,8 +154,8 @@
         margin-top: 20px;
         background-color: #fff;
         padding-bottom: 3px;
-        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        background-image: url('~@/assets/images/recomend.png');
+        background-size: 100% 100%;
         border: 1px solid #E1E1E1;
       }
     }

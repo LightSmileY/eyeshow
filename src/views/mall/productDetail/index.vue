@@ -1,17 +1,29 @@
 <template>
   <div id="productDetail">
-    <div class="detail">
+    <div 
+    class="detail"
+    v-loading="loading"
+    element-loading-text="玩命加载中"
+    element-loading-background="rgba(255, 255, 255, 0)">
       <div class="postList-main">
         <div class="cosImage">
-          <img class="bigImg" src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" alt="商品图片">
-          <div class="smallImages">
-            <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64usg9qfpj30rs0ku410.jpg" v-for="item in 4">
-          </div>
+          <el-carousel direction="vertical">
+            <el-carousel height="190px" arrow="never">
+              <el-carousel-item v-for="image in commodity.imgUrl" :key="item">
+                <img :src="image">
+              </el-carousel-item>
+            </el-carousel>
+          </el-carousel>
         </div>
         <div class="desc-operate">
-          <div class="prductTitle">精致的眼妆品精致的眼妆品精致的眼妆品</div>
-          <div class="produtcPrice">￥198~298</div>
-          <div class="productUrl">商品链接</div>
+          <div class="prductTitle">{{commodity.name}}</div>
+          <div class="tags">
+            <el-tag size="small">{{commodity.type}}</el-tag>
+            <el-tag size="small" type="success">{{commodity.brand}}</el-tag>
+            <el-tag size="small" type="info">{{commodity.effacicy}}</el-tag>
+          </div>
+          <div class="produtcPrice">￥298{{commodity.price}}</div>
+          <div class="productUrl">{{commodity.link}}</div>
         </div>
       </div>
       <!-- 描述、评论区 -->
@@ -73,7 +85,7 @@
               :&nbsp;
             </span>
             <span>
-              哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
+              哈哈哈哈哈哈哈哈哈哈
             </span>
           </li>
         </div>
@@ -94,13 +106,16 @@
 
 <script>
 import GuessYoulike from '@/components/mall/guessYouLike'
+import { getCommodityByIdLogin } from '@/api/commodity'
 
 export default {
   name: 'productDetail',
   data(){
     return {
       textarea: '',
-      commentCount: 37
+      commentCount: 37,
+      commodity: [],
+      loading: true
     }
   },
   methods: {
@@ -119,7 +134,7 @@ export default {
         });
       }).catch(() => {
              
-      });
+      })
     },
     toDetailPage(){
       this.$router.push({name:'PostDetails'});
@@ -130,6 +145,16 @@ export default {
   },
   components:{
     GuessYoulike
+  },
+  created(){
+    getCommodityByIdLogin({
+      commodity_ID: this.$route.query.cid,
+      user_ID: this.$store.state.userInfo.id
+    })
+    .then(res => {
+      this.commodity = res.data.detailMsg.data[0]
+      this.loading = false
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

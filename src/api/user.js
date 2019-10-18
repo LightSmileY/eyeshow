@@ -13,7 +13,7 @@ export const signUp = data => {
 // 用户登录
 export const signIn = data => {
   return axios({
-    url: serverUrl + '/community/community/login',
+    url: serverUrl + '/user/user/login',
     method: 'post',
     data
   })
@@ -76,8 +76,17 @@ export const getFanses = params => {
 // 获取用户资料
 export const getUserInfo = params => {
   return axios({
-    url: serverUrl + '/myuser/myuser/getAssoVo',
+    url: serverUrl + '/user/user/getUserById',
     method: 'get',
     params
+  })
+}
+
+// 修改用户资料
+export const updateUserInfo = data => {
+  return axios({
+    url: serverUrl + '/myuser/myuser/updateSelective',
+    method: 'post',
+    data
   })
 }

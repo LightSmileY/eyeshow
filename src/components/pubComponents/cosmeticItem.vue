@@ -1,6 +1,9 @@
 <template>
   <div id="cosmeticItem">
-    <li class="youLikeList-item" v-for="item in arrayList" @click="toDetailPage">
+    <li 
+    class="youLikeList-item" 
+    v-for="item in arrayList" 
+    @click="toDetailPage(item.cid)">
       <div class="image">
         <img :src="item.imgUrl[0]" alt="">
       </div>
@@ -27,9 +30,12 @@ export default {
     arrayList: Array
   },
   methods: {
-    toDetailPage(){
-      this.$router.push({name:'ProductDetail'});
-    }
+    toDetailPage(i){
+      this.$router.push({
+        name:'ProductDetail',
+        query: { cid: i }
+      })
+    },
   }
 };
 </script>

@@ -17,3 +17,12 @@ export const getMyImages = () => {
     }
   })
 }
+
+// 分开发表帖子
+export const mergePace = data => {
+  return axios({
+    url: 'https://fengblog.xyz:3029/message/getMergeImage',
+    method: 'post',
+    data
+  })
+}

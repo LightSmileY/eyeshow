@@ -22,11 +22,11 @@
           <el-radio v-model="postData.post.style" label="1">图片</el-radio>
           <el-radio v-model="postData.post.style" label="2">视频</el-radio>
         </el-form-item>
-        <el-form-item label="标题" :label-width="formLabelWidth">
+        <el-form-item label="话题" :label-width="formLabelWidth">
           <el-input
             type="textarea"
             autosize
-            placeholder="帖子标题..."
+            placeholder="帖子话题..."
             v-model="postData.post.title">
           </el-input>
         </el-form-item>
@@ -52,6 +52,7 @@
             :on-error="handleError1"
             :on-preview="handlePictureCardPreview"
             :auto-upload="false"
+            :on-exceed="fileDjuge"
             >
               <i class="el-icon-plus"></i>
           </el-upload>
@@ -122,6 +123,7 @@ export default {
       // 七牛云返回储存图片的子域名
       upload_qiniu_addr: "http://pymhh35l8.bkt.clouddn.com/",
       imageUrl: "",
+      imagesLength: 0,
       dialogImageUrl: '',
       dialogVisible: false,
       
@@ -144,24 +146,6 @@ export default {
     }
   },
   methods: {
-    
-    /*一起发表帖子*/
-    // toAddPost() {
-    //   this.postData.post.time = new Date()
-    //   addPostAndImages(this.postData)
-    //   .then(data => {
-    //     if(data.message == "程序员开小差了，请您稍后再试。"){
-    //       this.$message.error('程序员开小差了，请您稍后再试~')
-    //       return
-    //     }else {
-    //       this.$message({
-    //         message: '发表成功',
-    //         type: 'success'
-    //       })
-    //       this.dialogFormVisible = false
-    //     }
-    //   })
-    // },
     openPublishBox(){
       if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
         this.$message.warning("请先登录哦！")
@@ -236,6 +220,10 @@ export default {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
     },
+    // fileDjuge(files, fileList){
+    //   this.imagesLength = files.length
+    //   console.log(this.imagesLength)
+    // },
     /*------------------------视频事件-----------------------*/
     beforeUpload2(file) {
       this.qiniuData.key = uuid() + file.name

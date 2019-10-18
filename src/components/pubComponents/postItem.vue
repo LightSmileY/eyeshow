@@ -10,11 +10,11 @@
           </div>
           <div class="name-time">
             <div class="name">{{item.nickname}}</div>
-            <div class="time">{{item.postTime}}</div>
+            <div class="time">{{item.time}}</div>
           </div>
         </div>
-        <div class="delete" @click.stop="deletePost" v-if="oper == '1' && userObj.id == $store.state.userInfo.id">删除</div>
-        <div class="delete" @click.stop="unCollect" v-if="oper == '2' && userObj.id == $store.state.userInfo.id">取消收藏</div>
+        <div class="delete" @click.stop="deletePost" v-if="oper == '1' && $store.state.viewUserId == $store.state.userInfo.id">删除</div>
+        <div class="delete" @click.stop="unCollect" v-if="oper == '2' && $store.state.viewUserId == $store.state.userInfo.id">取消收藏</div>
       </div>
       <div class="postItem-main">
         <div class="image" @click="toDetailPage(item.id)">
@@ -22,7 +22,7 @@
         </div>
         <div class="desc" @click="toDetailPage(item.id)">
           <div class="ptitle">#{{item.title}}#</div>
-          <div>{{item.body}}</div>
+          <div>{{item.content}}</div>
         </div>
       </div>
     </li>
@@ -48,7 +48,7 @@ export default {
       this.$router.push({
         name:'PostDetails',
         query: { id: i }
-      });
+      })
     },
     deletePost(){
       this.$confirm('确定删除该帖子吗?', '提示', {
