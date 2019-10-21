@@ -17,11 +17,11 @@
           size="small">
             <el-form-item 
             label="用户名" 
-            prop="username"
+            prop="login_name"
             style="margin-bottom: 20px;">
               <el-input 
               type="text" 
-              v-model="loginInfo.username" 
+              v-model="loginInfo.login_name" 
               autocomplete="off"
               size="medium"></el-input>
             </el-form-item>
@@ -83,11 +83,11 @@ export default {
       },
       /*登录信息*/
       loginInfo: {
-        username: '',
+        login_name: '',
         password: ''
       },
       rules: {
-        username: [
+        login_name: [
           { validator: checkUsername, trigger: 'blur' }
         ],
         password: [
@@ -108,10 +108,6 @@ export default {
     toRegisterPage(){
       this.$router.push({name:'Register'});
     },
-    /*登录成功后给nav组件发送传递信息*/
-    sendLoginInfo(){
-      
-    },
     success() {
       this.$message({
         message: '登录成功',
@@ -126,8 +122,9 @@ export default {
     },
     login(){
       let _this = this
-      if(this.loginInfo.username!=''&&this.loginInfo.password!=''){
+      if(this.loginInfo.login_name!=''&&this.loginInfo.password!=''){
         /*任何一项为空时不允许提交，并执行表单验证*/
+        console.log(this.loginInfo)
         signIn(this.loginInfo)
         .then(res => {
           //将后台获取到的userInfo存到store

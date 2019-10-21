@@ -41,6 +41,12 @@ export default new Router({
       name: 'PostDetails',
       component: () => import('@/views/community/postDetails')
     },
+    // 搜索详情页
+    {
+      path: '/searchDetail',
+      name: 'MSearchDetail',
+      component: () => import('@/views/searchDetail')
+    },
     // 商城页
     {
       path: '/mall',
@@ -110,7 +116,7 @@ export default new Router({
           component: () => import('@/views/mine/myProfile')
         }
       ],
-      redirect:'/mine/myPosts'
+      redirect:'/mine/myCollections'
     },
     {
       path: '*',

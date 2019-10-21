@@ -109,7 +109,8 @@ export default {
     updateInfo(){
       updateUserInfo(this.userInfo)
       .then(res => {
-        console.log(res)
+        localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
+        this.$store.dispatch('getUserInfo', JSON.parse(this.userInfo))
       })
     }
   },

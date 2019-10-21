@@ -172,6 +172,15 @@ export const deleteComment = params => {
   })
 }
 
+// 获取新消息
+export const getNewMessages = params => {
+  return axios({
+    url: serverUrl + '/community/community/getCommunityMessage',
+    method: 'get',
+    params
+  })
+}
+
 // 从koa2服务端获取七牛云token
 export const getQiniuToken = () => {
   return axios({

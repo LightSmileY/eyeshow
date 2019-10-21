@@ -11,7 +11,14 @@
     .el-col{
       @include flex-center(column);
       height: 100%;
-      // border: 1px solid #CCCCCC;
+      
+      .footer{
+         @include flex-center(column);
+
+         a{
+          text-decoration: none;
+         }
+      }
     }
   }
 }

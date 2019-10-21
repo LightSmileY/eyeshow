@@ -2,20 +2,11 @@
   <div id="g-footer">
     <el-row> 
       <el-col :span="24">
-        <div class="">
-          底部栏
+        <div class="footer">
+          <p class="copyright">Copyright © 2019 fengblog.xyz/eyetouch. All rights reserved.</p>
+          <a href="http://beian.miit.gov.cn"><p class="filing">滇ICP备19007510号</p></a>
         </div>
       </el-col>
-      <!-- <el-col :span="8">
-        <div class="">
-          底部栏2
-        </div>
-      </el-col>
-      <el-col :span="8">
-        <div class="">
-          底部栏3
-        </div>
-      </el-col> -->
     </el-row>
   </div>
 </template>

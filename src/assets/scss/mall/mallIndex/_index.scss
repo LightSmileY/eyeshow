@@ -4,7 +4,6 @@
 #mallIndex{
   width: 100%;
   box-sizing: border-box;
-  // padding: 0 20px;
 
   .banner{
     width: 100%;
@@ -63,10 +62,9 @@
         width: 960px;
         height: 300px;
         box-sizing: border-box;
-        background-color: rgba(#fff, 1);
+        background-color: rgba(#fff, .8);
         z-index: 120;
         display: none;
-        // display: block;
         color: #000;
         border: 1px solid #D6D6D6;
       }
@@ -93,8 +91,7 @@
     padding-top: 10px;
 
     .mallLIst{
-      // margin: 30px 0;
-      // background-color: #fff;
+      min-height: 200px;
 
       .title{
         width: 200px;

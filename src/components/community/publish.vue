@@ -17,6 +17,7 @@
           <el-radio v-model="postData.post.type" label="1">妆容分享</el-radio>
           <el-radio v-model="postData.post.type" label="2">眼妆教程</el-radio>
           <el-radio v-model="postData.post.type" label="3">妆品推荐</el-radio>
+          <el-radio v-model="postData.post.type" label="4">心情随笔</el-radio>
         </el-form-item>
         <el-form-item label="风格" :label-width="formLabelWidth">
           <el-radio v-model="postData.post.style" label="1">图片</el-radio>
@@ -52,7 +53,6 @@
             :on-error="handleError1"
             :on-preview="handlePictureCardPreview"
             :auto-upload="false"
-            :on-exceed="fileDjuge"
             >
               <i class="el-icon-plus"></i>
           </el-upload>
@@ -174,9 +174,7 @@ export default {
           // 上传图片或视频
           _this.$refs.upload.submit()
           _this.$message.success('发表成功！')
-          setTimeout(() => {
-            _this.$emit('fuc', "1")
-          },3000)
+          _this.$emit('fuc', "1")
         }
       })
     },

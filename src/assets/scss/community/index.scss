@@ -3,6 +3,9 @@
 
 #community{
   @include flex-center();
+  div{
+    font-family: "微软雅黑";
+  }
 
   .container{
     position: relative;
@@ -86,13 +89,18 @@
         color: #ff9797;
         cursor: pointer;
       }
+
+      .nav_active{
+        color: #FF7777;
+        font-size: 16px;
+      }
     }
 
     .main{
       // margin-top: 20px;
       width: 700px;
       // background-color: #F3F3F3;
-      min-height: 700px;
+      min-height: 1000px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -113,7 +121,7 @@
           @include flex-center(column);
 
           img{
-            height: 32px;
+            height: 45px;
           }
         }
 
@@ -142,21 +150,22 @@
 
       .youLike{
         width: 100%;
+        margin-top: 20px;
         background-color: #fff;
         padding-bottom: 3px;
         border: 1px solid #E1E1E1;
         background-image: url('~@/assets/images/youlike.png');
-        background-size: 100% 100%;
+        background-size: 100%;
+        box-sizing: border-box;
+        border-bottom: 4px solid #FFD4D4;
       }
 
       .recommend{
         width: 100%;
-        margin-top: 20px;
         background-color: #fff;
         padding-bottom: 3px;
         background-image: url('~@/assets/images/recomend.png');
         background-size: 100% 100%;
-        border: 1px solid #E1E1E1;
       }
     }
 

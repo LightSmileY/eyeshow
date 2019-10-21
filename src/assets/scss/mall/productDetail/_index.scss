@@ -11,15 +11,16 @@
     box-sizing: border-box;
     background-color: #fff;
     box-sizing: border-box;
+    min-height: 700px;
     padding: 0 20px;
     border-radius: 2px;
     list-style: none;
-    margin-bottom: 20px;
 
     .postList-main{
       width: 100%;
       height: 200px;
       display: flex;
+      margin-bottom: 20px;
 
       .cosImage{
         flex: 1;
@@ -52,8 +53,9 @@
         }
         .productUrl{
           color: #2B3CB4;
-          margin: 5px;
+          margin-top: 5px;
           font-size: 17px;
+          text-decoration: none;
         }
       }
     }
@@ -108,7 +110,6 @@
         .changeBar{
           flex: 1;
           height: 35px;
-          // margin-top: 20px;
           display: flex;
           justify-content: flex-start;
 
@@ -118,13 +119,8 @@
             box-sizing: border-box;
             @include flex-center(column);
           }
-          .changeBar-desc{
-            border-bottom: 3px solid #fff;
-            // border-bottom: 5px solid #ff9797;
-          }
-          .changeBar-comment{
-            // border-bottom: 5px solid #fff;
-            border-bottom: 3px solid #ff9797;
+          .changeBarActive{
+            border-bottom: 4px solid #ff9797;
           }
         }
       }
@@ -144,20 +140,20 @@
         // border: 1.5px solid #ff9797;
         border-radius: 4px;
         padding: 10px;
-        margin-top: 10px;
+        // margin-top: 10px;
 
         .commentList{
           margin: 8px 0 0 0;
           font-size: 14px;
           line-height: 20px;
           cursor: pointer;
-          .obj{
-            span{
-              color: #DE505E;
-            }
-            .reply{
-              color: #000;
-            }
+          
+          .name{
+            color: #2F50C3;
+          }
+
+          .comentInfo{
+            color: #8F8F8F;
           }
         }
 

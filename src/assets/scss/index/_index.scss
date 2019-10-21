@@ -26,7 +26,7 @@
         @include flex-center(column);
         height: 100%;
         margin-right: 30px;
-        background: url('~@/assets/images/5.jpg');
+        background: url('~@/assets/images/5.png');
         background-size: 100% 100%;
         cursor: pointer;
         // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -65,26 +65,22 @@
           font-size: 20px;
           line-height: 50px;
           text-align: center;
-          text-shadow: 2px 2px 3px #323232;
         }
 
         .youLikeList{
           width: 100%;
-          min-height: 500px;
           box-sizing: border-box;
           padding: 0 0 20px;
           list-style: none;
 
           .youLikeList-items{
-            min-height: 200px;
+            min-height: 150px;
           }
         }
 
         .hotPostsList{
           width: 100%;
-          min-height: 300px;
           box-sizing: border-box;
-          // padding: 0 0 20px;
           list-style: none;
           @include flex-center();
           flex-wrap: wrap;
@@ -92,7 +88,6 @@
 
         .hotCosmeticsList{
           width: 100%;
-          min-height: 300px;
           box-sizing: border-box;
           padding: 0 0 20px;
           list-style: none;

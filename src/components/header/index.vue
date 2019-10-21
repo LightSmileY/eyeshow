@@ -24,13 +24,13 @@
                 <div class="hotSearch">
                   <div class="h-title">热门搜索</div>
                   <ul>
-                    <li v-for="item in 15">新化妆品</li>
+                    <li v-for="item in headerHotSearchList">{{item}}</li>
                   </ul>
                 </div>
                 <div class="youLike">
                   <div class="y-title">猜你喜欢</div>
                   <ul>
-                    <li v-for="item in 5">柔和眼妆品</li>
+                    <li v-for="item in headerYouLikeList">{{item}}</li>
                   </ul>
                 </div>
               </div> 
@@ -43,7 +43,7 @@
           <ul>
             <router-link to="/index"><li>首页</li></router-link>
             <router-link to="/community"><li>社区</li></router-link>
-            <router-link to="/mall/mallIndex"><li>眼妆商城</li></router-link>
+            <router-link to="/mall/mallIndex"><li>商城</li></router-link>
           </ul>
         </div>
       </el-col>
@@ -57,10 +57,10 @@
         <div class="me-2" @click="toMine()">
           <div class="avatar-name">
             <div class="avatar">
-              <img :src="userInfo.avatar">
+              <img :src="$store.state.userInfo.avatar">
             </div>
             <div class="nickName">
-              {{userInfo.nickname}}
+              {{$store.state.userInfo.nickname}}
             </div>
           </div>
           <div class="exit" @click.stop="exit">
@@ -73,13 +73,18 @@
 </template>
 
 <script>
+import { getUserInfo, updateUserInfo } from '@/api/user'
+import { headerHotSearchList, headerYouLikeList } from '@/assets/js/staticData'
+
 export default {
   name: 'g-header',
   data(){
     return {
       input: '',
       userInfo: {},
-      userInfo2: {}
+      userInfo2: {},
+      headerHotSearchList,
+      headerYouLikeList
     }
   },
   watch: {
@@ -97,6 +102,14 @@ export default {
       this.status = i
       console.log(this.status)
     },*/
+    getInfo(uid){
+      getUserInfo({ user_ID: uid})
+      .then(res => {
+        this.userInfo = res.data.detailMsg.data[0]
+        this.$store.dispatch('getUserInfo', res.data.detailMsg.data[0])
+        localStorage.setItem('userInfo', JSON.stringify(res.data.detailMsg.data[0]))
+      })
+    },
     toMine(){
       this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)
       this.$router.push({name:'MyPosts'})
@@ -129,8 +142,9 @@ export default {
 
   },
   mounted(){
-    this.$store.dispatch('getUserInfo', JSON.parse(localStorage.userInfo))
-    this.$store.dispatch('getViewUserId', JSON.parse(localStorage.userInfo).id)
+    let uid = JSON.parse(localStorage.userInfo).id
+    this.$store.dispatch('getViewUserId', uid)
+    this.getInfo(uid)
   }
 };
 </script>

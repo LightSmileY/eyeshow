@@ -1,31 +1,31 @@
 <template>
   <ul id="postList">
-    <!--************************************** 帖子 **************************************-->
     <li 
     class="postList-li" 
-    v-for="(item,index) in 5">
+    v-for="(item,index) in arrayList">
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
-            <img src="@/assets/images/avatar.jpg">
+            <img :src="item.avatar">
           </div>
           <div class="name-time">
-            <div class="name">浅笑半离兮</div>
-            <div class="time">2019-8-12 11:48:56</div>
+            <div class="name">{{item.nickname}}</div>
+            <div class="time">{{item.time}}</div>
           </div>
         </div>
         <div class="attent">
-          <el-button size="mini" type="primary">关注TA</el-button>
+          <el-button size="mini" type="primary">{{isAttent(item.attent)}}</el-button>
         </div>
       </div>
-      <div class="message">点赞了我的帖子</div>
-      <!-- <div class="message">收藏了我的帖子</div>
-      <div class="message">转发了我的帖子</div>
-      <div class="message">评论：哇！好美啊~</div> -->
-      <div @click="toDetailPage" title="查看原帖" class="pforward">
+      <div class="message" v-if="item.code == '1'">点赞了我的帖子</div>
+      <div class="message" v-else-if="item.code == '2'">收藏了我的帖子</div>
+      <div class="message" v-else-if="item.code == '3'">转发了我的帖子</div>
+      <div class="message" v-else-if="item.code == '4'">评论：{{item.comment}}</div>
+      <div class="message" v-else>回复：{{item.comment}}</div>
+      <div @click="toDetailPage(item.pid)" title="查看原帖" class="pforward">
         <div class="body">
-          <p class="ptitle">#蓦然回首，那人却在，灯火阑珊处#</p>
-          <p>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</p>
+          <p class="ptitle">#{{item.title}}#</p>
+          <p>{{item.content}}</p>
         </div>
       </div>
     </li>
@@ -41,14 +41,22 @@ export default {
       
     }
   },
-  methods: {
-    // 去帖子详情页
-    toDetailPage(){
-      this.$router.push({name:'PostDetails'});
+  props: {
+    arrayList: Array
+  },
+  computed: {
+    isAttent(i){
+      return i => i ? "已关注" : "关注TA"
     }
   },
-  beforeMount(){
-
+  methods: {
+    // 去帖子详情页
+    toDetailPage(i){
+      this.$router.push({
+        name:'PostDetails',
+        query: { id: i }
+      })
+    }
   }
 };
 </script>

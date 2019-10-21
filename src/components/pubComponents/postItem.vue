@@ -6,7 +6,7 @@
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
-            <img :src="$store.state.userInfo.avatar">
+            <img :src="item.avatarUrl">
           </div>
           <div class="name-time">
             <div class="name">{{item.nickname}}</div>
@@ -17,10 +17,19 @@
         <div class="delete" @click.stop="unCollect" v-if="oper == '2' && $store.state.viewUserId == $store.state.userInfo.id">取消收藏</div>
       </div>
       <div class="postItem-main">
-        <div class="image" @click="toDetailPage(item.id)">
-          <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64ut8pyppj30ty0kze59.jpg" alt="">
+        <div class="image" @click="toDetailPage(item.pid)">
+          <el-image
+          :src="item.images[0]"
+          lazy
+          fit="cover"
+          v-if="item.images[0]"></el-image>
+          <el-image
+          :src="defaultImage"
+          lazy
+          fit="cover"
+          v-else></el-image>
         </div>
-        <div class="desc" @click="toDetailPage(item.id)">
+        <div class="desc" @click="toDetailPage(item.pid)">
           <div class="ptitle">#{{item.title}}#</div>
           <div>{{item.content}}</div>
         </div>
@@ -35,7 +44,7 @@ export default {
   name: 'index',
   data(){
     return {
-      
+      defaultImage: "http://pymhh35l8.bkt.clouddn.com/default/13.jpg"
     }
   },
   props: {

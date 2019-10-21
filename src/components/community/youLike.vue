@@ -4,7 +4,7 @@
       猜你喜欢
     </div>
     <ul class="items">
-      <li v-for="item in arrayList">{{item.title}}</li>
+      <li v-for="item in arrayList" @click="toDetailPage(item.pid)">{{item.title}}</li>
     </ul>
   </div>
 </template>
@@ -19,6 +19,15 @@ export default {
   },
   props: {
     arrayList: Array
+  },
+  methods: {
+    // 去帖子详情页
+    toDetailPage(i){
+      this.$router.push({
+        name:'PostDetails',
+        query: { id: i }
+      })
+    }
   }
 };
 </script>

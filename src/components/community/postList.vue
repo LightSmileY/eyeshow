@@ -11,29 +11,33 @@
           </div>
           <div class="name-time">
             <div class="name" @click="toMinePage(item.uid)" title="查看用户主页">{{item.nickname}}</div>
-            <div class="time">{{item.postTime}}</div>
+            <div class="time">{{item.time}}</div>
           </div>
         </div>
         <div class="attent" v-if="!isMyPost(item.uid)">
-          <el-button size="mini" type="primary" @click="toAttent(item.pid)">{{isAttent(index)}}</el-button>
+          <el-button size="mini" type="primary" @click="toAttent(index)">{{isAttent(index)}}</el-button>
         </div>
         <div class="deletePost" v-if="isMyPost(item.uid)">
           <div @click="deletePost(index)">删除</div>
         </div>
       </div>
-      <div @click="toDetailPage(item.pid)" title="查看帖子详情" class="body">
-        <p class="ptitle">
+      <div @click="toDetailPage(item.pid)" class="body">
+        <p class="ptitle" title="查看帖子详情">
           <span v-if='item.fpid != "-1"' class="forwardWord">
             <i class="el-icon-s-promotion"></i>转发
           </span>
           #{{item.title}}#
         </p>
-        <p>{{item.body}}</p>
+        <p v-if="item.type!='3'" title="查看帖子详情">{{item.content}}</p>
+        <a :href="item.content" target="_blank" v-if="item.type=='3'"  title="查看商品详情">
+          商品链接
+        </a>
       </div>
       <div class="images">
         <el-image 
           :src="image"
           :preview-src-list="item.images"
+          lazy
           v-for="image in item.images"
           v-if="item.images.length"
           fit="cover">
@@ -303,11 +307,12 @@ export default {
       let _this = this
       let attentInfo = {
         id: uuid(),
-        fans: this.arrayList[i].uid,
-        follows: this.$store.state.userInfo.id
+        fans: this.$store.state.userInfo.id,
+        follows: this.arrayList[i].uid
       }
       attentUser(attentInfo)
       .then(res => {
+        console.log(res)
         _this.arrayList[i].isAttent = true
         console.log(res)
       })
@@ -316,11 +321,12 @@ export default {
     unAttent(i){
       let _this = this
       let unAttentInfo = {
-        fans_ID: this.arrayList[i].uid,
-        follows_ID: this.$store.state.userInfo.id
+        fans_ID: this.$store.state.userInfo.id,
+        follows_ID: this.arrayList[i].uid
       }
       unAttentUser(unAttentInfo)
       .then(res => {
+        console.log(res)
         _this.arrayList[i].isAttent = false
         console.log(res)
       })

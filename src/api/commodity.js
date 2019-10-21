@@ -11,6 +11,15 @@ export const getAllCommodity = () => {
   })
 }
 
+// 根据关键词查询所有商品
+export const getAllCommodityByKeyWord = params => {
+  return axios({
+    url: serverUrl + '/mall/mall/getAllCommodityLikeSearchLogin',
+    method: 'get',
+    params
+  })
+}
+
 // 根据类型获取该类型所有商品
 export const getAllCommodityByType = params => {
   return axios({
@@ -71,46 +80,64 @@ export const getCommodityByIdLogin = params => {
   })
 }
 
-// 点赞
-export const likePost = data => {
+// 分开发表帖子
+export const addPost = data => {
   return axios({
-    url: serverUrl + '/plikes/plikes/insertSelective',
+    url: serverUrl + '/post/post/insertSelective',
+    method: 'post',
+    data
+  })
+}
+
+// 添加图片
+export const addPostImage = data => {
+  return axios({
+    url: serverUrl + '/cimage/cimage/insertSelective',
+    method: 'post',
+    data
+  })
+}
+
+// 点赞
+export const likeCommodity = data => {
+  return axios({
+    url: serverUrl + '/clikes/clikes/insertSelective',
     method: 'post',
     data
   })
 }
 
 // 取消点赞
-export const unLikePost = params => {
+export const unLikeCommodity = params => {
   return axios({
-    url: serverUrl + '/plikes/plikes/deleteByUserIdAndPostId',
+    url: serverUrl + '/clikes/clikes/deleteByUserIdAndPostId',
     method: 'delete',
     params
   })
 }
 
 // 收藏
-export const collectPost = data => {
+export const collectCommodity = data => {
   return axios({
-    url: serverUrl + '/pfavorites/pfavorites/insertSelective',
+    url: serverUrl + '/cfavorites/cfavorites/insertSelective',
     method: 'post',
     data
   })
 }
 
 // 取消收藏
-export const unCollectPost = params => {
+export const unCollectCommodity = params => {
   return axios({
-    url: serverUrl + '/pfavorites/pfavorites/deleteByUserIdAndPostId',
+    url: serverUrl + '/cfavorites/cfavorites/deleteByUserIdAndPostId',
     method: 'delete',
     params
   })
 }
 
 // 评论
-export const commentPost = data => {
+export const commentCommodity = data => {
   return axios({
-    url: serverUrl + '/pcomments/pcomments/insertSelective',
+    url: serverUrl + '/ccomments/ccomments/insertSelective',
     method: 'post',
     data
   })

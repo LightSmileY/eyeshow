@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { uuid } from '@/assets/js/pubFunctions'
+import { uuid, getTime } from '@/assets/js/pubFunctions'
 import { signUp } from '@/api/user'
 
 export default {
@@ -161,7 +161,7 @@ export default {
         /*任何一项为空时不允许提交，并执行表单验证*/
         let _this = this
         _this.ruleForm.id = uuid()
-        _this.ruleForm.register_date = new Date()
+        _this.ruleForm.register_date = getTime()
         signUp(_this.ruleForm)
         .then(res => {
           console.log(res)
@@ -176,9 +176,6 @@ export default {
             _this.$router.push({
               name:'MyPosts'
             })
-          },1000)
-          setTimeout(() => {
-            _this.loginSuccess()
           },1000)
         })
         .catch(err => {

@@ -49,7 +49,7 @@ export const getPostsByUserID = params => {
 // 获取该用户收藏的所有帖子
 export const getCollectionPosts = params => {
   return axios({
-    url: serverUrl + '/community/community/getFollowsPosts',
+    url: serverUrl + '/community/community/getAllPostsFavorite',
     method: 'get',
     params
   })

@@ -2,28 +2,28 @@
   <div id="community">
     <div class="container">
       <div class="navs">
-        <div class="newPost" @click="getAllPostsData">
+        <div class="newPost" :class="{'nav_active': isActive == 1}" @click="navActive(1); getAllPostsData()">
           最新
         </div>
-        <div class="hotPost" @click="getHotPost">
+        <div class="hotPost" :class="{'nav_active': isActive == 2}" @click="navActive(2); getHotPost()">
           热门
         </div>
-        <div class="cusList" @click="getPostsByType('1')">
+        <div class="cusList" :class="{'nav_active': isActive == 3}" @click="navActive(3); getPostsByType('1')">
           妆容分享
         </div>
-        <div class="teachList" @click="getPostsByType('2')">
+        <div class="teachList" :class="{'nav_active': isActive == 4}" @click="navActive(4); getPostsByType('2')">
           化妆教程
         </div>
-        <div class="cosList" @click="getPostsByType('3')">
+        <div class="cosList" :class="{'nav_active': isActive == 5}" @click="navActive(5); getPostsByType('3')">
           妆品推荐
         </div>
-        <div class="imgList" @click="getPostsBystyle('1')">
+        <div class="imgList" :class="{'nav_active': isActive == 6}" @click="navActive(6); getPostsBystyle('1')">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图文
         </div>
-        <div class="videoList" @click="getPostsBystyle('2')">
+        <div class="videoList" :class="{'nav_active': isActive == 7}" @click="navActive(7); getPostsBystyle('2')">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;视频
         </div>
-        <div class="aboutMe"  @click="openMessage">
+        <div class="aboutMe" :class="{'nav_active': isActive == 8}" @click="navActive(8); openMessage()">
           <el-badge value="new" class="item">
             与我相关
           </el-badge>
@@ -49,19 +49,13 @@
             v-if="bodyStatus === 1"
             @fuc="addPost"/>
             <!-- 消息列表 -->
-            <message-list v-if="bodyStatus === 2"/>
+            <message-list 
+            :arrayList="newMessageList" 
+            v-if="bodyStatus === 2"/>
           </div>
         </ul>
       </div>
       <div class="aside">
-        <div 
-        class="youLike"
-        v-loading="loading2"
-        element-loading-text="玩命加载中"
-        element-loading-background="rgba(255, 255, 255, 0)">
-          <!-- 猜你喜欢组件 -->
-          <you-like :arrayList="youLikeList"/>
-        </div>
         <div 
         class="recommend"
         v-loading="loading3"
@@ -69,6 +63,14 @@
         element-loading-background="rgba(255, 255, 255, 0)">
           <!-- 热门推荐组件 -->
           <hot-recommend :arrayList="hotRecommendList"/>
+        </div>
+        <div 
+        class="youLike"
+        v-loading="loading2"
+        element-loading-text="玩命加载中"
+        element-loading-background="rgba(255, 255, 255, 0)">
+          <!-- 猜你喜欢组件 -->
+          <you-like :arrayList="youLikeList"/>
         </div>
       </div>
     </div>
@@ -82,7 +84,12 @@ import MessageList from '@/components/community/messageList'
 import YouLike from '@/components/community/youLike'
 import HotRecommend from '@/components/community/hotRecommend'
 
-import { getAllPosts, getAllPostsByType, getAllPostsByStyle } from '@/api/post.js'
+import { 
+  getAllPosts, 
+  getAllPostsByType, 
+  getAllPostsByStyle,
+  getNewMessages 
+} from '@/api/post.js'
 
 import { arraySort } from '@/assets/js/pubFunctions'
 
@@ -90,6 +97,7 @@ export default {
   name: 'community',
   data(){
     return {
+      isActive: 1, //左边导航栏状态
       activeName: '1',
       status: 0,
       bodyStatus: 1,
@@ -97,9 +105,10 @@ export default {
       hotPostList: [],
       youLikeList: [],
       hotRecommendList: [],
-      loading: true,
-      loading2: true,
-      loading3: true
+      newMessageList: [],
+      loading: true,  //帖子
+      loading2: true, //猜你喜欢
+      loading3: true  //热门帖子
     }
   },
   components:{
@@ -113,9 +122,14 @@ export default {
     
   },
   methods: {
+    navActive(i){
+      this.isActive = i
+    },
     // 发表帖子成功后刷新
     addPost(){
-      this.getAllPostsData()
+      setTimeout(() => {
+        this.getAllPostsData()
+      },3000)
     },
     // 切换类型
     changePost(i){
@@ -125,7 +139,23 @@ export default {
     },
     openMessage(){
       this.bodyStatus = 2,
+      this.getNewMessagesList()
       document.documentElement.scrollTop = 0
+    },
+    //获取新消息
+    getNewMessagesList(){
+      this.loading = true
+      getNewMessages({
+        user_ID: this.$store.state.userInfo.id
+      }).then(res => {
+        this.newMessageList = res.data.detailMsg.data
+        this.newMessageList.sort((a, b) => {
+          let x = a["time"]
+          let y = b["time"]
+          return x > y ? -1 : x < y ? 1 : 0
+        })
+        this.loading = false
+      })
     },
     // 获取所有帖子
     getAllPostsData(){
@@ -135,12 +165,17 @@ export default {
       getAllPosts().then(data => {
         this.postList = data
         this.postList.sort((a, b) => {
-          let x = a["postTime"]
-          let y = b["postTime"]
+          let x = a["time"]
+          let y = b["time"]
           return x > y ? -1 : x < y ? 1 : 0
         })
-        this.youLikeList = data.slice(0,8)
-        this.hotRecommendList = data.slice(0,10)
+        this.youLikeList = data.slice(12, 18)
+        this.hotRecommendList = data.slice(10, 20)
+        // this.hotRecommendList = data.sort((a, b) => {
+        //   let x = a["likeCount"]
+        //   let y = b["likeCount"]
+        //   return x > y ? -1 : x < y ? 1 : 0
+        // })
         this.loading = false
         this.loading2 = false
         this.loading3 = false
@@ -170,8 +205,8 @@ export default {
       .then(res => {
         this.postList = res.data.detailMsg.data
         this.postList.sort((a, b) => {
-          let x = a["postTime"]
-          let y = b["postTime"]
+          let x = a["time"]
+          let y = b["time"]
           return x > y ? -1 : x < y ? 1 : 0
         })
         this.loading = false
@@ -186,8 +221,8 @@ export default {
       .then(res => {
         this.postList = res.data.detailMsg.data
         this.postList.sort((a, b) => {
-          let x = a["postTime"]
-          let y = b["postTime"]
+          let x = a["time"]
+          let y = b["time"]
           return x > y ? -1 : x < y ? 1 : 0
         })
         this.loading = false

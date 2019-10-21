@@ -47,7 +47,7 @@ export default {
       margin: 0;
     }
     .el-header{
-      z-index: 100;
+      z-index: 100000;
     }
     .el-main{
       // background-image: url('~@/assets/images/bg1.jpg');

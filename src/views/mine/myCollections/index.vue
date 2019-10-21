@@ -2,7 +2,11 @@
   <div id="detail">
     <div class="title">我的收藏</div>
     <el-tabs v-model="activeName">
-      <el-tab-pane label="帖子" name="post">
+      <el-tab-pane label="帖子" 
+      name="post"
+      v-loading="loading"
+      element-loading-text="玩命加载中"
+      element-loading-background="rgba(255, 255, 255, 0)">
         <post-item :oper="2" :arrayList="postList"/>
       </el-tab-pane>
       <el-tab-pane label="妆品" name="commodity">
@@ -29,7 +33,8 @@ export default {
     return {
       activeName: 'post',
       postList: [],
-      userInfo: {}
+      userInfo: {},
+      loading: true
     }
   },
   methods: {
@@ -37,9 +42,8 @@ export default {
     getCollections(){
       getCollectionPosts({user_ID: this.$store.state.viewUserId || this.$store.state.userInfo.id})
       .then(res => {
-        console.log(res)
-        this.postList = Object.values(res.data.detailMsg.data)[0]
-        console.log(this.postList)
+        this.postList = res.data.detailMsg.data
+        this.loading = false
       })
     }
   },

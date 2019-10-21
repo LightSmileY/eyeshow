@@ -3,7 +3,6 @@
     <div class="container">
       <div class="banner">
         <div class="picStyle animated rotateIn" @click="toStyleMigrationPage">
-          风格迁移页入口
         </div>
         <!--****************** 幻灯片 ******************-->
         <div class="slide">
@@ -11,9 +10,9 @@
            :interval="4000" 
            arrow="always">
             <el-carousel-item 
-            v-for="item in 5" 
+            v-for="item in slideList" 
             :key="item">
-              <img src="http://tva1.sinaimg.cn/large/0060lm7Tly1g64rb3s5djj32f80rs7gw.jpg">
+              <img :src="item">
             </el-carousel-item>
           </el-carousel>
         </div>
@@ -29,10 +28,7 @@
           element-loading-text="玩命加载中"
           element-loading-background="rgba(255, 255, 255, 0)">
             <div 
-            class="youLikeList-items"
-            v-loading="loading1"
-            element-loading-text="玩命加载中"
-            element-loading-background="rgba(255, 255, 255, 0)">
+            class="youLikeList-items">
               <!--****************** 帖子列表 ******************-->
               <post-item :oper="0" :arrayList="hotPostList"/>
             </div>
@@ -44,10 +40,7 @@
         </div>
         <el-divider></el-divider>
         <div 
-        class="list hotPosts"
-        v-loading="loading2"
-        element-loading-text="玩命加载中"
-        element-loading-background="rgba(255, 255, 255, 0)">
+        class="list hotPosts">
           <div class="title">
             热门帖子
           </div>
@@ -58,10 +51,7 @@
         </div>
         <el-divider></el-divider>
         <div 
-        class="list hotCosmetics" 
-        v-loading="loading3"
-        element-loading-text="玩命加载中"
-        element-loading-background="rgba(255, 255, 255, 0)">
+        class="list hotCosmetics">
           <div class="title">
             热门妆品
           </div>
@@ -87,12 +77,16 @@ export default {
   data(){
     return {
       loading1: true,
-      loading2: true,
-      loading3: true,
-      loading4: true,
       hotPostList: [],
       hotCommodityList: [],
-      search: ''
+      search: '',
+      slideList: [
+        "http://tva1.sinaimg.cn/large/0060lm7Tly1g64rb3s5djj32f80rs7gw.jpg",
+        "http://pymhh35l8.bkt.clouddn.com/slides/4.jpg",
+        "http://pymhh35l8.bkt.clouddn.com/slides/1%20%281%29.jpg",
+        "http://pymhh35l8.bkt.clouddn.com/slides/3.jpg",
+        "http://pymhh35l8.bkt.clouddn.com/slides/5.jpg"
+      ]
     }
   },
   methods: {
@@ -104,16 +98,14 @@ export default {
     getAllPostsData(){
       getAllPosts().then(data => {
         this.hotPostList = data.slice(0,12)
-        this.loading2 = false
+        this.loading1 = false
       })
     },
     // 获取所有商品
     getAllCommodityData(){
       getAllCommodity().then(res => {
         console.log(res)
-        this.hotCommodityList = res.data.detailMsg.data
-        this.loading1 = false
-        this.loading3 = false
+        this.hotCommodityList = res.data.detailMsg.data.slice(0,12)
       })
     }
   },
