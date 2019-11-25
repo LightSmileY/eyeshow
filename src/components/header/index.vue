@@ -110,9 +110,15 @@ export default {
         localStorage.setItem('userInfo', JSON.stringify(res.data.detailMsg.data[0]))
       })
     },
+    // 进入我的个人中心
     toMine(){
-      this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)
-      this.$router.push({name:'MyPosts'})
+      // this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)
+      this.$router.push({
+        name:'Mine',
+        query: {
+          id: this.$store.state.userInfo.id
+        }
+      })
     },
     // 跳转到登录页
     toLoginPage(){

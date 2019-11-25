@@ -25,12 +25,11 @@ export default {
     }
   },
   methods: {
-    // 获取该用户的所有关注
+    // 获取该用户的所有收藏
     getMyFanses(){
-      getFanses({user_ID: this.user_ID})
+      getAttents({user_ID: this.$route.query.id})
       .then(res => {
         this.userList = res.data.detailMsg.data
-        console.log(this.userList)
       })
     }
   },
@@ -39,10 +38,6 @@ export default {
   },
   created(){
     this.getMyFanses()
-    getUserInfo({ id: this.$route.query.uid})
-    .then(res => {
-      this.userInfo = res.data.detailMsg.entity
-    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

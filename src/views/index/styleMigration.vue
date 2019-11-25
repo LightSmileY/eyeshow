@@ -5,13 +5,13 @@
         <div class="example">
           <div class="title"></div>
           <div class="pic1">
-            <img src="@/assets/images/10.jpg">
+            <img src="http://cdn.fengblog.xyz/static/10.jpg">
           </div>
           <div class="pic2">
-            <img src="http://pymhh35l8.bkt.clouddn.com/111mmmm.jpg">
+            <img src="http://cdn.fengblog.xyz/111mmmm.jpg">
           </div>
           <div class="pic3">
-            <img src="@/assets/images/a.png">
+            <img src="http://cdn.fengblog.xyz/static/a.png">
           </div>
         </div>
         <!-- 人脸融合 -->
@@ -24,8 +24,8 @@
               <div class="tempSelect">
                 <div class="head">选择您想要融合的眼妆</div>
                 <ul class="images">
-                  <li v-for="item in cosImageList" :class="{'li_active': item == imageUrl1}">
-                    <img :src="item" @click="selectImage(item)">
+                  <li v-for="(item,index) in myImages" :class="{'li_active': item == imageUrl1}">
+                    <img :src="item.id" @click="selectImage(index)">
                   </li>
                 </ul>
                 <div class="pagenation">
@@ -67,7 +67,7 @@
               </div>
             </div>
             <div class="temp-right">
-              <!-- <div class="head">上传您的眼妆</div> -->
+              <div class="head">上传您的美照</div>
               <div class="dragUpload">
                 <el-upload
                   class="upload-demo"
@@ -139,7 +139,7 @@
 import { getMyImages, mergePace } from '@/api/slide'
 import { getQiniuToken } from '@/api/post.js'
 import { uuid } from '@/assets/js/pubFunctions'
-import { recommendList } from '@/assets/js/staticData'
+import { recommendList, myImages } from '@/assets/js/staticData'
 
 export default {
   name: 'styleMigration',
@@ -152,14 +152,14 @@ export default {
       },
       upload_qiniu_url: "http://upload-z2.qiniup.com",
       // 七牛云返回储存图片的子域名
-      upload_qiniu_addr: "http://pymhh35l8.bkt.clouddn.com/",
+      upload_qiniu_addr: "http://cdn.fengblog.xyz/",
       cosImageList: [
-        "http://pymhh35l8.bkt.clouddn.com/%E5%9B%BE%E7%89%873.png",
-        "http://pymhh35l8.bkt.clouddn.com/111123.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/111mmmm.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/111%E5%9B%BE%E7%89%871.png",
-        "http://pymhh35l8.bkt.clouddn.com/1.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/11134.jpg"
+        "http://cdn.fengblog.xyz/%E5%9B%BE%E7%89%873.png",
+        "http://cdn.fengblog.xyz/111123.jpg",
+        "http://cdn.fengblog.xyz/111mmmm.jpg",
+        "http://cdn.fengblog.xyz/111%E5%9B%BE%E7%89%871.png",
+        "http://cdn.fengblog.xyz/1.jpg",
+        "http://cdn.fengblog.xyz/11134.jpg"
       ],
       course: `
         <h4>妆前：</h4>
@@ -171,18 +171,18 @@ export default {
         <p>2. 棕色铺眼皮晕染</p>
         <p>3. 沾少量灰色涂在双眼皮褶内晕染</p>
         <p>4. 还是刚刚的灰色, 只涂下眼尾的小三角</p>
-        <image fit="cover" src="http://pymhh35l8.bkt.clouddn.com/makeupcourse/%E5%9B%BE%E7%89%878.png"/>
-        <image fit="cover" src="http://pymhh35l8.bkt.clouddn.com/makeupcourse/%E5%9B%BE%E7%89%874.png"/>
+        <image fit="cover" src="http://cdn.fengblog.xyz/makeupcourse/%E5%9B%BE%E7%89%878.png"/>
+        <image fit="cover" src="http://cdn.fengblog.xyz/makeupcourse/%E5%9B%BE%E7%89%874.png"/>
         
         <h4>眼线：</h4>
         <p>还是从眼尾拖出一条</p></p>
         <p>不一样的是,要再沾取深棕色眼影在下眼皮的眼头画眼线</p>
-        <image fit="cover" src="http://pymhh35l8.bkt.clouddn.com/makeupcourse/%E5%9B%BE%E7%89%875.png">
+        <image fit="cover" src="http://cdn.fengblog.xyz/makeupcourse/%E5%9B%BE%E7%89%875.png">
         </image>
 
         <h4>卧蚕：</h4>
         <p>记得用眉笔在卧蚕下方 描一下下</p>
-        <image fit="cover" src="http://pymhh35l8.bkt.clouddn.com/makeupcourse/%E5%9B%BE%E7%89%877.png">
+        <image fit="cover" src="http://cdn.fengblog.xyz/makeupcourse/%E5%9B%BE%E7%89%877.png">
         </image>
 
         <h4>腮红：</h4>
@@ -193,7 +193,7 @@ export default {
         <p>涂跟我们紫色腮红相配一点的</p>
         <p>果汁感满满的火龙果M503络红绣 玫红色的夏天涂玫红真的敲显白的 哇介个质地涂了hen润</p>
         <p>薄涂咬唇又hen少女~ 白皮涂了更好看~</p>
-        <image fit="cover" src="http://pymhh35l8.bkt.clouddn.com/makeupcourse/%E5%9B%BE%E7%89%876.png">
+        <image fit="cover" src="http://cdn.fengblog.xyz/makeupcourse/%E5%9B%BE%E7%89%876.png">
         </image>
         
         `,
@@ -204,7 +204,8 @@ export default {
       isShowResult: false,  //控制结果组件
       fullscreenLoading: false,
       dialogImageUrl: '',
-      recommendList
+      recommendList,
+      myImages
     }
   },
   computed: {
@@ -223,7 +224,8 @@ export default {
       })
     },
     selectImage(i){
-      this.imageUrl1 = i
+      this.imageUrl1 = myImages[i].id
+      this.course = myImages[i].course
     },
     getMergeImage(){
       this.fullscreenLoading = true
@@ -246,7 +248,7 @@ export default {
     },
     /*------------------------图片上传事件-----------------------*/
     beforeUpload1(file) {
-      this.qiniuData.key = uuid() + file.name
+      this.qiniuData.key = uuid()
       const isJPG = file.type === "image/jpeg"
       const isPNG = file.type === "image/png"
       const isLt5M = file.size / 1024 / 1024 < 5

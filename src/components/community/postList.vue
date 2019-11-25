@@ -71,7 +71,7 @@
         </div>
         <div class="body">
           <p class="ptitle">#{{item.forward.postTitle}}#</p>
-          <p>{{item.forward.body}}</p>
+          <p>{{item.forward.body.slice(0,100)}}</p>
         </div>
       </div>
       <!-- 操作 -->
@@ -251,7 +251,6 @@ export default {
       }).then(() => {
         deletePostById({post_ID: this.arrayList[i].pid})
         .then(res => {
-          console.log(res)
           this.arrayList.splice(i, 1)
           console.log(this.arrayList)
           this.$message({
@@ -505,7 +504,6 @@ export default {
       .then(() => {
         deleteComment({id: this.arrayList[i].comments[j].id})
         .then(res => {
-          console.log(res)
           _this.arrayList[i].comments[j].splice(j, 1)
           _this.$message({
             type: 'success',
@@ -522,11 +520,14 @@ export default {
         query: { id: i }
       })
     },
+    // 查看用户资料
     toMinePage(i){
       this.$router.push({
-        name:'Mine'
+        name:'Mine',
+        query: {
+          id: i
+        }
       })
-      this.$store.dispatch('getViewUserId', i)
     }
   }
 };

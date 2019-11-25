@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
     <div class="title">我的关注</div>
-    <user-list :arrayList="userList"/>
+      <user-list :arrayList="userList"/>
   </div>
 </template>
 
@@ -20,17 +20,15 @@ export default {
   data(){
     return {
       user_ID: this.$store.state.userInfo.id,
-      userList: [],
-      userInfo: {}
+      userList: []
     }
   },
   methods: {
     // 获取该用户的所有关注
     getMyAttents(){
-      getAttents({user_ID: this.user_ID})
+      getFanses({user_ID: this.$route.query.id})
       .then(res => {
         this.userList = res.data.detailMsg.data
-        console.log(this.userList)
       })
     }
   },
@@ -39,10 +37,6 @@ export default {
   },
   created(){
     this.getMyAttents()
-    getUserInfo({ id: this.$route.query.uid})
-    .then(res => {
-      this.userInfo = res.data.detailMsg.entity
-    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

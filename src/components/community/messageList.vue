@@ -25,7 +25,9 @@
       <div @click="toDetailPage(item.pid)" title="查看原帖" class="pforward">
         <div class="body">
           <p class="ptitle">#{{item.title}}#</p>
-          <p>{{item.content}}</p>
+          <a @click.stop :href="item.content" target="_blank" title="查看商品详情">
+            商品链接
+          </a>
         </div>
       </div>
     </li>

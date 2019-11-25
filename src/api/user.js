@@ -40,7 +40,7 @@ export const unAttentUser = params => {
 // 获取该用户发表的所有帖子
 export const getPostsByUserID = params => {
   return axios({
-    url: serverUrl + '/post/post/getPostByUserId',
+    url: serverUrl + '/community/community/getUsersAllPosts',
     method: 'get',
     params
   })
@@ -55,10 +55,19 @@ export const getCollectionPosts = params => {
   })
 }
 
+// 获取该用户收藏的所有商品
+export const getCollectionCommoditys = params => {
+  return axios({
+    url: serverUrl + '/mall/mall/getAllCommodityFavorites',
+    method: 'get',
+    params
+  })
+}
+
 // 获取该用户的关注
 export const getAttents = params => {
   return axios({
-    url: serverUrl + '/relation/relation/getAllFollowsByFansId',
+    url: serverUrl + '/user/user/getAllFans',
     method: 'get',
     params
   })
@@ -67,7 +76,7 @@ export const getAttents = params => {
 // 获取该用户的粉丝
 export const getFanses = params => {
   return axios({
-    url: serverUrl + '/relation/relation/getAllFansByFollowsId',
+    url: serverUrl + '/user/user/getAllFollows',
     method: 'get',
     params
   })

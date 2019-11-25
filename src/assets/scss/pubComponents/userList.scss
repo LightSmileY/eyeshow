@@ -2,7 +2,7 @@
 @import "../public/mixins.scss";
 
 #userList{
-  margin: 20px 0;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -14,7 +14,7 @@
     border: 1px solid #E4E4E4;
     box-sizing: border-box;
     padding: 15px;
-    margin: 9px 0;
+    margin: 0 9px;
     border-radius: 2px;
     list-style: none;
     cursor: pointer;

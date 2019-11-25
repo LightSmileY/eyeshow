@@ -160,8 +160,6 @@ export default {
     // 获取所有帖子
     getAllPostsData(){
       this.bodyStatus = 1
-      this.postList = {}
-      this.loading = true
       getAllPosts().then(data => {
         this.postList = data
         this.postList.sort((a, b) => {
@@ -170,7 +168,7 @@ export default {
           return x > y ? -1 : x < y ? 1 : 0
         })
         this.youLikeList = data.slice(12, 18)
-        this.hotRecommendList = data.slice(10, 20)
+        // this.hotRecommendList = data.slice(10, 20)
         // this.hotRecommendList = data.sort((a, b) => {
         //   let x = a["likeCount"]
         //   let y = b["likeCount"]
@@ -178,7 +176,6 @@ export default {
         // })
         this.loading = false
         this.loading2 = false
-        this.loading3 = false
       })
     },
     // 获取热门帖子
@@ -231,6 +228,16 @@ export default {
   },
   created(){
     this.getAllPostsData()
+    // 获取侧边10条热门帖子
+    getAllPosts().then(data => {
+      this.hotRecommendList = data.slice(0, 10)
+      this.hotRecommendList.sort((a, b) => {
+        let x = a["likeCount"]
+        let y = b["likeCount"]
+        return x > y ? -1 : x < y ? 1 : 0
+      })
+      this.loading3 = false
+    })
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

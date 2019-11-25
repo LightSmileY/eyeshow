@@ -1,18 +1,20 @@
 <template>
   <div id="userList">
-    <div class="userList-li" v-for="item in 12">
+    <div 
+    class="userList-li" 
+    v-for="item in arrayList">
       <div class="user">
         <div class="userInfo">
           <div class="avatar">
-            <img src="@/assets/images/avatar.jpg">
+            <img :src="item.avatar">
           </div>
           <div class="name-signature">
-            <div class="name">浅笑半离兮</div>
-            <div class="signature">人生若只如初见</div>
+            <div class="name">{{item.nickname.slice(0,6)}}</div>
+            <div class="signature">{{item.profile.slice(0,8)}}</div>
           </div>
         </div>
         <div class="attent">
-          <!-- <el-button size="mini" type="primary">关注TA</el-button> -->
+          <el-button size="mini" type="primary">关注TA</el-button>
         </div>
       </div>
     </div>
@@ -27,6 +29,9 @@ export default {
     return {
 
     }
+  },
+  props: {
+    arrayList: Array
   }
 };
 </script>

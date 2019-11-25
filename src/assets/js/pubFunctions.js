@@ -32,17 +32,18 @@ export const uuid = () => {
     return uuid;
 }
 
+// 获取当前时间
 export const getTime = () => {
   return (new Date()).Format("yyyy-MM-dd hh:mm:ss")
 }
 
-export const arraySort = {
-  // 发表时间排序
-  sortByDate(arr){
-    arr.sort((a,b) => a.postTime - b.postTime)
-  },
-  // 点赞数排序
-  sortByLikeCount(arr){
-    arr.sort((a,b) => a.likeCount - b.likeCount)
-  }
-}
+// export const arraySort = {
+//   // 发表时间排序
+//   sortByDate(arr){
+//     arr.sort((a,b) => a.postTime - b.postTime)
+//   },
+//   // 点赞数排序
+//   sortByLikeCount(arr){
+//     arr.sort((a,b) => a.likeCount - b.likeCount)
+//   }
+// }

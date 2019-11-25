@@ -96,12 +96,12 @@ export default {
   },
   computed: {
     isMe(){
-      return this.userInfo.id == this.$store.state.userInfo.id
+      return this.$route.query.id == this.$store.state.userInfo.id
     }
   },
   methods: {
     getInfo(){
-      getUserInfo({ user_ID: this.$store.state.viewUserId})
+      getUserInfo({ user_ID: this.$route.query.id})
       .then(res => {
         this.userInfo = res.data.detailMsg.data[0]
       })

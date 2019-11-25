@@ -56,19 +56,19 @@
     <div class="main">
       <div class="nav-bar">
         <ul>
-          <router-link :to="{name:'MyPosts',query:{id: userInfo.uid}}">
+          <router-link :to="{'name':'MyPosts','query':{'id': this.$route.query.id}}">
             <li>帖子 ( {{userInfo.posts_count}} )</li>
           </router-link>
-          <router-link :to="{name:'MyCollections',query:{id: userInfo.uid}}">
+          <router-link :to="{'name':'MyCollections','query':{'id': this.$route.query.id}}">
             <li>收藏 ( {{userInfo.pfavorites_count}} )</li>
           </router-link>
-          <router-link :to="{name:'MyFocus',query:{id: userInfo.uid}}">
+          <router-link :to="{'name':'MyFocus','query':{'id': this.$route.query.id}}">
             <li>关注 ( {{userInfo.follows_count}} )</li>
           </router-link>
-          <router-link :to="{name:'MyFanses',query:{id: userInfo.uid}}">
+          <router-link :to="{'name':'MyFanses','query':{'id': this.$route.query.id}}">
             <li>粉丝 ( {{userInfo.fans_count}} )</li>
           </router-link>
-          <router-link :to="{name:'MyProfile',query:{id: userInfo.uid}}">
+          <router-link :to="{'name':'MyProfile','query':{'id': this.$route.query.id}}">
             <li>资料</li>
           </router-link>
         </ul>
@@ -99,7 +99,7 @@ export default {
       },
       upload_qiniu_url: "http://upload-z2.qiniup.com",
       // 七牛云返回储存图片的子域名
-      upload_qiniu_addr: "http://pymhh35l8.bkt.clouddn.com/"
+      upload_qiniu_addr: "http://cdn.fengblog.xyz/"
     }
   },
   methods: {
@@ -150,7 +150,7 @@ export default {
     }
   },
   created(){
-    getUserInfo({user_ID: this.$store.state.viewUserId})
+    getUserInfo({user_ID: this.$route.query.id})
     .then(res => {
       this.userInfo = res.data.detailMsg.data[0]
       console.log(this.userInfo)

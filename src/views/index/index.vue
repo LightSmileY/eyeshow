@@ -82,10 +82,10 @@ export default {
       search: '',
       slideList: [
         "http://tva1.sinaimg.cn/large/0060lm7Tly1g64rb3s5djj32f80rs7gw.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/slides/4.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/slides/1%20%281%29.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/slides/3.jpg",
-        "http://pymhh35l8.bkt.clouddn.com/slides/5.jpg"
+        "http://cdn.fengblog.xyz/slides/4.jpg",
+        "http://cdn.fengblog.xyz/slides/1%20%281%29.jpg",
+        "http://cdn.fengblog.xyz/slides/3.jpg",
+        "http://cdn.fengblog.xyz/slides/5.jpg"
       ]
     }
   },

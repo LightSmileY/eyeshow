@@ -3,8 +3,7 @@
     <el-row> 
       <el-col :span="24">
         <div class="footer">
-          <p class="copyright">Copyright © 2019 fengblog.xyz/eyetouch. All rights reserved.</p>
-          <a href="http://beian.miit.gov.cn"><p class="filing">滇ICP备19007510号</p></a>
+          <p class="copyright">Copyright © 2019 eyemakeup. All rights reserved.</p>
         </div>
       </el-col>
     </el-row>

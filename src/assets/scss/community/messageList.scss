@@ -129,6 +129,14 @@
           line-height: 20px;
           cursor: pointer;
         }
+
+        a{
+          text-decoration: none;
+          color: #215FA7;
+        }
+      }
+      .body:hover{
+        cursor: pointer;
       }
     }
   }

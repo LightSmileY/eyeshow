@@ -9,7 +9,7 @@
     style="margin:0;"></el-button>
     <el-dialog 
     title="发表帖子"
-    top="8vh"
+    top="10vh"
     :visible.sync="dialogFormVisible"
     :close-on-click-modal="false">
       <el-form :model="postData">
@@ -121,7 +121,7 @@ export default {
       },
       upload_qiniu_url: "http://upload-z2.qiniup.com",
       // 七牛云返回储存图片的子域名
-      upload_qiniu_addr: "http://pymhh35l8.bkt.clouddn.com/",
+      upload_qiniu_addr: "http://cdn.fengblog.xyz/",
       imageUrl: "",
       imagesLength: 0,
       dialogImageUrl: '',
@@ -183,7 +183,7 @@ export default {
     },
     /*------------------------图片事件-----------------------*/
     beforeUpload1(file) {
-      this.qiniuData.key = uuid() + file.name
+      this.qiniuData.key = uuid()
       const isJPG = file.type === "image/jpeg"
       const isPNG = file.type === "image/png"
       const isLt5M = file.size / 1024 / 1024 < 5
@@ -224,7 +224,7 @@ export default {
     // },
     /*------------------------视频事件-----------------------*/
     beforeUpload2(file) {
-      this.qiniuData.key = uuid() + file.name
+      this.qiniuData.key = uuid()
       const fileType = file.type
       const isLt50M = file.size / 1024 / 1024 < 50 // 算出文件大小
       if (!isLt50M) { // 这里我们限制文件大小为20M

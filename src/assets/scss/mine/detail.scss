@@ -2,6 +2,7 @@
 @import "../public/mixins.scss";
 
 #detail{
+  width: 100%;
   box-sizing: border-box;
   @include flex-center();
   flex-wrap: wrap;

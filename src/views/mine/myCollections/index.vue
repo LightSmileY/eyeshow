@@ -2,15 +2,11 @@
   <div id="detail">
     <div class="title">我的收藏</div>
     <el-tabs v-model="activeName">
-      <el-tab-pane label="帖子" 
-      name="post"
-      v-loading="loading"
-      element-loading-text="玩命加载中"
-      element-loading-background="rgba(255, 255, 255, 0)">
+      <el-tab-pane label="帖子" name="post">
         <post-item :oper="2" :arrayList="postList"/>
       </el-tab-pane>
       <el-tab-pane label="妆品" name="commodity">
-        <cosmetic-item/>
+        <cosmetic-item :arrayList="commodityList"/>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -22,6 +18,7 @@ import CosmeticItem from '@/components/pubComponents/cosmeticItem'
 import { 
   getPostsByUserID, 
   getCollectionPosts, 
+  getCollectionCommoditys,
   getAttents, 
   getFanses, 
   getUserInfo 
@@ -33,17 +30,24 @@ export default {
     return {
       activeName: 'post',
       postList: [],
-      userInfo: {},
-      loading: true
+      commodityList: [],
+      userInfo: {}
     }
   },
   methods: {
     // 获取该用户收藏的帖子
-    getCollections(){
-      getCollectionPosts({user_ID: this.$store.state.viewUserId || this.$store.state.userInfo.id})
+    getCollectionPostsData(){
+      getCollectionPosts({user_ID: this.$route.query.id})
       .then(res => {
         this.postList = res.data.detailMsg.data
-        this.loading = false
+      })
+    },
+    // 获取该用户收藏的商品
+    getCollectionCommoditysData(){
+      getCollectionCommoditys({user_ID: this.$route.query.id})
+      .then(res => {
+        console.log(res.data)
+        this.commodityList = res.data.detailMsg.data
       })
     }
   },
@@ -52,7 +56,8 @@ export default {
     CosmeticItem
   },
   created(){
-    this.getCollections()
+    this.getCollectionPostsData()
+    this.getCollectionCommoditysData()
   },
   beforeMount(){
     document.documentElement.scrollTop = 0

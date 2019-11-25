@@ -130,14 +130,17 @@ export default {
           //将后台获取到的userInfo存到store
           console.log(res)
           this.$store.dispatch('getUserInfo', res.data.userMessage[0])  //用户信息存入vuex
-          this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)  //资料页用户切换
+          // this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)  //资料页用户切换
           localStorage.setItem('userInfo', JSON.stringify(res.data.userMessage[0]))  //用户信息存入localstorage
           _this.$message({
             message: '登录成功',
             type: 'success'
           })
           _this.$router.push({
-            name:'MyPosts'
+            name:'Mine',
+            query: {
+              id: this.$store.state.userInfo.id
+            }
           })
         })
         .catch(() => {

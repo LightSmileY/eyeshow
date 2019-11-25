@@ -2,7 +2,7 @@
   <div id="detail">
     <div class="title">发表的帖子</div>
     <div class="post-li">
-      <post-item :arrayList="postList" :oper="1" :userObj="userInfo"/>
+      <post-item :arrayList="postList"/>
     </div>
   </div>
 </template>
@@ -33,9 +33,8 @@ export default {
   methods: {
     // 获取该用户的所有帖子
     getPostsOfUser(){
-      getPostsByUserID({user_ID: this.$store.state.viewUserId || this.$store.state.userInfo.id})
+      getPostsByUserID({user_ID: this.$route.query.id})
       .then(res => {
-        console.log(res)
         this.postList = res.data.detailMsg.data
         console.log(this.postList)
       })
@@ -45,9 +44,9 @@ export default {
     PostItem
   },
   created(){
-    getUserInfo({ id: this.$store.state.viewUserId})
+    getUserInfo({ user_ID: this.$route.query.id})
     .then(res => {
-      this.userInfo = res.data.detailMsg.entity
+      this.userInfo = res.data.detailMsg.data[0]
     })
     this.getPostsOfUser()
   },

@@ -174,7 +174,10 @@ export default {
           _this.registerSuccess()
           setTimeout(() => {
             _this.$router.push({
-              name:'MyPosts'
+              name:'Mine',
+              query: {
+                id: this.$store.state.userInfo.id
+              }
             })
           },1000)
         })
