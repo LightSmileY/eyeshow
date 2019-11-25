@@ -39,37 +39,37 @@ yarn run lint
 
 社区页
 
-![](F:\aa--JavaScript\eye-makeup\assets\1.png)
+![](http://cdn.fengblog.xyz/1.png)
 
 首页
 
-![](F:\aa--JavaScript\eye-makeup\assets\2.png)
+![](http://cdn.fengblog.xyz/2.png)
 
 商城首页
 
-![](F:\aa--JavaScript\eye-makeup\assets\3.png)
+![](http://cdn.fengblog.xyz/3.png)
 
 商城搜索详情页
 
-![](F:\aa--JavaScript\eye-makeup\assets\4.png)
+![](http://cdn.fengblog.xyz/4.png)
 
 商品详情页
 
 
 
-![](F:\aa--JavaScript\eye-makeup\assets\5.png)
+![](http://cdn.fengblog.xyz/5.png)
 
 个人中心页
 
-![](F:\aa--JavaScript\eye-makeup\assets\6.png)
+![](http://cdn.fengblog.xyz/6.png)
 
 眼妆迁移页
 
-![](F:\aa--JavaScript\eye-makeup\assets\7.png)
+![](http://cdn.fengblog.xyz/7.png)
 
-![](F:\aa--JavaScript\eye-makeup\assets\8.png)
+![](http://cdn.fengblog.xyz/8.png)
 
-![](F:\aa--JavaScript\eye-makeup\assets\9.png)
+![](http://cdn.fengblog.xyz/6.png)
 
 ### Customize configuration
 
