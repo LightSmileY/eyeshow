@@ -69,7 +69,7 @@ yarn run lint
 
 ![](http://cdn.fengblog.xyz/8.png)
 
-![](http://cdn.fengblog.xyz/6.png)
+![](http://cdn.fengblog.xyz/9.png)
 
 ### Customize configuration
 
