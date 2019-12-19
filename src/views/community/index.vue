@@ -167,7 +167,7 @@ export default {
           let y = b["time"]
           return x > y ? -1 : x < y ? 1 : 0
         })
-        this.youLikeList = data.slice(12, 18)
+        this.youLikeList = data.slice(0, 6)
         // this.hotRecommendList = data.slice(10, 20)
         // this.hotRecommendList = data.sort((a, b) => {
         //   let x = a["likeCount"]

@@ -19,10 +19,18 @@ export const getMyImages = () => {
 }
 
 // 分开发表帖子
-export const mergePace = data => {
+// export const mergePace = data => {
+//   return axios({
+//     url: 'https://fengblog.xyz:3029/message/getMergeImage',
+//     method: 'post',
+//     data
+//   })
+// }
+
+export const mergePace = params => {
   return axios({
-    url: 'https://fengblog.xyz:3029/message/getMergeImage',
-    method: 'post',
-    data
+    url: 'http://10.100.158.87:8000/recomment/test',
+    method: 'get',
+    params
   })
 }

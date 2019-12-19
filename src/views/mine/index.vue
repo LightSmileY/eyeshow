@@ -121,8 +121,9 @@ export default {
     handleSuccess1(res, file) {
       let imageUrl = this.upload_qiniu_addr + res.key
       this.userInfo.avatar = imageUrl
-      updateUserInfo(this.userInfo).then(res => {
-        console.log(res.data)
+      updateUserInfo(this.userInfo)
+      .then(res => {
+        console.log(res)
         this.$message.success('修改成功')
         this.$store.dispatch('getUserInfo', res.data.detailMsg.data)
         this.showChangeAvatarBox = false

@@ -93,9 +93,9 @@
             <div class="result-title">妆容迁移结果</div>
             <div class="result-image">
               <el-image
-              :src="resultImage"
+              :src="'data:image/png;base64,'+resultImage"
               lazy
-              fit="cover"></el-image>
+              :fit="cover"></el-image>
             </div>
             <div class="cosrecommend">
               <div class="tip">
@@ -229,21 +229,33 @@ export default {
     },
     getMergeImage(){
       this.fullscreenLoading = true
+      // mergePace({
+      //   api_key: "v5vCY2FcYL5hk4oucP8_7u2pgVnPYjJB",
+      //   api_secret: "zHPtWAcDzd3MFObqI4ml8aevnwJ95wsV",
+      //   template_url: this.imageUrl2,
+      //   merge_url: this.imageUrl1
+      // })
+      // .then(res => {
+      //   this.tempImage = res.data.result
+      //   setTimeout(() => {
+      //     this.resultImage = this.tempImage
+      //     this.isShowResult = true
+      //     this.fullscreenLoading = false
+      //     this.$message.success("生成成功!")
+      //     console.log(this.resultImage)
+      //   },5000)
+      // })
       mergePace({
-        api_key: "v5vCY2FcYL5hk4oucP8_7u2pgVnPYjJB",
-        api_secret: "zHPtWAcDzd3MFObqI4ml8aevnwJ95wsV",
-        template_url: this.imageUrl2,
-        merge_url: this.imageUrl1
+        a: this.imageUrl2,
+        b: this.imageUrl1
       })
       .then(res => {
-        this.tempImage = res.data.result
-        setTimeout(() => {
-          this.resultImage = this.tempImage
-          this.isShowResult = true
-          this.fullscreenLoading = false
-          this.$message.success("生成成功!")
-          console.log(this.resultImage)
-        },5000)
+        console.log(res)
+        this.resultImage = res.data
+        this.isShowResult = true
+        this.fullscreenLoading = false
+        this.$message.success("生成成功!")
+        console.log(this.resultImage)
       })
     },
     /*------------------------图片上传事件-----------------------*/

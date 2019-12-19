@@ -36,7 +36,7 @@
               <el-radio v-model="userInfo.sex" label="2">女</el-radio>
             </div>
             <div class="item-body" v-else>
-              {{userInfo.sex}}
+              {{userInfo.sex == 1 ? "男" : "女"}}
             </div>
           </li>
           <li>
