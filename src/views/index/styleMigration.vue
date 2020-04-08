@@ -25,7 +25,7 @@
                 <div class="head">选择您想要融合的眼妆</div>
                 <ul class="images">
                   <li v-for="(item,index) in myImages" :class="{'li_active': item == imageUrl1}">
-                    <img :src="item.id" @click="selectImage(index)">
+                    <img :src="item.id" fit="cover" @click="selectImage(index)">
                   </li>
                 </ul>
                 <div class="pagenation">
@@ -51,10 +51,10 @@
             </div>
             <div class="temp-image">
               <div class="my-image">
-                <img :src="imageUrl1" alt="">
+                <img :src="imageUrl1" fit="cover" alt="">
               </div>
               <div class="obj-image">
-                <img :src="imageUrl2" alt="">
+                <img :src="imageUrl2" fit="cover" alt="">
               </div>
               <!-- 生成眼妆按钮 -->
               <div class="submit">
@@ -154,9 +154,9 @@ export default {
       // 七牛云返回储存图片的子域名
       upload_qiniu_addr: "http://cdn.fengblog.xyz/",
       cosImageList: [
-        "http://cdn.fengblog.xyz/%E5%9B%BE%E7%89%873.png",
-        "http://cdn.fengblog.xyz/111123.jpg",
-        "http://cdn.fengblog.xyz/111mmmm.jpg",
+        "http://cdn.fengblog.xyz/XMY-014.png",
+        "http://cdn.fengblog.xyz/XMY-136.png",
+        "http://cdn.fengblog.xyz/vFG137.png",
         "http://cdn.fengblog.xyz/111%E5%9B%BE%E7%89%871.png",
         "http://cdn.fengblog.xyz/1.jpg",
         "http://cdn.fengblog.xyz/11134.jpg"

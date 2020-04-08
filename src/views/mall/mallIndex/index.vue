@@ -112,7 +112,7 @@
       element-loading-text="玩命加载中"
       element-loading-background="rgba(255, 255, 255, 0)">
         <div class="title">
-          睫毛膏
+          口红
         </div>
         <ul>
           <cosmetic-item :arrayList="commodityList2"/>
@@ -121,11 +121,11 @@
       <el-divider></el-divider>
       <div 
       class="mallLIst brush"
-      v-loading="loading3"
+      v-loading="loading5"
       element-loading-text="玩命加载中"
       element-loading-background="rgba(255, 255, 255, 0)">
         <div class="title">
-          粉底液
+          睫毛膏
         </div>
         <ul>
           <cosmetic-item :arrayList="commodityList3"/>
@@ -138,7 +138,7 @@
       element-loading-text="玩命加载中"
       element-loading-background="rgba(255, 255, 255, 0)">
         <div class="title">
-          假睫毛
+          彩妆盘
         </div>
         <ul>
           <cosmetic-item :arrayList="commodityList4"/>
@@ -147,39 +147,14 @@
       <el-divider></el-divider>
       <div 
       class="mallLIst brush"
-      v-loading="loading5"
+      v-loading="loading3"
       element-loading-text="玩命加载中"
       element-loading-background="rgba(255, 255, 255, 0)">
         <div class="title">
-          口红
+          粉底液
         </div>
         <ul>
           <cosmetic-item :arrayList="commodityList5"/>
-        </ul>
-      </div>
-      <el-divider></el-divider>
-      <div 
-      class="mallLIst auxiliary"
-      v-loading="loading6"
-      element-loading-text="玩命加载中"
-      element-loading-background="rgba(255, 255, 255, 0)">
-        <div class="title">
-          眼线笔
-        </div>
-        <ul>
-          <cosmetic-item :arrayList="commodityList6"/>
-        </ul>
-      </div>
-      <div 
-      class="mallLIst auxiliary"
-      v-loading="loading7"
-      element-loading-text="玩命加载中"
-      element-loading-background="rgba(255, 255, 255, 0)">
-        <div class="title">
-          散粉
-        </div>
-        <ul>
-          <cosmetic-item :arrayList="commodityList7"/>
         </ul>
       </div>
     </div>
@@ -252,33 +227,29 @@ export default {
     NavBar2
   },
   created(){
-    this.getComsByType("1").then(res => {
-      this.commodityList1 = res.data.detailMsg.data
+    this.getComsByType("d3b72fd5-1788-4093-9fbc-a2b08366d246").then(res => {
+      this.commodityList1 = res.data.detailMsg.data.slice(0,12)
       this.loading1 = false
+      console.log(res)
     })
-    this.getComsByType("2").then(res => {
-      this.commodityList2 = res.data.detailMsg.data
+    this.getComsByType("2c3213e0-d1e7-4e3c-82de-a023477fa0c7").then(res => {
+      this.commodityList2 = res.data.detailMsg.data.slice(0,12)
       this.loading2 = false
     })
-    this.getComsByType("56eb2209-6d11-48a4-ab74-57a1ac4b673f").then(res => {
-      this.commodityList3 = res.data.detailMsg.data
+    this.getComsByType("191e204e-b78e-4c6f-8007-6547368dc66d").then(res => {
+      this.commodityList3 = res.data.detailMsg.data.slice(0,12)
       this.loading3 = false
+      console.log(res)
     })
-    this.getComsByType("5aafd7d6-471c-4ada-b4e4-4865b8fc2e74").then(res => {
-      this.commodityList4 = res.data.detailMsg.data
+    this.getComsByType("3d158bcf-47ff-4474-bfea-e2041b25182b").then(res => {
+      this.commodityList4 = res.data.detailMsg.data.slice(0,12)
       this.loading4 = false
+      console.log(res)
     })
-    this.getComsByType("d6b5ef6b-4102-43ab-b7c4-c349111cf18e").then(res => {
-      this.commodityList5 = res.data.detailMsg.data
+    this.getComsByType("50a6ba0c-0017-4081-a8c3-1b16cc3d34a7").then(res => {
+      this.commodityList5 = res.data.detailMsg.data.slice(0,12)
       this.loading5 = false
-    })
-    this.getComsByType("e228a5c7-025a-428f-a3fe-25616136209f").then(res => {
-      this.commodityList6 = res.data.detailMsg.data
-      this.loading6 = false
-    })
-    this.getComsByType("17f5bbfa-0b28-409d-88e5-d627616b6242").then(res => {
-      this.commodityList7 = res.data.detailMsg.data
-      this.loading7 = false
+      console.log(res)
     })
   },
   beforeMount(){

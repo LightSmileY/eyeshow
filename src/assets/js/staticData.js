@@ -257,41 +257,39 @@ export const navsData = {
   ]
 }
 
-export const recommendList = [
-    {
-        image: "http://cdn.fengblog.xyz/recommendList/1.jpg",
-        name: "花西子花隐星穹雕花口持久唇膏",
-        link: "https://item.taobao.com/item.htm?spm=a230r.1.14.15.203c3c0aWCuPza&id=602045541090&ns=1&abbucket=3#detail",
-        price: "129"
-    },
-    {
-        image: "http://cdn.fengblog.xyz/recommendList/2.jpg",
-        name: "MAC/魅可立体绒粉饼提亮粉",
-        link: "https://detail.tmall.com/item.htm?spm=a230r.1.14.1.29d55cb8zqEW2g&id=568721065032&cm_id=140105335569ed55e27b&abbucket=3",
-        price: "340"
-    },
-    {
-        image: "http://cdn.fengblog.xyz/recommendList/3%281%29.jpg",
-        name: "欧莱雅三合一眉笔女不晕染正品",
-        link: "https://detail.tmall.com/item.htm?spm=a230r.1.14.27.3183385cByiqOW&id=520712697378&ns=1&abbucket=3",
-        price: "120"
-    },
-    {
-        image: "http://cdn.fengblog.xyz/recommendList/4.jpg",
-        name: "欧莱雅美眸深邃极细眼线笔",
-        link: "https://detail.tmall.com/item.htm?spm=a230r.1.14.57.5e9372b3vHK8op&id=14542079879&ns=1&abbucket=3&skuId=18175129065",
-        price: "120"
-    },
-    {
-        image: "http://cdn.fengblog.xyz/recommendList/5.jpg",
-        name: "NYX16色眼影盘防水珠光闪粉火",
-        link: "https://detail.tmall.hk/hk/item.htm?id=583132721239&ut_sk=1.XKXEP+BI3HgDAAwGQeiRNdRn_21380790_1571568301765.TaoPassword-QQ.1&sourceType=item&price=119&origin_price=299&suid=3E15036C-2217-4D92-8BB0-4AB7650D6640&un=272bbc6e0cee4e5bacb7a888e4a1d6ac&share_crt_v=1&spm=a2159r.13376460.0.0&sp_tk=JFRYdTVZcWxZWEJmJA==&cpp=1&shareurl=true&short_name=h.eK17uLn&sm=c4f4f0&app=chrome",
-        price: "119"
-    }
+export const recommendList = [{
+    image: "http://cdn.fengblog.xyz/recommendList/1.jpg",
+    name: "花西子花隐星穹雕花口持久唇膏",
+    link: "https://item.taobao.com/item.htm?spm=a230r.1.14.15.203c3c0aWCuPza&id=602045541090&ns=1&abbucket=3#detail",
+    price: "129"
+  },
+  {
+    image: "http://cdn.fengblog.xyz/recommendList/2.jpg",
+    name: "MAC/魅可立体绒粉饼提亮粉",
+    link: "https://detail.tmall.com/item.htm?spm=a230r.1.14.1.29d55cb8zqEW2g&id=568721065032&cm_id=140105335569ed55e27b&abbucket=3",
+    price: "340"
+  },
+  {
+    image: "http://cdn.fengblog.xyz/recommendList/3%281%29.jpg",
+    name: "欧莱雅三合一眉笔女不晕染正品",
+    link: "https://detail.tmall.com/item.htm?spm=a230r.1.14.27.3183385cByiqOW&id=520712697378&ns=1&abbucket=3",
+    price: "120"
+  },
+  {
+    image: "http://cdn.fengblog.xyz/recommendList/4.jpg",
+    name: "欧莱雅美眸深邃极细眼线笔",
+    link: "https://detail.tmall.com/item.htm?spm=a230r.1.14.57.5e9372b3vHK8op&id=14542079879&ns=1&abbucket=3&skuId=18175129065",
+    price: "120"
+  },
+  {
+    image: "http://cdn.fengblog.xyz/recommendList/5.jpg",
+    name: "NYX16色眼影盘防水珠光闪粉火",
+    link: "https://detail.tmall.hk/hk/item.htm?id=583132721239&ut_sk=1.XKXEP+BI3HgDAAwGQeiRNdRn_21380790_1571568301765.TaoPassword-QQ.1&sourceType=item&price=119&origin_price=299&suid=3E15036C-2217-4D92-8BB0-4AB7650D6640&un=272bbc6e0cee4e5bacb7a888e4a1d6ac&share_crt_v=1&spm=a2159r.13376460.0.0&sp_tk=JFRYdTVZcWxZWEJmJA==&cpp=1&shareurl=true&short_name=h.eK17uLn&sm=c4f4f0&app=chrome",
+    price: "119"
+  }
 ]
 
-export const myImages = [
-  {
+export const myImages = [{
     id: "http://cdn.fengblog.xyz/%E5%9B%BE%E7%89%873.png",
     course: `<h4>欧美风大地色日常妆容教程 | 新年愿望是惊艳全场   </h4>                                                               
       <h4>眼妆：</h4>

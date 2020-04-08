@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {serverUrl} from '../utils/env.js'
+import {
+  serverUrl
+} from '../utils/env.js'
 import store from '@/store/store'
 
 // 获取所有商品
@@ -7,7 +9,9 @@ export const getAllCommodity = () => {
   return axios({
     url: serverUrl + '/mall/mall/getAllCommodityLogin',
     method: 'get',
-    params: {user_ID: store.state.userInfo.id || "-1"}
+    params: {
+      user_ID: store.state.userInfo.id || "-1"
+    }
   })
 }
 

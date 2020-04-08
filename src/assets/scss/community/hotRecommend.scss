@@ -1,10 +1,10 @@
 @import "../public/variables.scss";
 @import "../public/mixins.scss";
 
-#hotRecommend{
+#hotRecommend {
   min-height: 310px;
 
-  .title{
+  .title {
     width: 100%;
     height: 35px;
     @include flex-center(column);
@@ -12,13 +12,13 @@
     font-weight: bold;
   }
 
-  .items{
+  .items {
     width: 90%;
     font-size: 14px;
     list-style: decimal;
     list-style-position: inside;
 
-    li{
+    li {
       margin: 8.5px 0 8.5px 15px;
       overflow: hidden;
       white-space: nowrap;
@@ -27,7 +27,7 @@
       cursor: pointer;
     }
 
-    li:hover{
+    li:hover {
       color: #FF4E4E;
     }
   }

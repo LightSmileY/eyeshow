@@ -6,7 +6,7 @@
     @click="toDetailPage(item.cid)">
       <div class="image">
         <el-image
-        :src="item.imgUrl[0]"
+        :src="item.imgUrl[0] || defaultImage"
         lazy
         fit="cover"></el-image>
       </div>
@@ -30,7 +30,7 @@ export default {
   name: 'cosmeticItem',
   data(){
     return {
-
+      defaultImage: "http://cdn.fengblog.xyz/default/13.jpg"
     }
   },
   props: {

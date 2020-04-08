@@ -1,23 +1,25 @@
 import axios from 'axios'
-import {serverUrl} from '../utils/env.js'
+import {
+  serverUrl
+} from '../utils/env.js'
 import store from '@/store/store'
 
 // 发表帖子
 export const addPostAndImages = data => {
   return axios({
-    url: serverUrl + '/community/community/publishPostImages',
-    method: 'post',
-    data
-  })
-  .then(res => {
-    console.log(res)
-    return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
-  })
+      url: serverUrl + '/community/community/publishPostImages',
+      method: 'post',
+      data
+    })
+    .then(res => {
+      console.log(res)
+      return res.data
+    })
+    .catch(err => {
+      if (err) {
+        console.log(err)
+      }
+    })
 }
 
 // 分开发表帖子
@@ -50,36 +52,38 @@ export const addPostVideo = data => {
 // 获取所有帖子
 export const getAllPosts = () => {
   return axios({
-    url: serverUrl + '/community/community/getAllPostsLogin',
-    method: 'get',
-    params: {user_ID: store.state.userInfo.id || "-1"}
-  })
-  .then(res => {
-    console.log(res)
-    return res.data.detailMsg.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
-  })
+      url: serverUrl + '/community/community/getAllPostsLogin',
+      method: 'get',
+      params: {
+        user_ID: store.state.userInfo.id || "-1"
+      }
+    })
+    .then(res => {
+      console.log(res)
+      return res.data.detailMsg.data
+    })
+    .catch(err => {
+      if (err) {
+        console.log(err)
+      }
+    })
 }
 
 // 获取自己关注的人最近发表的帖子
 export const getFollowsPost = params => {
   return axios({
-    url: serverUrl + '/community/community/getFollowsPost',
-    method: 'get',
-    params
-  })
-  .then(res => {
-    return res.data
-  })
-  .catch(err => {
-    if (err) {
-      console.log(err)
-    }
-  })
+      url: serverUrl + '/community/community/getFollowsPost',
+      method: 'get',
+      params
+    })
+    .then(res => {
+      return res.data
+    })
+    .catch(err => {
+      if (err) {
+        console.log(err)
+      }
+    })
 }
 
 // 根据类型获取该类型所有帖子

@@ -16,25 +16,31 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    ['userInfo'](state, data){
+    ['userInfo'](state, data) {
       state.userInfo = data
     },
-    ['postStatus'](state, data){
+    ['postStatus'](state, data) {
       state.postStatus = data
     },
-    ['viewUserId'](state, data){
+    ['viewUserId'](state, data) {
       state.viewUserId = data
     }
   },
 
   actions: {
-    getUserInfo({commit}, data){
+    getUserInfo({
+      commit
+    }, data) {
       commit('userInfo', data)
     },
-    getPostStatus({commit}, data){
+    getPostStatus({
+      commit
+    }, data) {
       commit('postStatus', data)
     },
-    getViewUserId({commit}, data){
+    getViewUserId({
+      commit
+    }, data) {
       commit('viewUserId', data)
     }
   }

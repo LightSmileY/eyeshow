@@ -1,8 +1,8 @@
 @import "../public/variables.scss";
 @import "../public/mixins.scss";
 
-#postList{
-  .postList-li{
+#postList {
+  .postList-li {
     box-sizing: border-box;
     background-color: #fff;
     padding: 20px;
@@ -13,15 +13,15 @@
     // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     border: 1px solid #E5E5E5;
 
-    .user{
+    .user {
       height: 50px;
       display: flex;
 
-      .userInfo{
+      .userInfo {
         width: 100%;
         display: flex;
 
-        .avatar{
+        .avatar {
           width: 43px;
           height: 43px;
           border: 1px solid #808080;
@@ -29,29 +29,31 @@
           box-sizing: border-box;
           // margin: 5px;
 
-          img{
+          img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
           }
         }
 
-        .name-time{
+        .name-time {
           height: 40px;
           display: flex;
           flex-direction: column;
           margin: 0 8px;
 
-          .name{
+          .name {
             font-size: 16px;
           }
-          .time{
+
+          .time {
             font-size: 11px;
             margin-top: 6px;
           }
         }
       }
-      .attent{
+
+      .attent {
         width: 120px;
         height: 40px;
         display: flex;
@@ -59,12 +61,14 @@
         align-items: center;
       }
     }
-    .message{
+
+    .message {
       box-sizing: border-box;
       padding: 5px 20px 10px;
       color: #1473C3;
     }
-    .pforward{
+
+    .pforward {
       width: 98%;
       border: 1px solid #D7D7D7;
       box-sizing: border-box;
@@ -73,69 +77,72 @@
       border-radius: 2px;
       color: #747474;
 
-      .user{
+      .user {
         height: 45px;
         display: flex;
 
-        .userInfo{
+        .userInfo {
           width: 100%;
           display: flex;
 
-          .avatar{
+          .avatar {
             width: 36px;
             height: 36px;
             border: 1px solid #808080;
             border-radius: 50%;
             box-sizing: border-box;
 
-            img{
+            img {
               width: 100%;
               height: 100%;
               border-radius: 50%;
             }
           }
 
-          .name-time{
+          .name-time {
             height: 36px;
             display: flex;
             flex-direction: column;
             margin: 0 8px;
 
-            .name{
+            .name {
               font-size: 13px;
             }
-            .time{
+
+            .time {
               font-size: 7px;
               margin-top: 4px;
             }
           }
         }
-        .attent{
+
+        .attent {
           width: 120px;
           height: 40px;
           @include flex-center(column);
         }
       }
 
-      .body{
+      .body {
         margin: 0 5px;
 
-        .ptitle{
+        .ptitle {
           margin-bottom: 5px;
         }
 
-        p{
+        p {
           font-size: 14px;
           line-height: 20px;
           cursor: pointer;
         }
 
-        a{
+        a {
           text-decoration: none;
           color: #215FA7;
         }
       }
-      .body:hover{
+
+      .body:hover {
         cursor: pointer;
       }
     }

@@ -3,28 +3,28 @@
     <el-container>
       <!-- 主模板头部 -->
       <el-header>
-        <g-header/>
+        <g-header />
       </el-header>
       <!-- 主体 -->
       <el-main>
         <!-- 一级路由 -->
-        <router-view/>
+        <router-view />
       </el-main>
       <!-- 主模板底部 -->
       <el-footer>
-        <g-footer/>
+        <g-footer />
       </el-footer>
     </el-container>
   </div>
 </template>
 
 <script>
-import GHeader from '@/components/header'
-import GFooter from '@/components/footer'
-import '@/assets/js/heart.js'
+import GHeader from "@/components/header";
+import GFooter from "@/components/footer";
+import "@/assets/js/heart.js";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     GHeader,
     GFooter
@@ -33,29 +33,28 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "./assets/scss/public/variables.scss";
+@import "./assets/scss/public/variables.scss";
 
-  * {
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+}
+.el-container {
+  .el-header,
+  .el-main,
+  .el-footer {
     padding: 0;
+    margin: 0;
   }
-  .el-container{
-    .el-header,
-    .el-main,
-    .el-footer{
-      padding: 0;
-      margin: 0;
-    }
-    .el-header{
-      z-index: 100000;
-    }
-    .el-main{
-      // background-image: url('~@/assets/images/bg1.jpg');
-      // background-size: 100vw 100vh;
-      // background-origin: top left;
-      // background-attachment: fixed;
-      background-color: $theme-color;
-    }
+  .el-header {
+    z-index: 100;
   }
-  
+  .el-main {
+    // background-image: url('~@/assets/images/bg1.jpg');
+    // background-size: 100vw 100vh;
+    // background-origin: top left;
+    // background-attachment: fixed;
+    background-color: $theme-color;
+  }
+}
 </style>

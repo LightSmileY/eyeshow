@@ -44,7 +44,7 @@ export default {
   name: 'index',
   data(){
     return {
-      defaultImage: "http://pymhh35l8.bkt.clouddn.com/default/13.jpg"
+      defaultImage: "http://cdn.fengblog.xyz/default/13.jpg"
     }
   },
   props: {

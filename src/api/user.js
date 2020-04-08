@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {serverUrl} from '../utils/env.js'
+import {
+  serverUrl
+} from '../utils/env.js'
 
 // 用户注册
 export const signUp = data => {

@@ -116,7 +116,7 @@ export default new Router({
           component: () => import('@/views/mine/myProfile')
         }
       ],
-      redirect:'/mine/myPosts'
+      redirect: '/mine/myPosts'
     },
     {
       path: '*',

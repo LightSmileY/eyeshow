@@ -1,13 +1,11 @@
 <template>
   <ul id="postList">
     <!--*********************** 帖子 ********************-->
-    <li 
-    class="postList-li-1" 
-    v-for="(item,index) in arrayList">
+    <li class="postList-li-1" v-for="(item,index) in arrayList">
       <div class="user">
         <div class="userInfo">
           <div class="avatar" @click="toMinePage(item.uid)">
-            <img :src="item.avatarUrl" alt="" title="查看用户主页">
+            <img :src="item.avatarUrl" alt title="查看用户主页" />
           </div>
           <div class="name-time">
             <div class="name" @click="toMinePage(item.uid)" title="查看用户主页">{{item.nickname}}</div>
@@ -23,45 +21,43 @@
       </div>
       <div @click="toDetailPage(item.pid)" class="body">
         <p class="ptitle" title="查看帖子详情">
-          <span v-if='item.fpid != "-1"' class="forwardWord">
+          <span v-if="item.fpid != "-1"" class="forwardWord">
             <i class="el-icon-s-promotion"></i>转发
           </span>
           #{{item.title}}#
         </p>
         <p v-if="item.type!='3'" title="查看帖子详情">{{item.content}}</p>
-        <a :href="item.content" target="_blank" v-if="item.type=='3'"  title="查看商品详情">
-          商品链接
-        </a>
+        <a :href="item.content" target="_blank" v-if="item.type=='3'" title="查看商品详情">商品链接</a>
       </div>
       <div class="images">
-        <el-image 
+        <el-image
           :src="image"
           :preview-src-list="item.images"
           lazy
           v-for="image in item.images"
           v-if="item.images.length"
-          fit="cover">
-        </el-image>
+          fit="cover"
+        ></el-image>
       </div>
       <div class="video">
-        <video 
-        :src="item.video[0]" 
-        width="100%" 
-        controls="controls"
-        v-if="item.video.length">
-          您的浏览器不支持 video 标签。
-        </video>
+        <video
+          :src="item.video[0]"
+          width="100%"
+          controls="controls"
+          v-if="item.video.length"
+        >您的浏览器不支持 video 标签。</video>
       </div>
       <!-- *****************************转发*************************** -->
-      <div 
-      @click="toDetailPage(item.forward.pid)" 
-      title="查看原帖" 
-      class="pforward"
-      v-if="item.forward">
+      <div
+        @click="toDetailPage(item.forward.pid)"
+        title="查看原帖"
+        class="pforward"
+        v-if="item.forward"
+      >
         <div class="user">
           <div class="userInfo">
             <div class="avatar">
-              <img :src="item.forward.avatarUrl">
+              <img :src="item.forward.avatarUrl" />
             </div>
             <div class="name-time">
               <div class="name">{{item.forward.nickname}}</div>
@@ -77,44 +73,34 @@
       <!-- 操作 -->
       <div class="operate">
         <div class="like" title="点赞">
-          <img :src="isLike(index)" class="like" @click="toLike(index)">
+          <img :src="isLike(index)" class="like" @click="toLike(index)" />
           <div>{{item.likeCount}}</div>
         </div>
         <span>|</span>
         <div class="collection" title="收藏">
-          <img :src="isCollection(index)" class="collection" @click="toCollect(index)">
+          <img :src="isCollection(index)" class="collection" @click="toCollect(index)" />
           <div>{{item.collectionCount}}</div>
         </div>
         <span>|</span>
         <div class="forward" title="转发">
-          <img :src="forwardIcon" class="forward" @click="openForwardBox(index)">
+          <img :src="forwardIcon" class="forward" @click="openForwardBox(index)" />
           <div>{{item.forwardCount}}</div>
         </div>
       </div>
       <div class="comments">
         <el-collapse accordion>
-          <el-collapse-item 
-          :title='"展开评论 (" + item.commentCount + ")"'>
+          <el-collapse-item :title=""展开评论 (" + item.commentCount + ")"">
             <div class="tocomment">
               <el-input
                 type="textarea"
                 autosize
                 placeholder="我也要评论..."
-                v-model="commentInfo.content">
-              </el-input>
-              <el-button 
-              type="primary"
-              size="mini"
-              @click="toComment(index)">
-                评论
-              </el-button>
+                v-model="commentInfo.content"
+              ></el-input>
+              <el-button type="primary" size="mini" @click="toComment(index)">评论</el-button>
             </div>
-            <li 
-            class="commentList" 
-            v-for="(comment,cindex) in item.comments"
-            >
-              <span class="obj"
-              @click="replyComment(index,cindex,comment.nickname)">
+            <li class="commentList" v-for="(comment,cindex) in item.comments">
+              <span class="obj" @click="replyComment(index,cindex,comment.nickname)">
                 <span>
                   <span>{{comment.nickname}}&nbsp;</span>
                   <span v-if="comment.objectNickname !== item.nickname">
@@ -123,39 +109,37 @@
                   </span>
                 </span>
                 :&nbsp;
-                <span 
-                class="content" 
-                title="回复TA" >
-                {{comment.content}}
-                </span>
+                <span class="content" title="回复TA">{{comment.content}}</span>
               </span>
-              <span 
-              class="delete" 
-              title="删除评论" 
-              v-if="canDelete(comment.userId)"
-              @click="deleteCommentById(index,cindex)">删除</span>
+              <span
+                class="delete"
+                title="删除评论"
+                v-if="canDelete(comment.userId)"
+                @click="deleteCommentById(index,cindex)"
+              >删除</span>
             </li>
           </el-collapse-item>
         </el-collapse>
       </div>
     </li>
     <!-- ***********************转发帖子*********************** -->
-    <el-dialog 
-    title="转发该帖子" 
-    :visible.sync="dialogFormVisible"
-    :close-on-click-modal="false"
-    width="600px"
-    top="25vh">
+    <el-dialog
+      title="转发该帖子"
+      :visible.sync="dialogFormVisible"
+      :close-on-click-modal="false"
+      width="600px"
+      top="25vh"
+    >
       <el-form :model="forwardInfo">
         <el-form-item label="添加标题" :label-width="formLabelWidth">
           <el-input v-model="forwardInfo.title" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="想说的话" :label-width="formLabelWidth">
-          <el-input 
-          type="textarea"
-          v-model="forwardInfo.content" 
-          autocomplete="off"
-          :autosize="{ minRows: 3}"
+          <el-input
+            type="textarea"
+            v-model="forwardInfo.content"
+            autocomplete="off"
+            :autosize="{ minRows: 3}"
           ></el-input>
         </el-form-item>
       </el-form>
@@ -168,34 +152,34 @@
 </template>
 
 <script>
-import LikeIcon from '@/assets/icons/like.png'
-import LikeActiveIcon from '@/assets/icons/like-active.png'
-import CollectionIcon from '@/assets/icons/collection.png'
-import CollectionActiveIcon from '@/assets/icons/collection-active.png'
-import ForwardIcon from '@/assets/icons/forward.png'
+import LikeIcon from "@/assets/icons/like.png";
+import LikeActiveIcon from "@/assets/icons/like-active.png";
+import CollectionIcon from "@/assets/icons/collection.png";
+import CollectionActiveIcon from "@/assets/icons/collection-active.png";
+import ForwardIcon from "@/assets/icons/forward.png";
 
-import { uuid, getTime } from '@/assets/js/pubFunctions'
-import { attentUser, unAttentUser } from '@/api/user'
-import { 
+import { uuid, getTime } from "@/assets/js/pubFunctions";
+import { attentUser, unAttentUser } from "@/api/user";
+import {
   addPost,
-  likePost, 
-  unLikePost, 
-  collectPost, 
-  unCollectPost, 
-  commentPost, 
+  likePost,
+  unLikePost,
+  collectPost,
+  unCollectPost,
+  commentPost,
   deleteComment,
   deletePostById
-} from '@/api/post'
-
+} from "@/api/post";
 
 export default {
-  name: 'postList',
-  data(){
+  name: "postList",
+  data() {
     return {
       drawer: false,
-      textarea: '',
+      textarea: "",
       forwardIcon: ForwardIcon,
-      likeInfo: {   //点赞接口参数
+      likeInfo: {
+        //点赞接口参数
         id: "",
         time: "",
         pid: "",
@@ -210,198 +194,206 @@ export default {
         buid: "",
         content: ""
       },
-      dialogFormVisible: false,    //转发弹框控制
+      dialogFormVisible: false, //转发弹框控制
       // 转发帖子表单
       forwardInfo: {
         title: "",
         content: ""
       },
-      forwardIndex: 0,  //打开转发框时记录帖子索引
-      formLabelWidth: '100px',
+      forwardIndex: 0, //打开转发框时记录帖子索引
+      formLabelWidth: "100px",
       fit: "cover"
-    }
+    };
   },
   props: {
     arrayList: Array
   },
   computed: {
-    isMyPost(){
-      return i => i == this.$store.state.userInfo.id
+    isMyPost() {
+      return i => i == this.$store.state.userInfo.id;
     },
-    isAttent(){
-      return i => this.arrayList[i].isAttent ? "已关注" : "关注TA"
+    isAttent() {
+      return i => (this.arrayList[i].isAttent ? "已关注" : "关注TA");
     },
-    isLike(){
-      return i => this.arrayList[i].isLike ? LikeActiveIcon : LikeIcon
+    isLike() {
+      return i => (this.arrayList[i].isLike ? LikeActiveIcon : LikeIcon);
     },
-    isCollection(){
-      return i => this.arrayList[i].isCollect ? CollectionActiveIcon : CollectionIcon
+    isCollection() {
+      return i =>
+        this.arrayList[i].isCollect ? CollectionActiveIcon : CollectionIcon;
     },
-    canDelete(){
-      return i => i == this.$store.state.userInfo.id
+    canDelete() {
+      return i => i == this.$store.state.userInfo.id;
     }
   },
   methods: {
     // 删除我的帖子
-    deletePost(i){
-      this.$confirm('确定删除该帖子吗?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        deletePostById({post_ID: this.arrayList[i].pid})
-        .then(res => {
-          this.arrayList.splice(i, 1)
-          console.log(this.arrayList)
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          })
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '取消删除'
-        })
+    deletePost(i) {
+      this.$confirm("确定删除该帖子吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
       })
+        .then(() => {
+          deletePostById({ post_ID: this.arrayList[i].pid }).then(res => {
+            this.arrayList.splice(i, 1);
+            console.log(this.arrayList);
+            this.$message({
+              type: "success",
+              message: "删除成功!"
+            });
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "取消删除"
+          });
+        });
     },
     // 关注&&取消关注用户
-    toAttent(i){
-      if(this.arrayList[i].isAttent){
-        this.unAttent(i)
-      }else{
-        this.attent(i)
+    toAttent(i) {
+      if (this.arrayList[i].isAttent) {
+        this.unAttent(i);
+      } else {
+        this.attent(i);
       }
     },
     // 点赞&&取消点赞
-    toLike(i){
-      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
-        this.$message.warning("请先登录哦！")
-        return
+    toLike(i) {
+      if (
+        this.$store.state.userInfo.id == undefined ||
+        this.$store.state.userInfo.id == "-1"
+      ) {
+        this.$message.warning("请先登录哦！");
+        return;
       }
-      if(this.arrayList[i].isLike){
-        this.unLike(i)
-      }else{
-        this.like(i)
+      if (this.arrayList[i].isLike) {
+        this.unLike(i);
+      } else {
+        this.like(i);
       }
     },
     // 收藏&&取消收藏
-    toCollect(i){
-      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
-        this.$message.warning("请先登录哦！")
-        return
+    toCollect(i) {
+      if (
+        this.$store.state.userInfo.id == undefined ||
+        this.$store.state.userInfo.id == "-1"
+      ) {
+        this.$message.warning("请先登录哦！");
+        return;
       }
-      if(this.arrayList[i].isCollect){
-        this.unCollect(i)
-      }else{
-        this.collect(i)
+      if (this.arrayList[i].isCollect) {
+        this.unCollect(i);
+      } else {
+        this.collect(i);
       }
     },
     // 关注
-    attent(i){
-      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
-        this.$message.warning("请先登录哦！")
-        return
+    attent(i) {
+      if (
+        this.$store.state.userInfo.id == undefined ||
+        this.$store.state.userInfo.id == "-1"
+      ) {
+        this.$message.warning("请先登录哦！");
+        return;
       }
-      let _this = this
+      let _this = this;
       let attentInfo = {
         id: uuid(),
         fans: this.$store.state.userInfo.id,
         follows: this.arrayList[i].uid
-      }
-      attentUser(attentInfo)
-      .then(res => {
-        console.log(res)
-        _this.arrayList[i].isAttent = true
-        console.log(res)
-      })
+      };
+      attentUser(attentInfo).then(res => {
+        console.log(res);
+        _this.arrayList[i].isAttent = true;
+        console.log(res);
+      });
     },
     // 取消关注
-    unAttent(i){
-      let _this = this
+    unAttent(i) {
+      let _this = this;
       let unAttentInfo = {
         fans_ID: this.$store.state.userInfo.id,
         follows_ID: this.arrayList[i].uid
-      }
-      unAttentUser(unAttentInfo)
-      .then(res => {
-        console.log(res)
-        _this.arrayList[i].isAttent = false
-        console.log(res)
-      })
+      };
+      unAttentUser(unAttentInfo).then(res => {
+        console.log(res);
+        _this.arrayList[i].isAttent = false;
+        console.log(res);
+      });
     },
     // 点赞
-    like(i){
-      let _this = this
+    like(i) {
+      let _this = this;
       let likeInfo = {
         id: uuid(),
         time: getTime(),
         pid: this.arrayList[i].pid,
         uid: this.$store.state.userInfo.id
-      }
-      likePost(likeInfo)
-      .then(res => {
-        _this.arrayList[i].isLike = true
-        _this.arrayList[i].likeCount ++
-        console.log(res)
-      })
+      };
+      likePost(likeInfo).then(res => {
+        _this.arrayList[i].isLike = true;
+        _this.arrayList[i].likeCount++;
+        console.log(res);
+      });
     },
     // 取消点赞
-    unLike(i){
-      let _this = this
+    unLike(i) {
+      let _this = this;
       let unlikeInfo = {
         post_ID: this.arrayList[i].pid,
         user_ID: this.$store.state.userInfo.id
-      }
-      console.log(unlikeInfo)
-      unLikePost(unlikeInfo)
-      .then(res => {
-        _this.arrayList[i].isLike = false
-        _this.arrayList[i].likeCount --
-        console.log(res)
-      })
+      };
+      console.log(unlikeInfo);
+      unLikePost(unlikeInfo).then(res => {
+        _this.arrayList[i].isLike = false;
+        _this.arrayList[i].likeCount--;
+        console.log(res);
+      });
     },
     // 收藏
-    collect(i){
-      let _this = this
+    collect(i) {
+      let _this = this;
       let collectInfo = {
         id: uuid(),
         time: getTime(),
         pid: this.arrayList[i].pid,
         uid: this.$store.state.userInfo.id
-      }
-      collectPost(collectInfo)
-      .then(res => {
-        _this.arrayList[i].isCollect = true
-        _this.arrayList[i].collectionCount ++
-        console.log(res)
-      })
+      };
+      collectPost(collectInfo).then(res => {
+        _this.arrayList[i].isCollect = true;
+        _this.arrayList[i].collectionCount++;
+        console.log(res);
+      });
     },
     // 取消收藏
-    unCollect(i){
-      let _this = this
+    unCollect(i) {
+      let _this = this;
       let unCollectInfo = {
         post_ID: this.arrayList[i].pid,
         user_ID: this.$store.state.userInfo.id
-      }
-      unCollectPost(unCollectInfo)
-      .then(res => {
-        _this.arrayList[i].isCollect = false
-        _this.arrayList[i].collectionCount --
-        console.log(res)
-      })
+      };
+      unCollectPost(unCollectInfo).then(res => {
+        _this.arrayList[i].isCollect = false;
+        _this.arrayList[i].collectionCount--;
+        console.log(res);
+      });
     },
     // 转发
-    openForwardBox(i){
-      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
-        this.$message.warning("请先登录哦！")
-        return
+    openForwardBox(i) {
+      if (
+        this.$store.state.userInfo.id == undefined ||
+        this.$store.state.userInfo.id == "-1"
+      ) {
+        this.$message.warning("请先登录哦！");
+        return;
       }
-      this.dialogFormVisible = true
-      this.forwardIndex = i
+      this.dialogFormVisible = true;
+      this.forwardIndex = i;
     },
-    toForward(){
-      let i = this.forwardIndex
+    toForward() {
+      let i = this.forwardIndex;
       let forwardInfo = {
         title: this.forwardInfo.title,
         content: this.forwardInfo.content,
@@ -411,25 +403,27 @@ export default {
         id: uuid(),
         time: getTime(),
         fpid: this.arrayList[i].pid
-      }
-      console.log(forwardInfo)
-      addPost(forwardInfo)
-      .then(res => {
-        this.dialogFormVisible = false
+      };
+      console.log(forwardInfo);
+      addPost(forwardInfo).then(res => {
+        this.dialogFormVisible = false;
         this.$message({
-          type: 'success',
-          message: '转发成功!'
-        })
-        this.$emit('fuc', "1")
-      })
+          type: "success",
+          message: "转发成功!"
+        });
+        this.$emit("fuc", "1");
+      });
     },
     // 评论
-    toComment(i){
-      if (this.$store.state.userInfo.id == undefined || this.$store.state.userInfo.id == "-1"){
-        this.$message.warning("请先登录哦！")
-        return
+    toComment(i) {
+      if (
+        this.$store.state.userInfo.id == undefined ||
+        this.$store.state.userInfo.id == "-1"
+      ) {
+        this.$message.warning("请先登录哦！");
+        return;
       }
-      let _this = this
+      let _this = this;
       let commentInfo = {
         id: uuid(),
         time: getTime(),
@@ -437,9 +431,8 @@ export default {
         auid: this.$store.state.userInfo.id,
         buid: this.arrayList[i].uid,
         content: this.commentInfo.content
-      }
-      commentPost(commentInfo)
-      .then(res => {
+      };
+      commentPost(commentInfo).then(res => {
         _this.arrayList[i].comments.push({
           id: uuid(),
           time: getTime(),
@@ -448,24 +441,26 @@ export default {
           nickname: this.$store.state.userInfo.nickname,
           objectNickname: this.arrayList[i].nickname,
           content: this.commentInfo.content
-        })
-        _this.arrayList[i].commentCount ++
-        console.log(res)
-      })
+        });
+        _this.arrayList[i].commentCount++;
+        console.log(res);
+      });
     },
     // 回复评论
-    replyComment(i,j,k){
-      this.$prompt('回复  '+ k, {
-        confirmButtonText: '提交',
-        cancelButtonText: '取消',
-        // beforeClose: 
-      })
-      .then(({ value }) => {
-        if (this.$store.state.userInfo.id == "" || this.$store.state.userInfo.id == "-1"){
-          this.$message.warning("请先登录哦！")
-          return
+    replyComment(i, j, k) {
+      this.$prompt("回复  " + k, {
+        confirmButtonText: "提交",
+        cancelButtonText: "取消"
+        // beforeClose:
+      }).then(({ value }) => {
+        if (
+          this.$store.state.userInfo.id == "" ||
+          this.$store.state.userInfo.id == "-1"
+        ) {
+          this.$message.warning("请先登录哦！");
+          return;
         }
-        let _this = this
+        let _this = this;
         let commentInfo = {
           id: uuid(),
           time: getTime(),
@@ -473,9 +468,8 @@ export default {
           auid: this.$store.state.userInfo.id,
           buid: this.arrayList[i].comments[j].userId,
           content: value
-        }
-        commentPost(commentInfo)
-        .then(res => {
+        };
+        commentPost(commentInfo).then(res => {
           _this.arrayList[i].comments.push({
             id: uuid(),
             time: getTime(),
@@ -483,56 +477,53 @@ export default {
             nickname: this.$store.state.userInfo.nickname,
             objectNickname: this.arrayList[i].comments[j].nickname,
             content: value
-          })
-          _this.arrayList[i].commentCount ++
-          console.log(res)
-        })
-        this.$message({
-          type: 'success',
-          message: '回复成功'
+          });
+          _this.arrayList[i].commentCount++;
+          console.log(res);
         });
-      })
+        this.$message({
+          type: "success",
+          message: "回复成功"
+        });
+      });
     },
     // 删除评论
-    deleteCommentById(i,j){
-      let _this = this
-      this.$confirm('确定删除评论?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-      .then(() => {
-        deleteComment({id: this.arrayList[i].comments[j].id})
-        .then(res => {
-          _this.arrayList[i].comments[j].splice(j, 1)
+    deleteCommentById(i, j) {
+      let _this = this;
+      this.$confirm("确定删除评论?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        deleteComment({ id: this.arrayList[i].comments[j].id }).then(res => {
+          _this.arrayList[i].comments[j].splice(j, 1);
           _this.$message({
-            type: 'success',
-            message: '删除成功!'
-          })
-        })
-        
-      })
+            type: "success",
+            message: "删除成功!"
+          });
+        });
+      });
     },
     // 去帖子详情页
-    toDetailPage(i){
+    toDetailPage(i) {
       this.$router.push({
-        name:'PostDetails',
+        name: "PostDetails",
         query: { id: i }
-      })
+      });
     },
     // 查看用户资料
-    toMinePage(i){
+    toMinePage(i) {
       this.$router.push({
-        name:'Mine',
+        name: "Mine",
         query: {
           id: i
         }
-      })
+      });
     }
   }
 };
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/community/postList.scss";
+@import "../../assets/scss/community/postList.scss";
 </style>

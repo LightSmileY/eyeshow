@@ -4,7 +4,7 @@
       <el-col :span="2">
         <div class="logo">
           <router-link to="/index">
-            <img src="../../assets/images/logo.png" alt="logo">
+            <img src="../../assets/images/logo.png" alt="logo" />
           </router-link>
         </div>
       </el-col>
@@ -16,8 +16,8 @@
               width="90%"
               placeholder="搜索您想要的内容···"
               suffix-icon="el-icon-search"
-              v-model="input">
-            </el-input>
+              v-model="input"
+            ></el-input>
             <!-- 搜索框推荐 -->
             <div class="hoverRecommendCon">
               <div class="hoverRecommend">
@@ -33,7 +33,7 @@
                     <li v-for="item in headerYouLikeList">{{item}}</li>
                   </ul>
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
@@ -41,9 +41,15 @@
       <el-col :span="12">
         <div class="nav">
           <ul>
-            <router-link to="/index"><li>首页</li></router-link>
-            <router-link to="/community"><li>社区</li></router-link>
-            <router-link to="/mall/mallIndex"><li>商城</li></router-link>
+            <router-link to="/index">
+              <li>首页</li>
+            </router-link>
+            <router-link to="/community">
+              <li>社区</li>
+            </router-link>
+            <router-link to="/mall/mallIndex">
+              <li>商城</li>
+            </router-link>
           </ul>
         </div>
       </el-col>
@@ -57,15 +63,11 @@
         <div class="me-2" @click="toMine()">
           <div class="avatar-name">
             <div class="avatar">
-              <img :src="$store.state.userInfo.avatar">
+              <img :src="$store.state.userInfo.avatar" />
             </div>
-            <div class="nickName">
-              {{$store.state.userInfo.nickname}}
-            </div>
+            <div class="nickName">{{$store.state.userInfo.nickname}}</div>
           </div>
-          <div class="exit" @click.stop="exit">
-            退出
-          </div>
+          <div class="exit" @click.stop="exit">退出</div>
         </div>
       </el-col>
     </el-row>
@@ -73,27 +75,25 @@
 </template>
 
 <script>
-import { getUserInfo, updateUserInfo } from '@/api/user'
-import { headerHotSearchList, headerYouLikeList } from '@/assets/js/staticData'
+import { getUserInfo, updateUserInfo } from "@/api/user";
+import { headerHotSearchList, headerYouLikeList } from "@/assets/js/staticData";
 
 export default {
-  name: 'g-header',
-  data(){
+  name: "g-header",
+  data() {
     return {
-      input: '',
+      input: "",
       userInfo: {},
       userInfo2: {},
       headerHotSearchList,
       headerYouLikeList
-    }
+    };
   },
-  watch: {
-    
-  },
+  watch: {},
   computed: {
-    isLogin(){
-      this.userInfo = this.$store.state.userInfo
-      return this.userInfo.id != "-1" && this.userInfo.id
+    isLogin() {
+      this.userInfo = this.$store.state.userInfo;
+      return this.userInfo.id != "-1" && this.userInfo.id;
     }
   },
   methods: {
@@ -102,59 +102,59 @@ export default {
       this.status = i
       console.log(this.status)
     },*/
-    getInfo(uid){
-      getUserInfo({ user_ID: uid})
-      .then(res => {
-        this.userInfo = res.data.detailMsg.data[0]
-        this.$store.dispatch('getUserInfo', res.data.detailMsg.data[0])
-        localStorage.setItem('userInfo', JSON.stringify(res.data.detailMsg.data[0]))
-      })
+    getInfo(uid) {
+      getUserInfo({ user_ID: uid }).then(res => {
+        this.userInfo = res.data.detailMsg.data[0];
+        this.$store.dispatch("getUserInfo", res.data.detailMsg.data[0]);
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(res.data.detailMsg.data[0])
+        );
+      });
     },
     // 进入我的个人中心
-    toMine(){
+    toMine() {
       // this.$store.dispatch('getViewUserId', this.$store.state.userInfo.id)
       this.$router.push({
-        name:'Mine',
+        name: "Mine",
         query: {
           id: this.$store.state.userInfo.id
         }
-      })
+      });
     },
     // 跳转到登录页
-    toLoginPage(){
-      this.$router.push({name:'Login'})
+    toLoginPage() {
+      this.$router.push({ name: "Login" });
     },
     // 跳转到注册页
-    toRegisterPage(){
-      this.$router.push({name:'Register'})
+    toRegisterPage() {
+      this.$router.push({ name: "Register" });
     },
     // 退出登录
-    exit(){
-      this.$confirm('确定退出登录?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
+    exit() {
+      this.$confirm("确定退出登录?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
       }).then(() => {
-        this.$store.state.userInfo = {}
-        localStorage.removeItem('userInfo')
+        this.$store.state.userInfo = {};
+        localStorage.removeItem("userInfo");
         this.$message({
-          type: 'success',
-          message: '退出登录!'
-        })
-      })
+          type: "success",
+          message: "退出登录!"
+        });
+      });
     }
   },
-  components:{
-
-  },
-  mounted(){
-    let uid = JSON.parse(localStorage.userInfo).id
-    this.$store.dispatch('getViewUserId', uid)
-    this.getInfo(uid)
+  components: {},
+  mounted() {
+    let uid = JSON.parse(localStorage.userInfo).id;
+    this.$store.dispatch("getViewUserId", uid);
+    this.getInfo(uid);
   }
 };
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/header/header.scss";
+@import "../../assets/scss/header/header.scss";
 </style>

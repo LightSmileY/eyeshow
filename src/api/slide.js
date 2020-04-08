@@ -29,7 +29,7 @@ export const getMyImages = () => {
 
 export const mergePace = params => {
   return axios({
-    url: 'http://10.100.158.87:8000/recomment/test',
+    url: 'http://10.100.116.100:8000/recomment/test',
     method: 'get',
     params
   })
